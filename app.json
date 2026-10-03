@@ -1,0 +1,59 @@
+{
+  "expo": {
+    "name": "Medynium",
+    "slug": "medynium",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "medynium",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "bundleIdentifier": "com.medynium.app",
+      "buildNumber": "1",
+      "supportsTablet": false,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#1e59cd",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.medynium.app"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#f6f9fd",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 160,
+          "dark": {
+            "backgroundColor": "#090d16",
+            "image": "./assets/images/splash-icon.png"
+          }
+        }
+      ],
+      "expo-secure-store",
+      "expo-dev-client",
+      "./plugins/with-android-hardening"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "description": "Governed Patient 360 and clinical assistant. Synthetic data only.",
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "1262c034-34f0-4162-8bbc-f18bf4940ded"
+      }
+    },
+    "owner": "noobcodervp"
+  }
+}
