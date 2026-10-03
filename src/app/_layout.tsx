@@ -14,6 +14,7 @@ import { EvidenceProvider } from '@/features/evidence';
 import { SessionProvider, useSession } from '@/features/session';
 import { useTheme } from '@/hooks/use-theme';
 import { queryClient } from '@/lib/query/client';
+import { loadThemePreference } from '@/lib/theme-preference';
 
 void SplashScreen.preventAutoHideAsync();
 
@@ -39,6 +40,9 @@ export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
 function RootNavigator() {
   const { status, retry } = useSession();
   const [fontsLoaded, fontError] = useFonts(FONTS);
+  useEffect(() => {
+    void loadThemePreference();
+  }, []);
   const fontsReady = fontsLoaded || !!fontError; // a font failure falls back to the system font, never a blank app
 
   useEffect(() => {

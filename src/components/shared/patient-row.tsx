@@ -2,7 +2,9 @@ import { useRouter } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
 import { FlagChips } from '@/components/shared/flag-chips';
+import { Avatar } from '@/components/ui/avatar';
 import { PressableCard } from '@/components/ui/card';
+import { Icon } from '@/components/ui/icon';
 import { Reveal } from '@/components/ui/reveal';
 import { Text } from '@/components/ui/text';
 import type { EncounterRef, Flag } from '@/lib/api/types';
@@ -33,24 +35,28 @@ export function PatientRow({ patientId, name, age, sex, detail, lastEncounter, f
         label={`${name}, ${age} years, ${sex}. Last visit: ${last}. Open patient.`}
         onPress={() => router.push({ pathname: '/patient/[patientId]', params: { patientId } })}
       >
-        <View style={styles.body}>
-          <View style={styles.top}>
-            <Text variant="heading" style={styles.name} numberOfLines={1}>
-              {name}
-            </Text>
+        <View style={styles.row}>
+          <Avatar name={name} />
+          <View style={styles.body}>
+            <View style={styles.top}>
+              <Text variant="heading" style={styles.name} numberOfLines={1}>
+                {name}
+              </Text>
+              <Text variant="caption" color="mutedForeground">
+                {age} · {sex}
+              </Text>
+            </View>
+            {detail ? (
+              <Text variant="caption" color="mutedForeground" numberOfLines={2}>
+                {detail}
+              </Text>
+            ) : null}
             <Text variant="caption" color="mutedForeground">
-              {age} · {sex}
+              Last visit: {last}
             </Text>
+            <FlagChips flags={flags} />
           </View>
-          {detail ? (
-            <Text variant="caption" color="mutedForeground" numberOfLines={2}>
-              {detail}
-            </Text>
-          ) : null}
-          <Text variant="caption" color="mutedForeground">
-            Last visit: {last}
-          </Text>
-          <FlagChips flags={flags} />
+          <Icon name="chevron-forward" size={18} color="mutedForeground" />
         </View>
       </PressableCard>
     </Reveal>
@@ -58,7 +64,8 @@ export function PatientRow({ patientId, name, age, sex, detail, lastEncounter, f
 }
 
 const styles = StyleSheet.create({
-  body: { gap: 6 },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  body: { flex: 1, gap: 4 },
   top: { flexDirection: 'row', alignItems: 'baseline', gap: 8 },
   name: { flex: 1 },
 });

@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
 import { Tabs } from 'expo-router';
 import type { ComponentProps } from 'react';
 import { useEffect } from 'react';
@@ -46,6 +47,7 @@ export default function TabsLayout() {
   const theme = useTheme();
   return (
     <Tabs
+      screenListeners={{ tabPress: () => void Haptics.selectionAsync() }}
       screenOptions={{
         headerShown: false,
         animation: 'fade',

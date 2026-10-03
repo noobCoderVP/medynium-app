@@ -10,8 +10,8 @@ Status (2026-10-03): **All phases built.** Decisions taken: D1 bearer mode (done
 | 3 Patient workspace | Done, including email summary and saved views |
 | 4 Evidence (Why?) | Done |
 | 5 Agent (Ask) | Done |
-| 6 Knowledge, activity, You, admin | Done (admin: health, users, invitations; entitlements and password resets stay on the web) |
-| 7 Quality and release | Contrast check, unit and component tests, smoke list, branding (logo, icon, splash), motion pass. Not done: TalkBack audit, FLAG_SECURE and auto-lock (need a native module: dependency decision), release APK (needs the HTTPS Cloud Run URL), Sentry |
+| 6 Knowledge, activity, You, admin | Done (admin: health, users, password reset links, invitations; per-user patient access stays on the web) |
+| 7 Quality and release | Contrast check, unit and component tests, smoke list, branding, motion pass, screenshot blocking and biometric or screen-lock auto-lock, theme choice, invitation links. Not done: a TalkBack walk-through (needs a person and a phone), crash reporting (needs a Sentry DSN), the release APK after on-device checks |
 
 Design: the web's tokens (oklch converted to sRGB), Roboto headings and Inter body, the web header's logo (HeartPulse in a rounded primary square) on every tab and as the app icon and splash. Motion: press scale on every control, staggered list and section entrances, tab icon spring, spring bottom sheets that follow a drag, typing dots while the assistant works, all honouring the system reduce-motion setting.
 

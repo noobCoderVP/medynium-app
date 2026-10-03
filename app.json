@@ -41,6 +41,12 @@
       ],
       "expo-secure-store",
       "expo-dev-client",
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Medynium uses Face ID to unlock the app."
+        }
+      ],
       "./plugins/with-android-hardening"
     ],
     "experiments": {

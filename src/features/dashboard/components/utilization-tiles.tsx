@@ -2,14 +2,20 @@ import { StatGrid, StatTile } from '@/components/shared/stat-tile';
 import type { UtilizationSummary } from '@/lib/api/types';
 import { formatMoney, formatNumber } from '@/lib/format';
 
+const count = (n: number) => formatNumber(Math.round(n));
+
 export function UtilizationTiles({ utilization }: { utilization: UtilizationSummary }) {
   return (
     <StatGrid>
-      <StatTile label="Patients" value={formatNumber(utilization.patients)} />
-      <StatTile label="Outpatient visits" value={formatNumber(utilization.opd_visits)} />
-      <StatTile label="Emergency visits" value={formatNumber(utilization.emergency_visits)} />
-      <StatTile label="Admissions" value={formatNumber(utilization.hospitalizations)} />
-      <StatTile label="Approved claims" value={formatMoney(utilization.approved)} />
+      <StatTile label="Patients" value={utilization.patients} format={count} />
+      <StatTile label="Outpatient visits" value={utilization.opd_visits} format={count} />
+      <StatTile label="Emergency visits" value={utilization.emergency_visits} format={count} />
+      <StatTile label="Admissions" value={utilization.hospitalizations} format={count} />
+      <StatTile
+        label="Approved claims"
+        value={utilization.approved.amount}
+        format={(n) => formatMoney({ amount: n })}
+      />
     </StatGrid>
   );
 }

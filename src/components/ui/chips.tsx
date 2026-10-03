@@ -77,5 +77,5 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', gap: 8 },
   wrapRow: { flexWrap: 'wrap' },
   fill: { flex: 1, alignItems: 'center', paddingHorizontal: 4 },
-  chip: { borderWidth: 1, borderRadius: Radius.full, paddingHorizontal: 12, minHeight: 40, justifyContent: 'center' },
+  chip: { borderWidth: 1, borderRadius: Radius.full, paddingHorizontal: 12, minHeight: 44, justifyContent: 'center' },
 });

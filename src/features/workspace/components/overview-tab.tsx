@@ -86,10 +86,14 @@ export function OverviewTab({ data }: { data: Overview }) {
       <Reveal index={4}>
         <Section title="Utilisation" aside={data.utilization.window}>
           <StatGrid>
-            <StatTile label="Outpatient visits" value={`${data.utilization.opd_visits}`} />
-            <StatTile label="Emergency visits" value={`${data.utilization.emergency_visits}`} />
-            <StatTile label="Admissions" value={`${data.utilization.hospitalizations}`} />
-            <StatTile label="Approved" value={formatMoney(data.utilization.approved)} />
+            <StatTile label="Outpatient visits" value={data.utilization.opd_visits} />
+            <StatTile label="Emergency visits" value={data.utilization.emergency_visits} />
+            <StatTile label="Admissions" value={data.utilization.hospitalizations} />
+            <StatTile
+              label="Approved"
+              value={data.utilization.approved.amount}
+              format={(n) => formatMoney({ amount: n })}
+            />
           </StatGrid>
         </Section>
       </Reveal>

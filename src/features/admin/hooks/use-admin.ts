@@ -47,3 +47,6 @@ export function useRevokeInvite() {
     onSuccess: () => client.invalidateQueries({ queryKey: ['admin', 'invites'] }),
   });
 }
+
+/** Emails the user a one-time reset link. The link is never shown here; it goes only to the account's own address. */
+export const useResetPassword = () => useMutation({ mutationFn: (id: string) => endpoints.resetPassword(id) });

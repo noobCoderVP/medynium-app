@@ -6,7 +6,7 @@ import { Logo } from '@/components/brand/logo';
 import { Reveal } from '@/components/ui/reveal';
 import { Screen } from '@/components/ui/screen';
 import { Text } from '@/components/ui/text';
-import { OtpForm, SignInForm } from '@/features/session';
+import { InviteLink, OtpForm, SignInForm } from '@/features/session';
 import type { OtpChallenge } from '@/lib/api/types';
 import { copy } from '@/lib/copy';
 
@@ -31,6 +31,9 @@ export default function SignInScreen() {
             <SignInForm onChallenge={setChallenge} onForgot={() => router.push('/forgot-password')} />
           )}
         </Reveal>
+        {!challenge && (
+          <InviteLink onOpen={(token) => router.push({ pathname: '/invite/[token]', params: { token } })} />
+        )}
         <Text variant="caption" color="mutedForeground" style={styles.note}>
           {copy.banner}
         </Text>

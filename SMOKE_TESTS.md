@@ -44,7 +44,22 @@ Run after every EAS build, against the API you built for. Accounts: `sharma@demo
 - [ ] Email a summary sends only after the button; the send appears in Activity.
 - [ ] Admin (doctor with is_admin only): Health, Users (cannot disable yourself) and Invites (create, revoke).
 
+## Privacy and lock
+
+- [ ] Screenshots are blocked and the recent-apps card is blank while signed in.
+- [ ] Leave the app for over a minute and return: the lock cover appears and asks for fingerprint, face or screen lock; Cancel then "Sign out instead" works.
+- [ ] Unlocking returns to the same screen; nothing was visible under the cover.
+
+## Invitations
+
+- [ ] Sign-in: "I have an invitation" accepts a pasted link or code, shows who it is for, sets the password, and returns to sign-in. A used or expired link says it is no longer valid.
+- [ ] `medynium://invite/<token>` opens the same screen from outside the app.
+
 ## Look and feel
+
+- [ ] Home greets you by time of day, tiles count up once, and a content-shaped skeleton shows while loading.
+- [ ] You tab: Appearance (System, Light, Dark) switches at once and is remembered after a restart.
+- [ ] Patient rows show initials; tab presses give a light tick.
 
 - [ ] The logo (heart-pulse in a blue rounded square, then "Medynium") is top left on every tab and on sign-in; the launcher icon and splash match.
 - [ ] Press scale on buttons and cards, staggered list entrances, tab icon spring, sheets spring up and close on a drag down or flick.

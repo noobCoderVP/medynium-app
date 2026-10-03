@@ -6,6 +6,14 @@ import { ApiError } from '@/lib/api/errors';
 
 import { PatientWorkspace } from './patient-workspace';
 
+jest.mock('@/components/ui/animated-number', () => ({
+  // The count-up animation updates state after the test ends, so tests render the final value directly.
+  AnimatedNumber: ({ value, format }: { value: number; format?: (n: number) => string }) => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { Text } = require('react-native');
+    return <Text>{format ? format(value) : String(value)}</Text>;
+  },
+}));
 jest.mock('@expo/vector-icons', () => ({ Ionicons: () => null }));
 jest.mock('expo-haptics', () => ({ impactAsync: jest.fn(), ImpactFeedbackStyle: { Light: 'light' } }));
 jest.mock('expo-router', () => ({
