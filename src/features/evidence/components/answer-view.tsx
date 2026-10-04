@@ -31,7 +31,7 @@ export function AnswerView({ answer }: { answer: StreamAnswer }) {
       </Text>
       {gap ? <Text color="mutedForeground">{copy.gap.note}</Text> : null}
       {answer.considerations.map((item) => (
-        <Statement key={item.id} answerId={answer.answer_id} item={item} />
+        <Statement key={item.id} answerId={answer.answer_id} item={item} patientId={answer.patient_id} />
       ))}
       {answer.conflicts.length > 0 && (
         <Card style={styles.conflict}>

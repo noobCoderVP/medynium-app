@@ -1,5 +1,4 @@
 import * as LocalAuthentication from 'expo-local-authentication';
-import * as ScreenCapture from 'expo-screen-capture';
 import { createContext, use, useCallback, useEffect, useMemo, useRef, useState, type PropsWithChildren } from 'react';
 import { AppState } from 'react-native';
 
@@ -20,7 +19,6 @@ const LockContext = createContext<LockValue | null>(null);
 
 /**
  * Privacy for a clinical app, even with synthetic data:
- *  - screenshots and the recent-apps preview are blocked while signed in (Android FLAG_SECURE);
  *  - after a minute away the app locks behind the phone's own fingerprint, face or screen lock;
  *  - a phone with no screen lock signs out after five minutes away.
  */
@@ -28,11 +26,6 @@ export function AppLockProvider({ children }: PropsWithChildren) {
   const { signOut } = useSession();
   const [locked, setLocked] = useState(false);
   const leftAt = useRef<number | null>(null);
-
-  useEffect(() => {
-    void ScreenCapture.preventScreenCaptureAsync('medynium').catch(() => {});
-    return () => void ScreenCapture.allowScreenCaptureAsync('medynium').catch(() => {});
-  }, []);
 
   useEffect(() => {
     const sub = AppState.addEventListener('change', (state) => {

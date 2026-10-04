@@ -1,6 +1,11 @@
 import { del, get, patch, post, postBlob, put } from './client';
 import type {
   ActionResponse,
+  AiMetrics,
+  Brief,
+  BriefSummary,
+  ChangeSet,
+  ProposalResult,
   AuditPage,
   Briefing,
   Claims,
@@ -76,6 +81,9 @@ export const endpoints = {
   briefing: () => get<Briefing>('/dashboard/briefing'),
   patients: (params: Params) => get<PatientPage>(`/patients${qs(params)}`),
   patient: (id: string) => get<Overview>(pid(id)),
+  brief: (id: string) => get<Brief>(`${pid(id)}/brief`),
+  briefSummary: (id: string) => get<BriefSummary>(`${pid(id)}/brief/summary`),
+  changes: (id: string, from: string) => get<ChangeSet>(`${pid(id)}/changes${qs({ from })}`),
   medications: (id: string, params: Params) => get<MedicationPage>(`${pid(id)}/medications${qs(params)}`),
   labs: (id: string, params: Params) => get<LabPage>(`${pid(id)}/labs${qs(params)}`),
   labTrend: (id: string, code: string) => get<LabTrend>(`${pid(id)}/labs/${encodeURIComponent(code)}/trend`),
@@ -115,6 +123,8 @@ export const endpoints = {
 
   // agent and evidence
   evidence: (answerId: string) => get<EvidenceResponse>(`/evidence/${encodeURIComponent(answerId)}`),
+  approveProposal: (id: string) => post<ProposalResult>(`/agent/proposals/${encodeURIComponent(id)}/approve`),
+  discardProposal: (id: string) => post<{ status: string }>(`/agent/proposals/${encodeURIComponent(id)}/discard`),
   action: (action: string, params: Record<string, unknown>) =>
     post<ActionResponse>('/agent/actions', { action, params }),
 
@@ -123,6 +133,7 @@ export const endpoints = {
     get<SearchResponse>(`/knowledge/search${qs(params)}`),
   knowledgeStatus: () => get<KnowledgeStatus>('/knowledge/status'),
   audit: (params: Params) => get<AuditPage>(`/audit${qs(params)}`),
+  aiMetrics: (days: number) => get<AiMetrics>(`/audit/summary${qs({ days })}`),
 
   // admin
   healthDetails: () => get<HealthDetails>('/health/details'),

@@ -18,3 +18,5 @@
 - Someone else's answer and a missing one both show the same not-found state.
 
 **States handled:** loading skeleton, error with retry and request id, not found, empty evidence.
+
+**In words, with links:** under each statement `evidence-chips.tsx` lists the lab, medicine or label section it rests on ("Based on"), each opening the real record through `lib/source-link.ts` (labs on their trend, label sections in Knowledge via a `q` param), plus Details for the Why? sheet. The `rule_check` tag marks lines found by a fixed rule rather than a model.

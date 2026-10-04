@@ -4,7 +4,7 @@
 
 **What it does**
 
-- Blocks screenshots and the recent-apps preview while signed in (Android `FLAG_SECURE`, through `expo-screen-capture`).
+- Screenshot blocking is switched off for now so the app can be screen-recorded for demos. To restore it, call `ScreenCapture.preventScreenCaptureAsync` from `expo-screen-capture` (still installed) in `AppLockProvider`.
 - After 60 seconds away the app locks behind the phone's own fingerprint, face or screen lock (`expo-local-authentication`). A full-screen cover hides everything until it is unlocked.
 - A phone with no screen lock set up has nothing to unlock with, so five minutes away signs the user out instead.
 

@@ -60,7 +60,6 @@ Run after every EAS build, against the API you built for. Accounts: `sharma@demo
 
 ## Privacy and lock
 
-- [ ] Screenshots are blocked and the recent-apps card is blank while signed in.
 - [ ] Leave the app for over a minute and return: the lock cover appears and asks for fingerprint, face or screen lock; Cancel then "Sign out instead" works.
 - [ ] Unlocking returns to the same screen; nothing was visible under the cover.
 

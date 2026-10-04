@@ -10,6 +10,7 @@ const STYLE: Record<TagKey, { icon: IconName; color: ThemeColor; soft: ThemeColo
   patient_fact: { icon: 'person-circle-outline', color: 'fact', soft: 'factSoft' },
   retrieved_source: { icon: 'document-text-outline', color: 'source', soft: 'sourceSoft' },
   ai_synthesis: { icon: 'sparkles-outline', color: 'synth', soft: 'synthSoft' },
+  rule_check: { icon: 'list-outline', color: 'warning', soft: 'warningSoft' },
 };
 
 /** The provenance of a statement: icon shape and words, never colour alone (NFR-10). */

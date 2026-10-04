@@ -86,7 +86,7 @@ export const DOC_SECTIONS: DocSection[] = [
     topics: [
       {
         title: 'Nothing clinical is stored',
-        body: "Only your sign-in token is kept, in the phone's secure storage. Patient data lives in memory and is cleared when you sign out. Screenshots are blocked and the app locks after a minute away.",
+        body: "Only your sign-in token is kept, in the phone's secure storage. Patient data lives in memory and is cleared when you sign out. The app locks after a minute away.",
       },
       {
         title: 'Offline',

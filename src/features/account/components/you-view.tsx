@@ -84,7 +84,7 @@ export function YouView() {
       </Reveal>
       <Reveal index={4}>
         <Text variant="caption" color="mutedForeground" style={styles.note}>
-          No patient data is stored on this device. The app locks after a minute away and blocks screenshots. Version{' '}
+          No patient data is stored on this device. The app locks after a minute away. Version{' '}
           {Constants.expoConfig?.version ?? '1.0.0'}.
         </Text>
       </Reveal>

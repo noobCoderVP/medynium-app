@@ -12,6 +12,7 @@ import { copy } from '@/lib/copy';
 import { formatDateTime } from '@/lib/format';
 
 import { useAudit } from '../hooks/use-audit';
+import { AiMetricsCard } from './ai-metrics-card';
 
 const TONE: Record<string, 'success' | 'warning' | 'destructive' | 'muted'> = {
   OK: 'success',
@@ -31,6 +32,7 @@ export function ActivityView() {
         <Button title="Back" icon="chevron-back" variant="ghost" size="sm" onPress={() => router.back()} />
       </View>
       <ScreenHeader title="Activity" subtitle="Every question, action and denial is recorded." />
+      <AiMetricsCard />
       <DataState
         query={query}
         isEmpty={(data) => data.pages.every((page) => page.items.length === 0)}

@@ -2,17 +2,17 @@
 
 Status (2026-10-03): **All phases built.** Decisions taken: D1 bearer mode (done in `medynium-apis`), D2 LAN for development, D3 dependency list (plus `test-renderer` and `@react-native/jest-preset`, peers of the test tooling).
 
-| Phase | State |
-| --- | --- |
-| 0 Backend readiness, scaffold, first EAS dev build | Done |
-| 1 Foundation and sign-in | Done |
-| 2 Dashboard and patients | Done |
-| 3 Patient workspace | Done, including email summary and saved views |
-| 4 Evidence (Why?) | Done |
-| 5 Agent (Ask) | Done |
-| 6 Knowledge, activity, You, admin | Done (admin: health, users, password reset links, invitations; per-user patient access stays on the web) |
-| 8 Web sync (2026-10-04) | Done: five-item bottom bar, Pending, allergies, Needs attention panel, Similar, Reports (upload, review, approve), Documentation, offline banner fix, centred sign-in. See `docs/SYNC_CHECKLIST.md` |
-| 7 Quality and release | Contrast check, unit and component tests, smoke list, branding, motion pass, screenshot blocking and biometric or screen-lock auto-lock, theme choice, invitation links. Not done: a TalkBack walk-through (needs a person and a phone), crash reporting (needs a Sentry DSN), the release APK after on-device checks |
+| Phase                                              | State                                                                                                                                                                                                                                                                                                                                                   |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0 Backend readiness, scaffold, first EAS dev build | Done                                                                                                                                                                                                                                                                                                                                                    |
+| 1 Foundation and sign-in                           | Done                                                                                                                                                                                                                                                                                                                                                    |
+| 2 Dashboard and patients                           | Done                                                                                                                                                                                                                                                                                                                                                    |
+| 3 Patient workspace                                | Done, including email summary and saved views                                                                                                                                                                                                                                                                                                           |
+| 4 Evidence (Why?)                                  | Done                                                                                                                                                                                                                                                                                                                                                    |
+| 5 Agent (Ask)                                      | Done                                                                                                                                                                                                                                                                                                                                                    |
+| 6 Knowledge, activity, You, admin                  | Done (admin: health, users, password reset links, invitations; per-user patient access stays on the web)                                                                                                                                                                                                                                                |
+| 8 Web sync (2026-10-04)                            | Done, with a second pass for the clinical brief, assistant proposals, evidence in words and assistant metrics (see `docs/SYNC_CHECKLIST.md`). First pass: five-item bottom bar, Pending, allergies, Needs attention panel, Similar, Reports (upload, review, approve), Documentation, offline banner fix, centred sign-in. See `docs/SYNC_CHECKLIST.md` |
+| 7 Quality and release                              | Contrast check, unit and component tests, smoke list, branding, motion pass, biometric or screen-lock auto-lock (screenshot blocking is off for demo recording), theme choice, invitation links. Not done: a TalkBack walk-through (needs a person and a phone), crash reporting (needs a Sentry DSN), the release APK after on-device checks           |
 
 Design: the web's tokens (oklch converted to sRGB), Roboto headings and Inter body, the web header's logo (HeartPulse in a rounded primary square) on every tab and as the app icon and splash. Motion: press scale on every control, staggered list and section entrances, tab icon spring, spring bottom sheets that follow a drag, typing dots while the assistant works, all honouring the system reduce-motion setting.
 
@@ -24,15 +24,15 @@ Reference app for tooling: `Desktop/Tutorial/Android_Development/nexora-app` (bu
 
 ## 1. What we reuse from Nexora (known-good)
 
-| Area | Copy from Nexora | Medynium change |
-| --- | --- | --- |
-| Stack | Expo SDK 57, RN 0.86, React 19.2, expo-router, TS strict, `@/*` path alias, React Compiler, typed routes | none |
-| Data | `@tanstack/react-query`, `zod`, `expo-secure-store` | **no query-cache persistence** (see rule M3) |
-| Build | `eas.json` profiles (development / preview / release / production, APK for internal), `scripts/build-eas.ps1` (typecheck, lint, then `eas build`), `metro.config.js` | new slug `medynium`, package `com.medynium.app`, new EAS project |
-| Config | `app.json` shape, adaptive icon, splash, `userInterfaceStyle: automatic`, `expo-dev-client` | drop widgets, speech, Sentry and notifications plugins at first |
-| Android hardening | `plugins/with-android-hardening.js` (`allowBackup=false`) | keep as is: patient data must not reach Drive backups |
-| API client | `lib/api/client.ts` pattern: base URL from `EXPO_PUBLIC_API_URL`, 20 s timeout, `ApiError`, single 401 handler | rebuilt around Medynium's error shape `{error, message}` and refresh flow |
-| Theme | tokens in `constants/theme.ts`, `use-theme` hook | new palette after design direction (rule 9 below) |
+| Area              | Copy from Nexora                                                                                                                                                     | Medynium change                                                           |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Stack             | Expo SDK 57, RN 0.86, React 19.2, expo-router, TS strict, `@/*` path alias, React Compiler, typed routes                                                             | none                                                                      |
+| Data              | `@tanstack/react-query`, `zod`, `expo-secure-store`                                                                                                                  | **no query-cache persistence** (see rule M3)                              |
+| Build             | `eas.json` profiles (development / preview / release / production, APK for internal), `scripts/build-eas.ps1` (typecheck, lint, then `eas build`), `metro.config.js` | new slug `medynium`, package `com.medynium.app`, new EAS project          |
+| Config            | `app.json` shape, adaptive icon, splash, `userInterfaceStyle: automatic`, `expo-dev-client`                                                                          | drop widgets, speech, Sentry and notifications plugins at first           |
+| Android hardening | `plugins/with-android-hardening.js` (`allowBackup=false`)                                                                                                            | keep as is: patient data must not reach Drive backups                     |
+| API client        | `lib/api/client.ts` pattern: base URL from `EXPO_PUBLIC_API_URL`, 20 s timeout, `ApiError`, single 401 handler                                                       | rebuilt around Medynium's error shape `{error, message}` and refresh flow |
+| Theme             | tokens in `constants/theme.ts`, `use-theme` hook                                                                                                                     | new palette after design direction (rule 9 below)                         |
 
 Not reused now: `react-native-android-widget`, `expo-widgets`, `expo-speech-recognition`, `expo-notifications`, Sentry. They are what forced Nexora onto a dev client and caused the `work-runtime-ktx` plugin; leaving them out keeps the first builds clean. Sentry can come back in the release phase.
 
@@ -40,19 +40,19 @@ Not reused now: `react-native-android-widget`, `expo-widgets`, `expo-speech-reco
 
 Mirrors the web screens, rebuilt for a phone, not ported pixel for pixel (the prototype and web styling are behaviour references only).
 
-| Web | Mobile | Phase |
-| --- | --- | --- |
-| Sign-in, OTP, forgot password | Same; session kept in SecureStore | 1 |
-| Dashboard (tiles, worklist, briefing) | Home tab | 2 |
-| Patients list, search, filters | Patients tab | 2 |
-| Patient workspace, 7 tabs | Screen with a segmented tab bar: Overview, Timeline, Medications, Labs (trend chart), Claims, Notes, Safety | 3 |
-| Why? evidence drawer | Bottom sheet, opened from any tagged statement (no hover) | 4 |
-| Agent panel (SSE) | Ask tab / sheet with live steps, route chip, refusals | 5 |
-| Knowledge search | Knowledge tab | 6 |
-| Activity log | Inside You tab | 6 |
-| Saved views, pins, share | Pins and share on patient; saved views with preview then approve | 6 |
-| Admin (users, invites) | **Deferred**: low value on a phone; web only until asked | later |
-| Invite accept, password reset links | Deep link `medynium://` after the web flow works | later |
+| Web                                   | Mobile                                                                                                      | Phase |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----- |
+| Sign-in, OTP, forgot password         | Same; session kept in SecureStore                                                                           | 1     |
+| Dashboard (tiles, worklist, briefing) | Home tab                                                                                                    | 2     |
+| Patients list, search, filters        | Patients tab                                                                                                | 2     |
+| Patient workspace, 7 tabs             | Screen with a segmented tab bar: Overview, Timeline, Medications, Labs (trend chart), Claims, Notes, Safety | 3     |
+| Why? evidence drawer                  | Bottom sheet, opened from any tagged statement (no hover)                                                   | 4     |
+| Agent panel (SSE)                     | Ask tab / sheet with live steps, route chip, refusals                                                       | 5     |
+| Knowledge search                      | Knowledge tab                                                                                               | 6     |
+| Activity log                          | Inside You tab                                                                                              | 6     |
+| Saved views, pins, share              | Pins and share on patient; saved views with preview then approve                                            | 6     |
+| Admin (users, invites)                | **Deferred**: low value on a phone; web only until asked                                                    | later |
+| Invite accept, password reset links   | Deep link `medynium://` after the web flow works                                                            | later |
 
 Navigation: bottom tabs `Home / Patients / Pending / Ask / More` (Knowledge, Activity, Documentation, Admin and the account sit under More); patient workspace is a stack screen above Patients.
 
@@ -163,15 +163,15 @@ Each phase ends with a **done-when** that I run before moving on: `npm run check
 
 ## 6. Risks
 
-| Risk | Mitigation |
-| --- | --- |
-| Cookie auth does not suit mobile | D1 bearer mode, tested before any UI depends on it |
-| SSE does not stream in RN `fetch` | `expo/fetch` streaming; spike in Phase 0 against `/copilot/ask`, fallback is chunked polling of the same answer endpoint |
-| Cloud Run not deployed yet | LAN/tunnel for dev; release APK is the last step |
+| Risk                               | Mitigation                                                                                                                          |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Cookie auth does not suit mobile   | D1 bearer mode, tested before any UI depends on it                                                                                  |
+| SSE does not stream in RN `fetch`  | `expo/fetch` streaming; spike in Phase 0 against `/copilot/ask`, fallback is chunked polling of the same answer endpoint            |
+| Cloud Run not deployed yet         | LAN/tunnel for dev; release APK is the last step                                                                                    |
 | No local Android builds on Windows | EAS cloud builds (as Nexora); JS-only changes ride on the dev client with no rebuild; keep native deps minimal so rebuilds are rare |
-| SDK 57 API drift | Read `docs.expo.dev/versions/v57.0.0` before using any Expo API (Nexora's own rule) |
-| PHI on device | M3, SecureStore only, no persistence, backups off |
-| Web and mobile contract drift | one `openapi.json`; `api:types` in the check script fails on a diff |
+| SDK 57 API drift                   | Read `docs.expo.dev/versions/v57.0.0` before using any Expo API (Nexora's own rule)                                                 |
+| PHI on device                      | M3, SecureStore only, no persistence, backups off                                                                                   |
+| Web and mobile contract drift      | one `openapi.json`; `api:types` in the check script fails on a diff                                                                 |
 
 ## 7. Order of work and what I need from you
 

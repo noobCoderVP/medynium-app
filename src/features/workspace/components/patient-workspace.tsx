@@ -146,6 +146,11 @@ function Loaded({
                 setLabFlag('abnormal');
                 setTab('labs');
               }}
+              onOpenTarget={(target) => {
+                setRange(target.lab ? { lab: target.lab } : {});
+                setTab(isTabKey(target.tab) ? target.tab : 'overview');
+              }}
+              onOpenSimilar={() => setTab('similar')}
             />
           )}
           {tab === 'timeline' && (

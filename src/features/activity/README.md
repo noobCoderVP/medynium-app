@@ -9,3 +9,5 @@
 **Public surface (`index.ts`):** `ActivityView`. Route: `src/app/(app)/activity.tsx`, opened from the You tab.
 
 **States handled:** loading skeleton, empty, error with retry and request id, load more, pull to refresh.
+
+**Assistant metrics:** `ai-metrics-card.tsx` shows volume, typical wait, approvals, routes, tools and slowest steps (`GET /audit/summary`). It hides itself when empty or failing.

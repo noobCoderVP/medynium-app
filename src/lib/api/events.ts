@@ -3,7 +3,7 @@ import { z } from 'zod';
 // The stream and the answer object come from a model-adjacent path, so they are validated at the
 // boundary (06 section 2). Plain reads trust the generated types instead.
 
-const tag = z.enum(['patient_fact', 'retrieved_source', 'ai_synthesis']);
+const tag = z.enum(['patient_fact', 'retrieved_source', 'ai_synthesis', 'rule_check']);
 
 export const answerSchema = z.object({
   answer_id: z.string(),
@@ -15,6 +15,9 @@ export const answerSchema = z.object({
       id: z.string(),
       text: z.string(),
       tag,
+      /** Set on panel answers ("my patients"): the patient this line is about, and the group it belongs to. */
+      patient_id: z.string().nullish(),
+      group: z.string().nullish(),
       patient_evidence: z.array(z.string()).default([]),
       source_evidence: z.array(z.string()).default([]),
     }),
@@ -86,6 +89,15 @@ export const refusalSchema = z.object({
     .default([]),
 });
 
+export const proposalSchema = z.object({
+  proposal_id: z.string(),
+  kind: z.string(),
+  patient_id: z.string(),
+  title: z.string(),
+  fields: z.array(z.object({ label: z.string(), value: z.string() })),
+  expires_in_seconds: z.number().optional(),
+});
+
 export const errorSchema = z.object({ error: z.string(), message: z.string() });
 export const doneSchema = z.object({ audit_id: z.string().nullish() });
 
@@ -93,6 +105,7 @@ export type StreamAnswer = z.infer<typeof answerSchema>;
 export type StreamRoute = z.infer<typeof routeSchema>;
 export type StreamStep = z.infer<typeof stepSchema>;
 export type StreamAction = z.infer<typeof actionSchema>;
+export type StreamProposal = z.infer<typeof proposalSchema>;
 export type StreamRefusal = z.infer<typeof refusalSchema>;
 
 export type StreamEvent =
@@ -101,6 +114,7 @@ export type StreamEvent =
   | { type: 'action'; data: StreamAction }
   | { type: 'answer'; data: StreamAnswer }
   | { type: 'refusal'; data: StreamRefusal }
+  | { type: 'proposal'; data: StreamProposal }
   | { type: 'error'; data: z.infer<typeof errorSchema> }
   | { type: 'done'; data: z.infer<typeof doneSchema> };
 
@@ -110,6 +124,7 @@ const schemas = {
   action: actionSchema,
   answer: answerSchema,
   refusal: refusalSchema,
+  proposal: proposalSchema,
   error: errorSchema,
   done: doneSchema,
 } as const;

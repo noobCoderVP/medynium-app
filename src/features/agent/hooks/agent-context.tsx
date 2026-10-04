@@ -55,11 +55,18 @@ export function AgentProvider({ children }: PropsWithChildren) {
       const controller = new AbortController();
       abort.current = controller;
       const history = turnsRef.current.slice(-HISTORY).map((t) => t.question);
+      const lastAnswerId = turnsRef.current.at(-1)?.answers.at(-1)?.answer_id ?? null;
       const id = `turn-${Date.now()}`;
       update([...turnsRef.current, newTurn(id, question)]);
       try {
         await streamPost('/copilot/ask', {
-          body: { question, screen: patientId ? 'patient' : 'dashboard', patient_id: patientId, history },
+          body: {
+            question,
+            screen: patientId ? 'patient' : 'dashboard',
+            patient_id: patientId,
+            history,
+            last_answer_id: lastAnswerId,
+          },
           signal: controller.signal,
           onEvent: (event) => patch(id, (turn) => applyEvent(turn, event)),
         });

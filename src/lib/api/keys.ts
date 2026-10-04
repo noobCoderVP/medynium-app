@@ -10,6 +10,9 @@ export const patientKeys = {
   all: ['patients'] as const,
   list: (params: object) => ['patients', 'list', params] as const,
   detail: (id: string) => ['patients', id, 'detail'] as const,
+  brief: (id: string) => ['patients', id, 'brief'] as const,
+  briefSummary: (id: string) => ['patients', id, 'brief', 'summary'] as const,
+  changes: (id: string, from: string) => ['patients', id, 'changes', from] as const,
   medications: (id: string, params: object) => ['patients', id, 'medications', params] as const,
   labs: (id: string, params: object = {}) => ['patients', id, 'labs', params] as const,
   trend: (id: string, code: string) => ['patients', id, 'labs', code, 'trend'] as const,
@@ -41,6 +44,7 @@ export const knowledgeKeys = {
 
 export const auditKeys = {
   list: (filters: object) => ['audit', filters] as const,
+  ai: (days: number) => ['audit', 'ai-metrics', days] as const,
 };
 
 export const adminKeys = {

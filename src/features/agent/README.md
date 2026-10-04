@@ -20,3 +20,5 @@
 **Backgrounding:** a stream cannot survive the app leaving the foreground. It is aborted cleanly and the turn shows "Ask again", never a hang.
 
 **States handled:** running (live steps, polite live region), answer, refusal, not found (same wording for denied and missing, handled by the answer's evidence), assistant unavailable or timeout (tab-only banner with retry), rate limited (retry-after seconds), network error, stopped by the user.
+
+**Proposals:** when the assistant prepares a change (a note, allergy, diagnosis or medicine) the stream carries a `proposal` event and `proposal-card.tsx` shows a preview. Nothing is saved until the doctor taps Approve (`POST /agent/proposals/{id}/approve`); Discard drops it. Approving refreshes every cached query. `ask-button.tsx` (`AskButton`) lets other screens hand the assistant a question and opens the Ask tab. `last_answer_id` is sent so follow-ups have memory.

@@ -4,6 +4,15 @@ import type { components } from './schema';
 type S = components['schemas'];
 
 export type Health = S['HealthResponse'];
+export type AiMetrics = S['AiMetrics'];
+export type Brief = S['BriefResponse'];
+export type BriefSummary = S['SummaryResponse'];
+export type ChangeSet = S['ChangeSet'];
+export type ChangeItem = S['ChangeItem'];
+export type AttentionItem = S['AttentionItem'];
+export type GapItem = S['GapItem'];
+export type SourceRef = S['SourceRef'];
+export type ProposalResult = S['ProposalResult'];
 export type HealthDetails = S['HealthDetails'];
 export type Me = S['MeResponse'];
 export type UserOut = S['UserOut'];

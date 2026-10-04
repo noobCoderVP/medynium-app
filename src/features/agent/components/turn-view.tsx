@@ -15,6 +15,7 @@ import { reveal } from '@/lib/motion';
 import type { Turn } from '@/lib/stream-turn';
 
 import { targetForAction } from '../lib/actions';
+import { ProposalCard } from './proposal-card';
 import { RefusalView } from './refusal-view';
 
 const UNAVAILABLE = new Set(['agent_unavailable', 'timeout']);
@@ -67,6 +68,9 @@ export function TurnView({ turn, onRetry }: { turn: Turn; onRetry: () => void })
         <Animated.View key={answer.answer_id} entering={reveal(1)}>
           <AnswerView answer={answer} />
         </Animated.View>
+      ))}
+      {turn.proposals.map((proposal) => (
+        <ProposalCard key={proposal.proposal_id} proposal={proposal} />
       ))}
       {turn.refusal && <RefusalView refusal={turn.refusal} />}
       {error && (

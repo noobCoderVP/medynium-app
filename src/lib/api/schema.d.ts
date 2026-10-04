@@ -505,6 +505,110 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/patients/{patient_id}/brief": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Brief
+         * @description What to look at first: attention items, changes since the previous visit, what is missing and the latest results.
+         *     Rules over the caller's own record; no model call. 404 if the patient is missing or denied.
+         */
+        get: operations["brief_patients__patient_id__brief_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/brief/summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Brief Summary
+         * @description A two-to-three sentence written summary of the brief. A model may rephrase the rule signals only; anything it adds
+         *     is discarded and the rule-made headline is used instead.
+         */
+        get: operations["brief_summary_patients__patient_id__brief_summary_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/attention": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Attention
+         * @description Items that deserve a look, by fixed rules: abnormal or moving results, new medicines or diagnoses, an emergency
+         *     visit, findings and reports waiting. Each names its source record.
+         */
+        get: operations["attention_patients__patient_id__attention_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/changes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Changes
+         * @description What changed since a starting point, grouped as medication, lab, diagnosis, visit, note and document.
+         */
+        get: operations["changes_patients__patient_id__changes_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/gaps": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Gaps
+         * @description What is missing, by fixed rules: usual follow-up results not seen lately, medicines with no indexed label,
+         *     no allergy information. Never a statement that the patient is fine.
+         */
+        get: operations["gaps_patients__patient_id__gaps_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/pending": {
         parameters: {
             query?: never;
@@ -1221,6 +1325,47 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/agent/proposals/{proposal_id}/approve": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Approve Proposal
+         * @description Write a change the assistant prepared, after the clinician approved its preview. Same service, same checks and
+         *     audit as the manual screen. Doctors only; someone else's or an expired proposal is 404.
+         */
+        post: operations["approve_proposal_agent_proposals__proposal_id__approve_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/agent/proposals/{proposal_id}/discard": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Discard Proposal
+         * @description Drop a prepared change. Nothing was written.
+         */
+        post: operations["discard_proposal_agent_proposals__proposal_id__discard_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/evidence/{answer_id}": {
         parameters: {
             query?: never;
@@ -1464,6 +1609,27 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/audit/summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Audit Summary
+         * @description What the assistant did for the caller over the last days: volume, routes, models, tools chosen, how long people
+         *     waited (median and 95th percentile) and the slowest steps. The caller's own entries only.
+         */
+        get: operations["audit_summary_audit_summary_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/admin/invites": {
         parameters: {
             query?: never;
@@ -1628,6 +1794,49 @@ export interface components {
             /** Audit Id */
             audit_id: string | null;
         };
+        /**
+         * AiMetrics
+         * @description The assistant's own activity for the caller over a window (basic observability): volume, routes, models, tools,
+         *     how long people waited, and which steps were slowest.
+         */
+        AiMetrics: {
+            /** Days */
+            days: number;
+            /** Entries */
+            entries: number;
+            /** Asks */
+            asks: number;
+            /** By Route */
+            by_route: {
+                [key: string]: number;
+            };
+            /** Outcomes */
+            outcomes: {
+                [key: string]: number;
+            };
+            /** Models */
+            models: {
+                [key: string]: number;
+            };
+            /** Planner Models */
+            planner_models: {
+                [key: string]: number;
+            };
+            /** Tools */
+            tools: {
+                [key: string]: number;
+            };
+            /** Median Seconds */
+            median_seconds: number | null;
+            /** P95 Seconds */
+            p95_seconds: number | null;
+            /** Slowest Steps */
+            slowest_steps: components["schemas"]["SlowStep"][];
+            /** Proposals Approved */
+            proposals_approved: number;
+            /** Proposals Discarded */
+            proposals_discarded: number;
+        };
         /** Allergy */
         Allergy: {
             /** Allergy Id */
@@ -1684,7 +1893,7 @@ export interface components {
              * Kind
              * @enum {string}
              */
-            kind: "SAFETY" | "CHANGED" | "MEDS" | "LABS" | "UTIL" | "SUMMARY" | "ANALYST" | "KNOWLEDGE" | "PANEL";
+            kind: "SAFETY" | "CHANGED" | "MEDS" | "LABS" | "UTIL" | "SUMMARY" | "ANALYST" | "KNOWLEDGE" | "PANEL" | "AGENT";
             /** Patient Id */
             patient_id: string | null;
             /** Short Answer */
@@ -1762,6 +1971,11 @@ export interface components {
             /** Patient Id */
             patient_id?: string | null;
             /**
+             * Last Answer Id
+             * @description The previous answer in this conversation. Its drug and lab names (a closed vocabulary, never free text) help the planner resolve words like 'that medicine'.
+             */
+            last_answer_id?: string | null;
+            /**
              * History
              * @description The last two user questions (text only).
              */
@@ -1780,6 +1994,10 @@ export interface components {
             actions: {
                 [key: string]: unknown;
             }[];
+            /** Proposals */
+            proposals?: {
+                [key: string]: unknown;
+            }[];
             /** Answer */
             answer: {
                 [key: string]: unknown;
@@ -1794,6 +2012,39 @@ export interface components {
             }[];
             /** Audit Id */
             audit_id: string | null;
+        };
+        /** AttentionItem */
+        AttentionItem: {
+            /**
+             * Severity
+             * @enum {string}
+             */
+            severity: "high" | "moderate" | "info";
+            /** Kind */
+            kind: string;
+            /** Title */
+            title: string;
+            /** Detail */
+            detail?: string | null;
+            /** Date */
+            date?: string | null;
+            source: components["schemas"]["SourceRef"];
+        };
+        /** AttentionResponse */
+        AttentionResponse: {
+            /** Patient Id */
+            patient_id: string;
+            /**
+             * As Of
+             * Format: date
+             */
+            as_of: string;
+            /** Items */
+            items: components["schemas"]["AttentionItem"][];
+            /** Counts */
+            counts: {
+                [key: string]: number;
+            };
         };
         /** AuditItem */
         AuditItem: {
@@ -1833,6 +2084,33 @@ export interface components {
             /** Outcome */
             outcome: string;
         };
+        /**
+         * BriefResponse
+         * @description The first screen of a patient: what to look at, what changed, what is missing. Rules only, no model call.
+         */
+        BriefResponse: {
+            /** Patient Id */
+            patient_id: string;
+            /** Name */
+            name: string;
+            /** Age */
+            age: number;
+            /** Sex */
+            sex: string;
+            /**
+             * As Of
+             * Format: date
+             */
+            as_of: string;
+            /** Headline */
+            headline: string;
+            attention: components["schemas"]["AttentionResponse"];
+            changes: components["schemas"]["ChangeSet"];
+            /** Gaps */
+            gaps: components["schemas"]["GapItem"][];
+            /** Latest Results */
+            latest_results: components["schemas"]["LatestResult"][];
+        };
         /** BriefingItem */
         BriefingItem: {
             /** Patient Id */
@@ -1864,12 +2142,45 @@ export interface components {
             /** Empty Note */
             empty_note?: string | null;
         };
+        /** ChangeItem */
+        ChangeItem: {
+            /**
+             * Category
+             * @enum {string}
+             */
+            category: "MEDICATION" | "LAB" | "DIAGNOSIS" | "VISIT" | "NOTE" | "DOCUMENT";
+            /** Title */
+            title: string;
+            /** Detail */
+            detail?: string | null;
+            /** Date */
+            date?: string | null;
+            /** Direction */
+            direction?: ("up" | "down" | "same") | null;
+            source: components["schemas"]["SourceRef"];
+        };
         /** ChangePasswordRequest */
         ChangePasswordRequest: {
             /** Current Password */
             current_password: string;
             /** New Password */
             new_password: string;
+        };
+        /** ChangeSet */
+        ChangeSet: {
+            /**
+             * Since
+             * Format: date
+             */
+            since: string;
+            /** Label */
+            label: string;
+            /** Counts */
+            counts: {
+                [key: string]: number;
+            };
+            /** Items */
+            items: components["schemas"]["ChangeItem"][];
         };
         /** Citation */
         Citation: {
@@ -2295,6 +2606,23 @@ export interface components {
             /** Email */
             email: string;
         };
+        /** GapItem */
+        GapItem: {
+            /** Kind */
+            kind: string;
+            /** Title */
+            title: string;
+            /** Detail */
+            detail?: string | null;
+            source?: components["schemas"]["SourceRef"] | null;
+        };
+        /** GapResponse */
+        GapResponse: {
+            /** Patient Id */
+            patient_id: string;
+            /** Items */
+            items: components["schemas"]["GapItem"][];
+        };
         /** GoldenCase */
         GoldenCase: {
             /** Seq */
@@ -2645,6 +2973,22 @@ export interface components {
             observed_at: string;
             /** Encounter Id */
             encounter_id?: string | null;
+        };
+        /** LatestResult */
+        LatestResult: {
+            /** Name */
+            name: string;
+            /** Value */
+            value: string;
+            /** Unit */
+            unit: string | null;
+            /** Flag */
+            flag: string | null;
+            /** Date */
+            date: string | null;
+            /** Previous */
+            previous: string | null;
+            source: components["schemas"]["SourceRef"];
         };
         /** Limits */
         Limits: {
@@ -3240,6 +3584,40 @@ export interface components {
              */
             date: string;
         };
+        /** ProposalDiscarded */
+        ProposalDiscarded: {
+            /** Proposal Id */
+            proposal_id: string;
+            /**
+             * Status
+             * @default discarded
+             * @constant
+             */
+            status: "discarded";
+        };
+        /**
+         * ProposalResult
+         * @description An approved proposal: where the new record is.
+         */
+        ProposalResult: {
+            /** Proposal Id */
+            proposal_id: string;
+            /** Patient Id */
+            patient_id: string;
+            /** Record Id */
+            record_id?: string | null;
+            /**
+             * Tab
+             * @default overview
+             */
+            tab: string;
+            /**
+             * Status
+             * @default approved
+             * @constant
+             */
+            status: "approved";
+        };
         /** RecentChanges */
         RecentChanges: {
             /** Labs */
@@ -3635,6 +4013,15 @@ export interface components {
             /** Disclaimer */
             disclaimer: string;
         };
+        /** SlowStep */
+        SlowStep: {
+            /** Label */
+            label: string;
+            /** Runs */
+            runs: number;
+            /** Average Seconds */
+            average_seconds: number;
+        };
         /** SnowflakeHealth */
         SnowflakeHealth: {
             /** Reachable */
@@ -3676,6 +4063,25 @@ export interface components {
              */
             matched: boolean;
         };
+        /** SourceRef */
+        SourceRef: {
+            /**
+             * Type
+             * @enum {string}
+             */
+            type: "lab" | "medication" | "diagnosis" | "encounter" | "note" | "report" | "finding";
+            /** Id */
+            id?: string | null;
+            /** Tab */
+            tab: string;
+            /**
+             * Query
+             * @description Extra URL parameters, e.g. lab=eGFR.
+             */
+            query?: {
+                [key: string]: string;
+            };
+        };
         /** SqlEvidence */
         SqlEvidence: {
             /** Sql Id */
@@ -3691,6 +4097,20 @@ export interface components {
              * Format: date-time
              */
             ran_at: string;
+        };
+        /** SummaryResponse */
+        SummaryResponse: {
+            /** Patient Id */
+            patient_id: string;
+            /** Summary */
+            summary: string;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "model" | "rules";
+            /** Model */
+            model?: string | null;
         };
         /** SyncStatus */
         SyncStatus: {
@@ -5537,6 +5957,254 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    brief_patients__patient_id__brief_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BriefResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    brief_summary_patients__patient_id__brief_summary_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SummaryResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    attention_patients__patient_id__attention_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AttentionResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    changes_patients__patient_id__changes_get: {
+        parameters: {
+            query?: {
+                /** @description previous_visit, 90d, 1y or YYYY-MM-DD */
+                from?: string;
+            };
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ChangeSet"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    gaps_patients__patient_id__gaps_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GapResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
                 };
             };
         };
@@ -8160,6 +8828,158 @@ export interface operations {
             };
         };
     };
+    approve_proposal_agent_proposals__proposal_id__approve_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                proposal_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProposalResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    discard_proposal_agent_proposals__proposal_id__discard_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                proposal_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProposalDiscarded"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
     get_evidence_evidence__answer_id__get: {
         parameters: {
             query?: never;
@@ -8854,6 +9674,55 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Page_AuditItem_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    audit_summary_audit_summary_get: {
+        parameters: {
+            query?: {
+                days?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AiMetrics"];
                 };
             };
             /** @description Unauthorized */

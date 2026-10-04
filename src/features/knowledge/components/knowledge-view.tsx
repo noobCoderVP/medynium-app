@@ -15,9 +15,9 @@ import { useKnowledgeSearch, useKnowledgeStatus } from '../hooks/use-knowledge';
 import { CitationCard } from './citation-card';
 
 /** Search the indexed drug labels. Results are quoted sources with their version and date, never summaries. */
-export function KnowledgeView({ back = false }: { back?: boolean }) {
-  const [text, setText] = useState('');
-  const [q, setQ] = useState('');
+export function KnowledgeView({ back = false, initialQuery = '' }: { back?: boolean; initialQuery?: string }) {
+  const [text, setText] = useState(initialQuery);
+  const [q, setQ] = useState(initialQuery.trim());
   const [drug, setDrug] = useState<string | undefined>();
   const status = useKnowledgeStatus();
   const search = useKnowledgeSearch(q, drug);

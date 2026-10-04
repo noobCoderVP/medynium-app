@@ -72,27 +72,28 @@ Clinical decisions happen at the bedside, in corridors and between consults, not
 - **Point-of-care context.** Pre-consult review, lab trends and the safety review are available wherever the clinician is.
 - **Evidence on a tap.** There is no hover on a phone, so every tagged statement opens a Why? bottom sheet with the records and source behind it.
 - **Same governance everywhere.** Access is decided by Snowflake under the user's own role. The app cannot show a patient the user may not open, and a denied patient looks exactly like a missing one.
-- **Safe on a lost or shared phone.** Patient data is never stored on the device, backups are disabled, screenshots are blocked and the app locks itself.
+- **Safe on a lost or shared phone.** Patient data is never stored on the device, backups are disabled, and the app locks itself.
 
 ---
 
 ## Features
 
-| Area                  | What you get                                                                                                                           |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| **Sign in**           | Password, optional emailed code, invitation links; session tokens held in the secure store                                             |
-| **Home**              | Dashboard tiles, the worklist with change flags and a "Needs attention" panel                                                          |
-| **Patients**          | Search, filters, and the patient workspace                                                                                             |
-| **Patient workspace** | Segmented tabs: Overview, Timeline, Medications, Labs (trend chart), Claims, Notes, Safety, Reports, Similar; allergies always visible |
-| **Why? evidence**     | A bottom sheet from any tagged statement: records, SQL and the source label                                                            |
-| **Ask (assistant)**   | Plain-language questions with live steps, route chip, refusals and proposals the doctor approves                                       |
-| **Pending**           | Open findings, follow-ups, unreviewed abnormal labs and recent emergency visits in one list                                            |
-| **Reports**           | Upload a report, review each extracted row and approve; doctors decide                                                                 |
-| **Knowledge**         | Drug-label search with full citations                                                                                                  |
-| **Activity**          | Your own audit log                                                                                                                     |
-| **You**               | Account, theme choice, auto-lock settings, saved views, email summary                                                                  |
-| **Admin**             | Health, users, password reset links and invitations. Per-user patient access stays on the web                                          |
-| **Documentation**     | In-app guide to how the assistant and evidence work                                                                                    |
+| Area                  | What you get                                                                                                                                 |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Sign in**           | Password, optional emailed code, invitation links; session tokens held in the secure store                                                   |
+| **Home**              | Dashboard tiles, the worklist with change flags and a "Needs attention" panel                                                                |
+| **Patients**          | Search, filters, and the patient workspace                                                                                                   |
+| **Patient workspace** | Segmented tabs: Overview, Timeline, Medications, Labs (trend chart), Claims, Notes, Safety, Reports, Similar; allergies always visible       |
+| **Clinical brief**    | Attention, what changed (previous visit, 90 days, 1 year) and missing information on the Overview, each line opening the record it came from |
+| **Why? evidence**     | A bottom sheet from any tagged statement: records, SQL and the source label                                                                  |
+| **Ask (assistant)**   | Plain-language questions with live steps, route chip, refusals and proposals the doctor approves                                             |
+| **Pending**           | Open findings, follow-ups, unreviewed abnormal labs and recent emergency visits in one list                                                  |
+| **Reports**           | Upload a report, review each extracted row and approve; doctors decide                                                                       |
+| **Knowledge**         | Drug-label search with full citations                                                                                                        |
+| **Activity**          | Your own audit log                                                                                                                           |
+| **You**               | Account, theme choice, auto-lock settings, saved views, email summary                                                                        |
+| **Admin**             | Health, users, password reset links and invitations. Per-user patient access stays on the web                                                |
+| **Documentation**     | In-app guide to how the assistant and evidence work                                                                                          |
 
 Navigation: bottom bar of Home, Patients, Pending, Ask and More; the patient workspace opens above Patients.
 
@@ -106,7 +107,6 @@ Design: the web workstation's tokens, Roboto headings and Inter body, press feed
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **No clinical data at rest** | Tokens live in the secure store only. No query-cache persistence and no local storage of patient data; the in-memory cache is cleared on sign-out |
 | **No Android backups**       | `allowBackup=false` via a config plugin, so patient data cannot reach cloud backups                                                               |
-| **Screenshot blocking**      | Enabled on screens showing patient data                                                                                                           |
 | **Auto-lock**                | Biometric or screen-lock unlock after inactivity                                                                                                  |
 | **HTTPS only in release**    | Release and production builds refuse plain HTTP; cleartext is allowed only in the development profile                                             |
 | **No secrets in the bundle** | Only `EXPO_PUBLIC_*` values are bundled; the API holds every credential                                                                           |

@@ -10,6 +10,7 @@ export const copy = {
     patient_fact: { label: 'Patient fact', hint: "Read from this patient's record" },
     retrieved_source: { label: 'Retrieved source', hint: 'Quoted from an indexed drug label' },
     ai_synthesis: { label: 'AI synthesis', hint: 'May warrant clinician review' },
+    rule_check: { label: 'Rule check', hint: "Found by a fixed rule on this patient's record, not by the AI" },
   },
   synthesisHedge: 'May warrant clinician review',
 
