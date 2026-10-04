@@ -15,7 +15,8 @@ import { useTheme } from '@/hooks/use-theme';
 import type { Overview } from '@/lib/api/types';
 import { copy } from '@/lib/copy';
 import { fadeIn } from '@/lib/motion';
-import { clearOpenPatient, setOpenPatient } from '@/lib/open-patient';
+import { AskFab } from '@/features/agent';
+import { setOpenPatient } from '@/lib/open-patient';
 
 import { usePatient } from '../hooks/use-patient-data';
 import { ClaimsTab } from './claims-tab';
@@ -46,6 +47,18 @@ const TABS: { value: TabKey; label: string }[] = [
   { value: 'similar', label: 'Similar' },
 ];
 
+const SUGGESTIONS: Record<TabKey, string[]> = {
+  overview: ['Brief me on this patient', 'What changed since the last visit?', 'What is missing from the record?'],
+  timeline: ['What changed recently?', 'Show the timeline for the last 3 months'],
+  medications: ['What medicines is this patient on?', 'Run the safety review'],
+  labs: ['Which results are flagged?', 'Show the eGFR trend'],
+  safety: ['Run the safety review', 'What does the label say about the current medicines?'],
+  claims: ['Summarise the claims and utilisation'],
+  notes: ['Summarise this patient'],
+  reports: ['What changed since the last report?'],
+  similar: ['Which of my patients are most like this one?'],
+};
+
 export const isTabKey = (value: string | undefined): value is TabKey => TABS.some((t) => t.value === value);
 
 interface Props {
@@ -67,11 +80,11 @@ export function PatientWorkspace(props: Props) {
   const theme = useTheme();
   const query = usePatient(props.patientId);
 
-  // Tell the Ask tab which patient is open (context only; the server re-checks access).
+  // The assistant now asks about this patient, and keeps doing so after the screen closes until the user changes it
+  // (context only; the server re-checks access).
   const name = query.data?.name;
   useEffect(() => {
     if (name) setOpenPatient({ id: props.patientId, name });
-    return () => clearOpenPatient(props.patientId);
   }, [props.patientId, name]);
 
   return (
@@ -175,6 +188,7 @@ function Loaded({
           setRange(view.params);
         }}
       />
+      <AskFab suggestions={SUGGESTIONS[tab]} />
       <ShareSheet
         patientId={patientId}
         patientName={patient.name}

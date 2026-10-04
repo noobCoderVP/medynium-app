@@ -37,11 +37,12 @@ export const copy = {
   agent: {
     unavailable: 'The assistant is unavailable. You can still review this patient and run the safety review yourself.',
     unavailableShort: 'The assistant is unavailable right now.',
-    noScope: 'No patient in scope',
+    noScope: 'All my patients',
     scope: (name: string) => `Scope: ${name}`,
     placeholder: 'Ask or tell me what to do',
     noModel: 'no model call',
-    empty: 'Ask about the open patient, look up a label, or say what you want opened.',
+    empty:
+      'Ask about one patient, or about all of your patients. Pick a patient above, look up a drug label, or say what you want opened.',
     refusalHeading: "I can't help with that here",
     thinking: 'Working on it',
   },

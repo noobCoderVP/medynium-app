@@ -2,6 +2,8 @@ import { useRouter } from 'expo-router';
 
 import { Button } from '@/components/ui/button';
 
+import { setOpenPatient, useOpenPatient } from '@/lib/open-patient';
+
 import { useAgent } from '../hooks/agent-context';
 
 /**
@@ -11,6 +13,7 @@ import { useAgent } from '../hooks/agent-context';
 export function AskButton({ label, question, patientId }: { label: string; question: string; patientId: string }) {
   const router = useRouter();
   const { ask, running } = useAgent();
+  const open = useOpenPatient();
   return (
     <Button
       title={label}
@@ -19,7 +22,9 @@ export function AskButton({ label, question, patientId }: { label: string; quest
       icon="sparkles-outline"
       disabled={running}
       onPress={() => {
-        void ask(question, patientId);
+        const scope = { id: patientId, name: open?.id === patientId ? open.name : patientId };
+        setOpenPatient(scope);
+        void ask(question, scope);
         router.navigate('/ask');
       }}
     />

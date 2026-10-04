@@ -3,6 +3,7 @@ import { AppState } from 'react-native';
 
 import { ApiError } from '@/lib/api/errors';
 import { streamPost } from '@/lib/api/sse';
+import { resetScope, type OpenPatient } from '@/lib/open-patient';
 import { applyEvent, newTurn, type Turn } from '@/lib/stream-turn';
 
 const HISTORY = 4;
@@ -10,8 +11,8 @@ const HISTORY = 4;
 interface AgentValue {
   turns: Turn[];
   running: boolean;
-  /** Ask or tell. `patientId` is the open patient (context only; the server re-checks access). */
-  ask: (question: string, patientId: string | null) => Promise<void>;
+  /** Ask or tell. `scope` is the chosen patient, or null for all of the clinician's patients (context only; the server re-checks access). */
+  ask: (question: string, scope: OpenPatient | null) => Promise<void>;
   stop: () => void;
   clear: () => void;
 }
@@ -46,18 +47,20 @@ export function AgentProvider({ children }: PropsWithChildren) {
     return () => {
       sub.remove();
       abort.current?.abort();
+      resetScope(); // the provider unmounts on sign-out: nothing about who was asked about survives
     };
   }, []);
 
   const ask = useCallback(
-    async (question: string, patientId: string | null) => {
+    async (question: string, scope: OpenPatient | null) => {
+      const patientId = scope?.id ?? null;
       abort.current?.abort();
       const controller = new AbortController();
       abort.current = controller;
       const history = turnsRef.current.slice(-HISTORY).map((t) => t.question);
       const lastAnswerId = turnsRef.current.at(-1)?.answers.at(-1)?.answer_id ?? null;
       const id = `turn-${Date.now()}`;
-      update([...turnsRef.current, newTurn(id, question)]);
+      update([...turnsRef.current, newTurn(id, question, scope?.name ?? 'All my patients')]);
       try {
         await streamPost('/copilot/ask', {
           body: {

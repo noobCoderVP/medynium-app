@@ -32,3 +32,9 @@ Not ported (web only): the attention chip menu in the patient header, findings d
 Left on the web by design (not ported in this pass): command palette, focus mode, resizable assistant, create patient and add medication forms, safety finding decisions, report approve/reject, per-user patient access.
 
 Verified 2026-10-04: `npm run check` passes (lint, format, types, 45 tests, contrast). Not yet checked on a device: see the new lines in `SMOKE_TESTS.md`.
+
+Third pass, 2026-10-04 (assistant patient selection):
+
+- [x] 20. Sticky assistant scope with a visible "Asking about" bar and a patient picker (all patients, recent, search)
+- [x] 21. Ask button on every patient tab opening the same conversation as a sheet, with starters per tab
+- [x] 22. Starter prompts for both modes; each answer labelled with who it was about

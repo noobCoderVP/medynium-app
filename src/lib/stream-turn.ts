@@ -18,6 +18,8 @@ export interface TurnError {
 export interface Turn {
   id: string;
   question: string;
+  /** Who the question was about, kept with the turn so an old answer never looks like it was about a later patient. */
+  scope: string | null;
   status: 'running' | 'done' | 'failed';
   routes: StreamRoute[];
   steps: StreamStep[];
@@ -29,9 +31,10 @@ export interface Turn {
   auditId: string | null;
 }
 
-export const newTurn = (id: string, question: string): Turn => ({
+export const newTurn = (id: string, question: string, scope: string | null = null): Turn => ({
   id,
   question,
+  scope,
   status: 'running',
   routes: [],
   steps: [],

@@ -33,6 +33,11 @@ export function TurnView({ turn, onRetry }: { turn: Turn; onRetry: () => void })
           accessibilityLabel={`You asked: ${turn.question}`}
         >
           <Text color="accentForeground">{turn.question}</Text>
+          {turn.scope ? (
+            <Text variant="caption" color="accentForeground">
+              About {turn.scope}
+            </Text>
+          ) : null}
         </Card>
       </Animated.View>
       {turn.routes.map((route, i) => (
