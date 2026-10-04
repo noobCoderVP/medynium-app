@@ -8,6 +8,8 @@ import type { Allergy } from '@/lib/api/types';
 
 /** An empty list is "none recorded", never "none known": the wording must not read as reassurance. */
 export const NO_ALLERGIES = 'No allergies recorded';
+/** Shown when the server did not send allergy information at all, which is not the same as none recorded. */
+export const ALLERGIES_UNAVAILABLE = 'Allergy information unavailable. Check the record.';
 
 export function describeAllergy(allergy: Allergy): string {
   const detail = [allergy.reaction, allergy.severity?.toLowerCase()].filter(Boolean).join(', ');
@@ -15,8 +17,15 @@ export function describeAllergy(allergy: Allergy): string {
 }
 
 /** Allergies on the identity line of every tab: words and an icon, never colour alone. */
-export function AllergyLine({ allergies }: { allergies: Allergy[] }) {
+export function AllergyLine({ allergies }: { allergies?: Allergy[] }) {
   const theme = useTheme();
+  if (!allergies) {
+    return (
+      <Text variant="caption" color="warning">
+        {ALLERGIES_UNAVAILABLE}
+      </Text>
+    );
+  }
   if (allergies.length === 0) {
     return (
       <Text variant="caption" color="mutedForeground">

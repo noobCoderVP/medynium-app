@@ -1,4 +1,5 @@
 import { del, get, patch, post, postBlob, put } from './client';
+import { normalizeOverview } from './normalize';
 import type {
   ActionResponse,
   AiMetrics,
@@ -80,7 +81,7 @@ export const endpoints = {
   dashboard: () => get<Dashboard>('/dashboard'),
   briefing: () => get<Briefing>('/dashboard/briefing'),
   patients: (params: Params) => get<PatientPage>(`/patients${qs(params)}`),
-  patient: (id: string) => get<Overview>(pid(id)),
+  patient: (id: string) => get<Overview>(pid(id)).then(normalizeOverview),
   brief: (id: string) => get<Brief>(`${pid(id)}/brief`),
   briefSummary: (id: string) => get<BriefSummary>(`${pid(id)}/brief/summary`),
   changes: (id: string, from: string) => get<ChangeSet>(`${pid(id)}/changes${qs({ from })}`),

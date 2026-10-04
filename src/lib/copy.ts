@@ -47,6 +47,7 @@ export const copy = {
   },
 
   errors: {
+    unavailable: 'This is not available from the connected server yet. Update the server, then try again.',
     generic: 'Something went wrong on our side.',
     network: "We couldn't reach the server. Check your connection and try again.",
     rateLimited: (seconds: number | null) =>
