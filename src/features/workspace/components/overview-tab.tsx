@@ -16,6 +16,7 @@ import { BriefAttention } from './brief-attention';
 import { BriefChanges } from './brief-changes';
 import { BriefGaps } from './brief-gaps';
 import { ClinicalBrief } from './clinical-brief';
+import { PatientSummaryCard } from './patient-summary-card';
 
 /** Everything already loaded by the gate: no second call. */
 export function OverviewTab({
@@ -69,6 +70,9 @@ export function OverviewTab({
           </Reveal>
         </>
       )}
+      <Reveal index={1}>
+        <PatientSummaryCard patientId={data.patient_id} />
+      </Reveal>
       <Reveal index={1}>
         <Section title="Diagnoses" aside={`${data.diagnoses.length}`}>
           {data.diagnoses.length === 0 ? (

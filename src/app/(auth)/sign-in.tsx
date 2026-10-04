@@ -2,7 +2,9 @@ import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { KeyboardAvoidingView, StyleSheet } from 'react-native';
 
+import { BuiltOnSnowflake } from '@/components/brand/built-on-snowflake';
 import { Logo } from '@/components/brand/logo';
+import { PoweredBySnowflake } from '@/components/brand/powered-by-snowflake';
 import { Reveal } from '@/components/ui/reveal';
 import { Screen } from '@/components/ui/screen';
 import { Text } from '@/components/ui/text';
@@ -34,9 +36,11 @@ export default function SignInScreen() {
         {!challenge && (
           <InviteLink onOpen={(token) => router.push({ pathname: '/invite/[token]', params: { token } })} />
         )}
+        {!challenge && <BuiltOnSnowflake />}
         <Text variant="caption" color="mutedForeground" style={styles.note}>
           {copy.banner}
         </Text>
+        <PoweredBySnowflake />
       </Screen>
     </KeyboardAvoidingView>
   );

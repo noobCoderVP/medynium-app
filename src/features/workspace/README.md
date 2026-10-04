@@ -29,3 +29,5 @@ Tabs now match the web order: Overview, Timeline, Medicines, Labs, Safety, Claim
 - Similar: `GET /patients/{id}/similar`. Reports: `GET /patients/{id}/reports` and `.../reports/{id}`, with upload (`expo-document-picker`, raw bytes via `postBlob`), per-row accept/reject, approve and reject report.
 
 - Overview opens with the clinical brief (`clinical-brief.tsx`, `brief-attention.tsx`, `brief-changes.tsx`, `brief-gaps.tsx`; `GET /patients/{id}/brief`, `/brief/summary`, `/changes`): rule-made, no model except the optional written summary. Each line opens its record through `onOpenTarget`. `attention-panel.tsx` stays as the fallback while the brief loads or fails.
+
+**Patient summary (Overview):** stored markdown summary from `GET /patients/{id}/summary`; written once on first open, rewritten only by Refresh (`POST .../summary/refresh`, about 15 s). Shows who/when, a "record changed since" note, and a rules-made label when the model was down. Rendered by `components/shared/markdown.tsx` (native text only).

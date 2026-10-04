@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
+import { PoweredBySnowflake } from '@/components/brand/powered-by-snowflake';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { copy } from '@/lib/copy';
@@ -17,6 +18,8 @@ const PANEL_STARTERS = [
   'Who needs attention today?',
   'What is pending for my patients?',
   'Which of my patients have low eGFR?',
+  'Share details of amoxicillin',
+  'Which medicines are used for high blood pressure?',
 ];
 
 /**
@@ -65,6 +68,9 @@ export function AgentChat({
       </ScrollView>
       <View style={styles.composer}>
         <Composer running={running} onSend={send} onStop={stop} />
+        <View style={styles.credit}>
+          <PoweredBySnowflake />
+        </View>
       </View>
       {editable ? <PatientPicker visible={picking} onClose={() => setPicking(false)} /> : null}
     </View>
@@ -77,4 +83,5 @@ const styles = StyleSheet.create({
   thread: { padding: 16, gap: 18, flexGrow: 1 },
   empty: { gap: 10 },
   composer: { paddingHorizontal: 12, paddingBottom: 8 },
+  credit: { paddingTop: 6 },
 });

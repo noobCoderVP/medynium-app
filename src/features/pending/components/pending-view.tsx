@@ -9,9 +9,11 @@ import { ScreenHeader } from '@/components/ui/screen-header';
 import { TabScreen } from '@/components/ui/tab-screen';
 import { Text } from '@/components/ui/text';
 import { SyntheticBanner } from '@/components/synthetic-banner';
+import { useSession } from '@/features/session';
 import { formatDate } from '@/lib/format';
 
 import { usePending } from '../hooks/use-pending';
+import { useReviewLab } from '../hooks/use-review-lab';
 import { KINDS } from '../lib/kinds';
 import { PendingRow } from './pending-row';
 
@@ -19,6 +21,8 @@ import { PendingRow } from './pending-row';
 export function PendingView() {
   const [kind, setKind] = useState('');
   const { list, summary } = usePending(kind);
+  const lab = useReviewLab();
+  const { user } = useSession();
   const byKind = summary.data?.by_kind ?? {};
   const options = KINDS.map((k) => ({
     value: k.value,
@@ -48,6 +52,11 @@ export function PendingView() {
         value={kind || undefined}
         onChange={(v) => setKind(v ?? '')}
       />
+      {lab.message ? (
+        <Text color="destructive" accessibilityRole="alert">
+          {lab.message}
+        </Text>
+      ) : null}
       <DataState
         query={list}
         isEmpty={(data) => data.pages[0]?.total === 0}
@@ -59,7 +68,12 @@ export function PendingView() {
               .flatMap((page) => page.items)
               .map((item, index) => (
                 <Reveal key={item.item_id} index={index}>
-                  <PendingRow item={item} />
+                  <PendingRow
+                    item={item}
+                    canReview={user?.role === 'DOCTOR'}
+                    saving={lab.savingId === item.source_id}
+                    onReview={(it) => it.source_id && lab.review({ patientId: it.patient_id, labId: it.source_id })}
+                  />
                 </Reveal>
               ))}
             <LoadMore

@@ -12,6 +12,7 @@ export const patientKeys = {
   detail: (id: string) => ['patients', id, 'detail'] as const,
   brief: (id: string) => ['patients', id, 'brief'] as const,
   briefSummary: (id: string) => ['patients', id, 'brief', 'summary'] as const,
+  summary: (id: string) => ['patients', id, 'summary'] as const,
   changes: (id: string, from: string) => ['patients', id, 'changes', from] as const,
   medications: (id: string, params: object) => ['patients', id, 'medications', params] as const,
   labs: (id: string, params: object = {}) => ['patients', id, 'labs', params] as const,

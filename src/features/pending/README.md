@@ -2,7 +2,7 @@
 
 **Purpose:** everything waiting on the signed-in clinician across their own patients (web `/pending`): escalated and open safety findings, follow-ups due, reports to review, abnormal labs, recent emergency visits.
 
-**Endpoints:** `GET /pending` (`kind`, `limit`, `offset`), `GET /pending/summary`.
+**Endpoints:** `GET /pending` (`kind`, `limit`, `offset`), `GET /pending/summary`, `POST /patients/{id}/labs/{lab_id}/review` (doctors: "Mark reviewed" on abnormal labs).
 
 **Requirement IDs:** FR-17, SEC-05.
 

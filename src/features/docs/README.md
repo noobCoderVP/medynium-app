@@ -4,6 +4,6 @@
 
 **Public surface (`index.ts`):** `DocsView`.
 
-**Content:** `lib/sections.ts` is the phone guide (kept in step with the screens); `lib/sections-trust.ts` (how answers are produced, security, limits, FAQ) is copied from the web and should be updated in both places.
+**Content:** `lib/sections.ts` is the phone guide (kept in step with the screens); `lib/sections-trust.ts` (how answers are produced, security, limits, FAQ) is copied from the web and should be updated in both places; `lib/sections-platform.ts` (Built on Snowflake) is built from `constants/snowflake.ts`, which mirrors the web list.
 
 **States handled:** none needed (static). Section chips are buttons with selected state; headings are marked as headers.

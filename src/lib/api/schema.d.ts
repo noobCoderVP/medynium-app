@@ -609,6 +609,47 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/patients/{patient_id}/summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Patient Summary
+         * @description The stored written summary (markdown) with when it was written, or `exists=false` before the first one.
+         */
+        get: operations["patient_summary_patients__patient_id__summary_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/summary/refresh": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Refresh Patient Summary
+         * @description Write the summary again from the record as it is now (about ten seconds) and replace the stored one. Every number
+         *     in it is checked against the record; if the model is unavailable a rule-made summary is stored and labelled so.
+         */
+        post: operations["refresh_patient_summary_patients__patient_id__summary_refresh_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/pending": {
         parameters: {
             query?: never;
@@ -1893,7 +1934,7 @@ export interface components {
              * Kind
              * @enum {string}
              */
-            kind: "SAFETY" | "CHANGED" | "MEDS" | "LABS" | "UTIL" | "SUMMARY" | "ANALYST" | "KNOWLEDGE" | "PANEL" | "AGENT";
+            kind: "SAFETY" | "CHANGED" | "MEDS" | "LABS" | "UTIL" | "SUMMARY" | "ANALYST" | "KNOWLEDGE" | "PANEL" | "AGENT" | "DRUG";
             /** Patient Id */
             patient_id: string | null;
             /** Short Answer */
@@ -2230,6 +2271,7 @@ export interface components {
             status: string;
             billed: components["schemas"]["Money"];
             approved: components["schemas"]["Money"];
+            doctor?: components["schemas"]["DoctorRef"] | null;
         };
         /** Claims */
         Claims: {
@@ -2356,6 +2398,7 @@ export interface components {
              * @default CLINICAL.DIAGNOSIS
              */
             source: string;
+            doctor?: components["schemas"]["DoctorRef"] | null;
         };
         /** DiagnosisIn */
         DiagnosisIn: {
@@ -2387,6 +2430,21 @@ export interface components {
             onset_date?: string | null;
             /** Resolved Date */
             resolved_date?: string | null;
+        };
+        /**
+         * DoctorRef
+         * @description The doctor behind a record, and how we know: who entered it, who wrote the note, or the visit's clinician.
+         */
+        DoctorRef: {
+            /** Name */
+            name: string;
+            /** Speciality */
+            speciality?: string | null;
+            /**
+             * Basis
+             * @enum {string}
+             */
+            basis: "entered_by" | "author" | "provider" | "treating";
         };
         /** DrugDirectory */
         DrugDirectory: {
@@ -2930,6 +2988,7 @@ export interface components {
              * @default CLINICAL.LAB_RESULT
              */
             source: string;
+            doctor?: components["schemas"]["DoctorRef"] | null;
         };
         /** LabReviewed */
         LabReviewed: {
@@ -3100,6 +3159,7 @@ export interface components {
              * @default CLINICAL.MEDICATION
              */
             source: string;
+            doctor?: components["schemas"]["DoctorRef"] | null;
         };
         /** MedicationChange */
         MedicationChange: {
@@ -3188,6 +3248,7 @@ export interface components {
             date: string;
             /** Encounter Id */
             encounter_id: string | null;
+            doctor?: components["schemas"]["DoctorRef"] | null;
             /** Author */
             author: string | null;
             /** Body */
@@ -3225,6 +3286,7 @@ export interface components {
             date: string;
             /** Encounter Id */
             encounter_id: string | null;
+            doctor?: components["schemas"]["DoctorRef"] | null;
         };
         /** NoteUpdate */
         NoteUpdate: {
@@ -3301,6 +3363,11 @@ export interface components {
             /** Recent Events */
             recent_events: components["schemas"]["TimelineEvent"][];
             utilization: components["schemas"]["Utilization"];
+            /**
+             * Treating Doctors
+             * @description Doctors who currently have this patient.
+             */
+            treating_doctors?: string[];
             /**
              * Agent Scope Label
              * @default Agent scope: this patient
@@ -3445,6 +3512,31 @@ export interface components {
             last_encounter: components["schemas"]["EncounterRef"];
             /** Flags */
             flags: components["schemas"]["Flag"][];
+        };
+        /**
+         * PatientSummary
+         * @description The stored written summary (markdown) of a patient, or `exists=false` before the first one is written.
+         */
+        PatientSummary: {
+            /** Patient Id */
+            patient_id: string;
+            /** Exists */
+            exists: boolean;
+            /** Markdown */
+            markdown?: string | null;
+            /** Source */
+            source?: ("model" | "rules") | null;
+            /** Model */
+            model?: string | null;
+            /** Generated At */
+            generated_at?: string | null;
+            /** Generated By */
+            generated_by?: string | null;
+            /**
+             * Changed Since
+             * @default false
+             */
+            changed_since: boolean;
         };
         /** PatientUpdate */
         PatientUpdate: {
@@ -4152,6 +4244,7 @@ export interface components {
             record: components["schemas"]["RecordRef"];
             /** Encounter Id */
             encounter_id: string | null;
+            doctor?: components["schemas"]["DoctorRef"] | null;
         };
         /**
          * TokenPair
@@ -6178,6 +6271,104 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["GapResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    patient_summary_patients__patient_id__summary_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PatientSummary"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    refresh_patient_summary_patients__patient_id__summary_refresh_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PatientSummary"];
                 };
             };
             /** @description Unauthorized */

@@ -1,11 +1,12 @@
 <!-- expo-agent-rules -->
+
 # Expo HAS CHANGED
 
 Read the exact versioned docs at https://docs.expo.dev/versions/v57.0.0/ before using any Expo API.
 
 # AGENTS.md: medynium-app
 
-React Native (Expo SDK 57) client for Medynium. It talks only to `medynium-apis`; no Snowflake and no secrets on the device. Plan: `docs/plan/README.md`. Parent rules: `../AGENTS.md` (model choice: Sonnet, Haiku or Llama class, never Opus).
+React Native (Expo SDK 57) client for Medynium. It talks only to `medynium-apis`; no Snowflake and no secrets on the device. Parent rules: `../AGENTS.md` (model choice: Sonnet, Haiku or Llama class, never Opus).
 
 ## Commands
 

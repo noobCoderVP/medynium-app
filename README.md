@@ -15,7 +15,7 @@ The same governed Patient 360 as the web workstation, rebuilt for a phone: a tap
 ![Android](https://img.shields.io/badge/platform-Android-3DDC84?logo=android&logoColor=white)
 ![Synthetic data](https://img.shields.io/badge/data-synthetic%20only-orange)
 
-**[Web workstation](../medynium-ui)** · **[API](../medynium-apis)** · **[Implementation plan](docs/plan/README.md)**
+**[Web workstation](../medynium-ui)** · **[API](../medynium-apis)**
 
 </div>
 
@@ -185,9 +185,7 @@ src/
   constants/theme.ts    design tokens
   lib/                  api client, SSE, formatting
 docs/
-  plan/                 implementation plan and phases
   media/                screenshots and GIFs used by this README
-  SYNC_CHECKLIST.md     web-to-mobile parity checklist
 ```
 
 Import a feature through its `index.ts` only. Components never call the API client; hooks do (lint-enforced).
@@ -214,4 +212,4 @@ Per-user patient access management stays on the web by design.
 | [medynium-apis](../medynium-apis) | FastAPI backend, Snowflake setup SQL, Cortex agent, evals |
 | **medynium-app** (this repo)      | React Native (Expo) mobile client                         |
 
-More: [AGENTS.md](AGENTS.md) for working rules, [docs/plan/README.md](docs/plan/README.md) for the plan, [docs/media/README.md](docs/media/README.md) for the screenshot list.
+More: [AGENTS.md](AGENTS.md) for working rules, [docs/media/README.md](docs/media/README.md) for the screenshot list.

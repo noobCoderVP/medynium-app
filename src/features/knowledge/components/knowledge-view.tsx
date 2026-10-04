@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { ScreenHeader } from '@/components/ui/screen-header';
 import { TabScreen } from '@/components/ui/tab-screen';
 import { Text } from '@/components/ui/text';
+import { AskDrugCard } from '@/features/agent';
 import { copy } from '@/lib/copy';
 import { formatDate } from '@/lib/format';
 
@@ -33,6 +34,7 @@ export function KnowledgeView({ back = false, initialQuery = '' }: { back?: bool
             : undefined
         }
       />
+      <AskDrugCard />
       <Input
         label="Search drug labels"
         value={text}

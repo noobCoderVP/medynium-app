@@ -11,3 +11,5 @@
 **Rules:** an absence of results is stated as "not found in the indexed sources", never as safety. Sources that disagree are flagged. Results carry the Retrieved source tag.
 
 **States handled:** loading skeleton, empty (with the server's own message when it sends one), error with retry and request id, rate limited.
+
+**Assistant:** an "Ask about a drug" card (from `features/agent`) sits above the label search; the search works without the assistant.

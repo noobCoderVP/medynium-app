@@ -1,4 +1,5 @@
 import type { DocSection } from '../types';
+import { PLATFORM_SECTIONS } from './sections-platform';
 import { TRUST_SECTIONS } from './sections-trust';
 
 /** The phone guide, written for clinicians. Keep it in step with the screens; the trust sections match the web's. */
@@ -94,5 +95,6 @@ export const DOC_SECTIONS: DocSection[] = [
       },
     ],
   },
+  ...PLATFORM_SECTIONS,
   ...TRUST_SECTIONS,
 ];
