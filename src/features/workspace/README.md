@@ -19,3 +19,11 @@
 **States handled:** loading skeleton, not found, error with retry and request id, empty list per tab, rate limited, assistant unavailable (Safety only).
 
 **Not yet built:** share a summary, saved views.
+
+## Web sync (2026-10-04)
+
+Tabs now match the web order: Overview, Timeline, Medicines, Labs, Safety, Claims, Notes, Reports, Similar.
+
+- Header shows allergies (`allergy-line.tsx`); an empty list reads "No allergies recorded".
+- Overview opens with `attention-panel.tsx` (out-of-range labs with range and movement, from `lib/abnormal-labs.ts`, recorded values only).
+- Similar: `GET /patients/{id}/similar`. Reports: `GET /patients/{id}/reports` and `.../reports/{id}`, with upload (`expo-document-picker`, raw bytes via `postBlob`), per-row accept/reject, approve and reject report.

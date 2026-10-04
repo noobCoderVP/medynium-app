@@ -13,6 +13,8 @@ export default function AppLayout() {
           <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name="(tabs)" />
             <Stack.Screen name="patient/[patientId]" />
+            <Stack.Screen name="knowledge" />
+            <Stack.Screen name="docs" />
           </Stack>
           <LockScreen />
         </View>

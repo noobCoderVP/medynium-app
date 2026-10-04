@@ -15,7 +15,7 @@ import { useKnowledgeSearch, useKnowledgeStatus } from '../hooks/use-knowledge';
 import { CitationCard } from './citation-card';
 
 /** Search the indexed drug labels. Results are quoted sources with their version and date, never summaries. */
-export function KnowledgeView() {
+export function KnowledgeView({ back = false }: { back?: boolean }) {
   const [text, setText] = useState('');
   const [q, setQ] = useState('');
   const [drug, setDrug] = useState<string | undefined>();
@@ -24,7 +24,7 @@ export function KnowledgeView() {
   const submit = () => setQ(text.trim());
 
   return (
-    <TabScreen>
+    <TabScreen back={back}>
       <ScreenHeader
         title="Knowledge"
         subtitle={

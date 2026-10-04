@@ -4,35 +4,34 @@ import { Section } from '@/components/shared/section';
 import { Reveal } from '@/components/ui/reveal';
 import { RecordRow } from '@/components/shared/record-row';
 import { StatGrid, StatTile } from '@/components/shared/stat-tile';
-import { Badge } from '@/components/ui/badge';
 import { Text } from '@/components/ui/text';
 import type { Overview } from '@/lib/api/types';
-import { formatDate, formatMoney, formatShortDate, formatValue } from '@/lib/format';
+import { formatMoney, formatShortDate } from '@/lib/format';
+
+import { AttentionPanel } from './attention-panel';
 
 /** Everything already loaded by the gate: no second call. */
-export function OverviewTab({ data }: { data: Overview }) {
-  const abnormal = data.latest_labs.filter((lab) => lab.flag === 'HIGH' || lab.flag === 'LOW');
+export function OverviewTab({
+  data,
+  onReviewSafety,
+  onOpenLab,
+  onAllFlagged,
+}: {
+  data: Overview;
+  onReviewSafety: () => void;
+  onOpenLab: (code: string) => void;
+  onAllFlagged: () => void;
+}) {
   return (
     <View style={styles.stack}>
-      {abnormal.length > 0 && (
-        <Reveal index={0}>
-          <Section title="Needs attention" aside="Requires review">
-            {abnormal.map((lab) => (
-              <RecordRow
-                key={lab.lab_id}
-                title={lab.test}
-                lines={[formatDate(lab.date)]}
-                right={
-                  <>
-                    <Text variant="label">{formatValue(lab.value, lab.unit)}</Text>
-                    <Badge label={lab.flag === 'HIGH' ? 'High' : 'Low'} tone="warning" />
-                  </>
-                }
-              />
-            ))}
-          </Section>
-        </Reveal>
-      )}
+      <Reveal index={0}>
+        <AttentionPanel
+          patient={data}
+          onReviewSafety={onReviewSafety}
+          onOpenLab={onOpenLab}
+          onAllFlagged={onAllFlagged}
+        />
+      </Reveal>
       <Reveal index={1}>
         <Section title="Diagnoses" aside={`${data.diagnoses.length}`}>
           {data.diagnoses.length === 0 ? (

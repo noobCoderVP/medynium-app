@@ -56,6 +56,7 @@ describe('PatientWorkspace gate (SEC-05)', () => {
       sex: 'M',
       city: null,
       as_of: '2026-10-02',
+      allergies: [{ allergy_id: 'A1', substance: 'Penicillin', reaction: 'Rash', severity: 'Moderate' }],
       diagnoses: [],
       medications: [],
       latest_labs: [],
@@ -73,5 +74,8 @@ describe('PatientWorkspace gate (SEC-05)', () => {
     expect(await screen.findByText('Rahul Patel')).toBeTruthy();
     expect(screen.getByText(/synthetic data/i)).toBeTruthy();
     expect(screen.getByText('Safety')).toBeTruthy();
+    expect(screen.getByText('Reports')).toBeTruthy();
+    expect(screen.getByText('Similar')).toBeTruthy();
+    expect(screen.getByText('Allergies: Penicillin (Rash, moderate)')).toBeTruthy();
   });
 });

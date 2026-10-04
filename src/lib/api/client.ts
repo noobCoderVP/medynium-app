@@ -14,6 +14,8 @@ type Method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 interface RequestOptions {
   method?: Method;
   body?: unknown;
+  /** A file's bytes, sent as is (a report upload). The caller sets Content-Type. */
+  blob?: Blob;
   headers?: Record<string, string>;
   signal?: AbortSignal;
   /** Set on streams: the response is returned unparsed and no timeout applies. */
@@ -71,11 +73,11 @@ async function send(path: string, options: RequestOptions): Promise<Response> {
     return await doFetch(`${env.apiUrl}${path}`, {
       method,
       signal: controller.signal,
-      body: options.body === undefined ? undefined : JSON.stringify(options.body),
+      body: options.blob ?? (options.body === undefined ? undefined : JSON.stringify(options.body)),
       headers: {
         Accept: options.accept ?? 'application/json',
         'X-Medynium-Client': 'mobile',
-        ...(options.body === undefined ? {} : { 'Content-Type': 'application/json' }),
+        ...(options.body === undefined || options.blob ? {} : { 'Content-Type': 'application/json' }),
         ...(tokens ? { Authorization: `Bearer ${tokens.access}` } : {}),
         ...options.headers,
       },
@@ -132,6 +134,9 @@ export async function apiFetch<T>(path: string, options: RequestOptions = {}): P
 export const get = <T>(path: string, signal?: AbortSignal) => apiFetch<T>(path, { signal });
 export const post = <T>(path: string, body?: unknown, headers?: Record<string, string>) =>
   apiFetch<T>(path, { method: 'POST', body, headers });
+/** Uploads raw file bytes. */
+export const postBlob = <T>(path: string, blob: Blob, headers: Record<string, string>) =>
+  apiFetch<T>(path, { method: 'POST', blob, headers });
 export const put = <T>(path: string, body: unknown) => apiFetch<T>(path, { method: 'PUT', body });
 export const patch = <T>(path: string, body: unknown) => apiFetch<T>(path, { method: 'PATCH', body });
 export const del = <T = void>(path: string) => apiFetch<T>(path, { method: 'DELETE' });

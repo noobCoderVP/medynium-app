@@ -25,7 +25,7 @@ export function YouView() {
   const [changing, setChanging] = useState(false);
   return (
     <TabScreen>
-      <ScreenHeader title="You" />
+      <ScreenHeader title="More" />
       <Reveal index={0}>
         <Card style={styles.profile}>
           <Avatar name={user?.display_name ?? ''} size={56} />
@@ -57,8 +57,24 @@ export function YouView() {
         </Section>
       </Reveal>
       <Reveal index={2}>
-        <Section title="Account">
+        <Section title="Browse">
+          <Button
+            title="Knowledge"
+            icon="library-outline"
+            variant="secondary"
+            onPress={() => router.push('/knowledge')}
+          />
           <Button title="Activity" icon="time-outline" variant="secondary" onPress={() => router.push('/activity')} />
+          <Button
+            title="Documentation"
+            icon="help-buoy-outline"
+            variant="secondary"
+            onPress={() => router.push('/docs')}
+          />
+        </Section>
+      </Reveal>
+      <Reveal index={3}>
+        <Section title="Account">
           {user?.is_admin && user.role === 'DOCTOR' && (
             <Button title="Admin" icon="settings-outline" variant="secondary" onPress={() => router.push('/admin')} />
           )}
@@ -66,7 +82,7 @@ export function YouView() {
           <Button title="Sign out" icon="log-out-outline" variant="secondary" onPress={() => void signOut()} />
         </Section>
       </Reveal>
-      <Reveal index={3}>
+      <Reveal index={4}>
         <Text variant="caption" color="mutedForeground" style={styles.note}>
           No patient data is stored on this device. The app locks after a minute away and blocks screenshots. Version{' '}
           {Constants.expoConfig?.version ?? '1.0.0'}.

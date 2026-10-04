@@ -16,7 +16,7 @@ export default function SignInScreen() {
 
   return (
     <KeyboardAvoidingView style={styles.fill} behavior="padding">
-      <Screen header={false} contentStyle={styles.content}>
+      <Screen header={false} center contentStyle={styles.content}>
         <Reveal index={0} style={styles.heading}>
           <Logo size={44} />
           <Text variant="title" accessibilityRole="header" style={styles.welcome}>
@@ -44,7 +44,7 @@ export default function SignInScreen() {
 
 const styles = StyleSheet.create({
   fill: { flex: 1 },
-  content: { gap: 24, paddingTop: 48 },
+  content: { gap: 24 },
   heading: { gap: 6 },
   welcome: { marginTop: 20 },
   note: { textAlign: 'center' },

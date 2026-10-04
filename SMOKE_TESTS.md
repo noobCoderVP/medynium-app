@@ -10,6 +10,18 @@ Run after every EAS build, against the API you built for. Accounts: `sharma@demo
 - [ ] Turn the API off, reopen: the "could not reach Medynium" screen with Try again; turn it on, Try again works. You were not signed out.
 - [ ] Sign out lands on sign-in; reopening stays signed out.
 
+- [ ] Turn on airplane mode: the offline banner appears. Turn it off: the banner disappears within a few seconds and the open screen refreshes by itself.
+- [ ] Sign-in, forgot password and invitation screens sit in the vertical centre, and stay usable with the keyboard open.
+
+## Navigation
+
+- [ ] The bottom bar shows exactly five items: Home, Patients, Pending, Ask, More.
+- [ ] More lists Knowledge, Activity, Documentation, Admin (admin doctors only), Change password and Sign out; Back from Knowledge, Activity and Documentation returns to More.
+
+## Pending
+
+- [ ] Pending shows "N open, M overdue", the kind chips filter the list, and a tap opens the patient on the matching tab (Safety, Reports, Labs, Notes or Timeline).
+
 ## Home and Patients
 
 - [ ] Home shows tiles, what changed, and your worklist; the synthetic-data banner is visible.
@@ -19,7 +31,9 @@ Run after every EAS build, against the API you built for. Accounts: `sharma@demo
 
 ## Patient workspace
 
-- [ ] All seven sections load for S1 and match the web app.
+- [ ] All nine sections (Overview, Timeline, Medicines, Labs, Safety, Claims, Notes, Reports, Similar) load for S1 and match the web app.
+- [ ] The header shows allergies as words with an icon, or "No allergies recorded"; Overview's Needs attention panel lists out-of-range labs with range and movement, a tap opens the trend, and Review safety opens the Safety tab.
+- [ ] Similar lists real matches with reasons (never padded); Reports lists uploads and opens each row with its quote and page. Upload a PDF or photo, accept or reject rows, approve: only accepted rows reach Labs, Medicines or Diagnoses. A name mismatch asks for confirmation first.
 - [ ] Labs: tapping a test opens the trend with the reference band and the values as text.
 - [ ] A patient id you are not entitled to, and a made-up id, show the identical "We couldn't find that patient." screen.
 

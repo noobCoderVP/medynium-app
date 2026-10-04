@@ -4,4659 +4,9427 @@
  */
 
 export interface paths {
-  '/health': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/health": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Health
+         * @description Public liveness. Reports nothing about configuration.
+         */
+        get: operations["health_health_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Health
-     * @description Public liveness. Reports nothing about configuration.
-     */
-    get: operations['health_health_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/health/details': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/health/details": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Health Details
+         * @description Admin only: Snowflake, warehouse state, Cortex objects and audit-write status.
+         */
+        get: operations["health_details_health_details_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Health Details
-     * @description Admin only: Snowflake, warehouse state, Cortex objects and audit-write status.
-     */
-    get: operations['health_details_health_details_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/auth/login': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/auth/login": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Login
+         * @description Start a session and set the `med_access` and `med_refresh` cookies.
+         *
+         *     When email codes are required (LOGIN_OTP_ENABLED) no session starts yet: an `OtpChallenge` comes back and the
+         *     client finishes with `POST /auth/login/verify`.
+         */
+        post: operations["login_auth_login_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Login
-     * @description Start a session and set the `med_access` and `med_refresh` cookies.
-     *
-     *     When email codes are required (LOGIN_OTP_ENABLED) no session starts yet: an `OtpChallenge` comes back and the
-     *     client finishes with `POST /auth/login/verify`.
-     */
-    post: operations['login_auth_login_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/auth/login/verify': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/auth/login/verify": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Verify Login
+         * @description Finish a sign-in with the six-digit code that was emailed. Sets the auth cookies.
+         */
+        post: operations["verify_login_auth_login_verify_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Verify Login
-     * @description Finish a sign-in with the six-digit code that was emailed. Sets the auth cookies.
-     */
-    post: operations['verify_login_auth_login_verify_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/auth/password/forgot': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/auth/password/forgot": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Forgot Password
+         * @description Public. Emails a one-time reset link when the address belongs to an active account. Always 204.
+         */
+        post: operations["forgot_password_auth_password_forgot_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Forgot Password
-     * @description Public. Emails a one-time reset link when the address belongs to an active account. Always 204.
-     */
-    post: operations['forgot_password_auth_password_forgot_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/auth/refresh': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/auth/refresh": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Refresh
+         * @description Rotate both cookies using the refresh cookie. A reused refresh token revokes the session.
+         */
+        post: operations["refresh_auth_refresh_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Refresh
-     * @description Rotate both cookies using the refresh cookie. A reused refresh token revokes the session.
-     */
-    post: operations['refresh_auth_refresh_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/auth/mobile/refresh': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/auth/mobile/refresh": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Refresh Mobile
+         * @description Mobile only: rotate the bearer tokens. Same rotation and reuse detection as the cookie refresh.
+         */
+        post: operations["refresh_mobile_auth_mobile_refresh_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Refresh Mobile
-     * @description Mobile only: rotate the bearer tokens. Same rotation and reuse detection as the cookie refresh.
-     */
-    post: operations['refresh_mobile_auth_mobile_refresh_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/auth/logout': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/auth/logout": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Logout
+         * @description Revoke the session and clear the cookies. Safe to call when already signed out.
+         */
+        post: operations["logout_auth_logout_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Logout
-     * @description Revoke the session and clear the cookies. Safe to call when already signed out.
-     */
-    post: operations['logout_auth_logout_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/me': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Me
+         * @description The signed-in user, their role and what they may do.
+         */
+        get: operations["me_me_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Me
-     * @description The signed-in user, their role and what they may do.
-     */
-    get: operations['me_me_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/auth/password': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/auth/password": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Change Password
+         * @description Change your password. Other sessions are revoked.
+         */
+        post: operations["change_password_auth_password_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Change Password
-     * @description Change your password. Other sessions are revoked.
-     */
-    post: operations['change_password_auth_password_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/auth/invites/{token}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/auth/invites/{token}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Invite Preview
+         * @description Public. Who an invitation or reset link is for.
+         */
+        get: operations["invite_preview_auth_invites__token__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Invite Preview
-     * @description Public. Who an invitation or reset link is for.
-     */
-    get: operations['invite_preview_auth_invites__token__get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/auth/invites/accept': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/auth/invites/accept": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Accept Invite
+         * @description Public. Set a password and activate the account (or complete a password reset).
+         */
+        post: operations["accept_invite_auth_invites_accept_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Accept Invite
-     * @description Public. Set a password and activate the account (or complete a password reset).
-     */
-    post: operations['accept_invite_auth_invites_accept_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/dashboard': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/dashboard": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Dashboard
+         * @description Worklist with change flags, recent lab and medication changes, utilisation. No AI call.
+         */
+        get: operations["dashboard_dashboard_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Dashboard
-     * @description Worklist with change flags, recent lab and medication changes, utilisation. No AI call.
-     */
-    get: operations['dashboard_dashboard_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/dashboard/briefing': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/dashboard/briefing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Briefing
+         * @description Briefing of recent changes, on request only (A-13). Rules over the caller's own data, no model call.
+         */
+        get: operations["briefing_dashboard_briefing_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Briefing
-     * @description Briefing of recent changes, on request only (A-13). Rules over the caller's own data, no model call.
-     */
-    get: operations['briefing_dashboard_briefing_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/patients': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Patients
+         * @description The caller's entitled patients, filtered and sorted over all of them before the page is cut.
+         *
+         *     `q` searches name, id or diagnosis; `changed` keeps only flagged patients; `flag` narrows to one kind of change.
+         */
+        get: operations["list_patients_patients_get"];
+        put?: never;
+        /**
+         * Register Patient
+         * @description Register a patient. The registering doctor is entitled to them at once. A same-name, same-birth-date patient
+         *     already on the doctor's list is a 409 until `confirm_duplicate` is set.
+         */
+        post: operations["register_patient_patients_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * List Patients
-     * @description The caller's entitled patients, filtered and sorted over all of them before the page is cut.
-     *
-     *     `q` searches name, id or diagnosis; `changed` keeps only flagged patients; `flag` narrows to one kind of change.
-     */
-    get: operations['list_patients_patients_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/patients/{patient_id}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Patient
+         * @description Patient 360 overview. 404 if the patient is missing or the caller is not entitled. Opening a chart is audited.
+         */
+        get: operations["get_patient_patients__patient_id__get"];
+        /**
+         * Update Patient
+         * @description Replace a patient's demographics. `version` must be the one last read.
+         */
+        put: operations["update_patient_patients__patient_id__put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Get Patient
-     * @description Patient 360 overview. 404 if the patient is missing or the caller is not entitled.
-     */
-    get: operations['get_patient_patients__patient_id__get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/patients/{patient_id}/share': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/share": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Share Patient
+         * @description Email a summary of this patient to one recipient. Audited; 404 if missing or not entitled.
+         */
+        post: operations["share_patient_patients__patient_id__share_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Share Patient
-     * @description Email a summary of this patient to one recipient. Audited; 404 if missing or not entitled.
-     */
-    post: operations['share_patient_patients__patient_id__share_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/patients/{patient_id}/medications': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/medications": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Medications */
+        get: operations["medications_patients__patient_id__medications_get"];
+        put?: never;
+        /**
+         * Add Medication
+         * @description Add a medicine as written (a generic or an Indian brand). It is matched to the knowledge base, so the
+         *     medication list shows whether its label is indexed.
+         */
+        post: operations["add_medication_patients__patient_id__medications_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** Medications */
-    get: operations['medications_patients__patient_id__medications_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/patients/{patient_id}/labs': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/labs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Labs
+         * @description Latest and previous value per test, with reference range and flag.
+         */
+        get: operations["labs_patients__patient_id__labs_get"];
+        put?: never;
+        /**
+         * Add Lab
+         * @description Add a laboratory result. The unit, reference range and flag come from the reference table, not the caller.
+         */
+        post: operations["add_lab_patients__patient_id__labs_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Labs
-     * @description Latest and previous value per test, with reference range and flag.
-     */
-    get: operations['labs_patients__patient_id__labs_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/patients/{patient_id}/labs/{code}/trend': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/labs/{code}/trend": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Lab Trend
+         * @description `code` is a LOINC code or a short alias such as eGFR or HbA1c.
+         */
+        get: operations["lab_trend_patients__patient_id__labs__code__trend_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Lab Trend
-     * @description `code` is a LOINC code or a short alias such as eGFR or HbA1c.
-     */
-    get: operations['lab_trend_patients__patient_id__labs__code__trend_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/patients/{patient_id}/timeline': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/timeline": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Timeline
+         * @description Merged events. Filter by date range, comma-separated event types and text; `order` is by date.
+         */
+        get: operations["timeline_patients__patient_id__timeline_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Timeline
-     * @description Merged events. Filter by date range, comma-separated event types and text; `order` is by date.
-     */
-    get: operations['timeline_patients__patient_id__timeline_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/patients/{patient_id}/claims': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/claims": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Claims
+         * @description Utilisation (always the full window) and a page of claims, each linked to its encounter.
+         */
+        get: operations["claims_patients__patient_id__claims_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Claims
-     * @description Utilisation (always the full window) and a page of claims, each linked to its encounter.
-     */
-    get: operations['claims_patients__patient_id__claims_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/patients/{patient_id}/notes': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/notes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Notes */
+        get: operations["notes_patients__patient_id__notes_get"];
+        put?: never;
+        /**
+         * Add Note
+         * @description Add a clinical note. Note text is data: it is shown as plain text and never read as instructions.
+         */
+        post: operations["add_note_patients__patient_id__notes_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** Notes */
-    get: operations['notes_patients__patient_id__notes_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/patients/{patient_id}/notes/{note_id}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/notes/{note_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Note
+         * @description A note is returned as plain text and is treated as data, never as instructions.
+         */
+        get: operations["note_patients__patient_id__notes__note_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Note
-     * @description A note is returned as plain text and is treated as data, never as instructions.
-     */
-    get: operations['note_patients__patient_id__notes__note_id__get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/patients/{patient_id}/pins': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/pending": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Pending
+         * @description Everything waiting on the caller across the patients they are entitled to, most urgent first. No AI call.
+         */
+        get: operations["pending_pending_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * List Pins
-     * @description Evidence the caller pinned to this patient's workspace.
-     */
-    get: operations['list_pins_patients__patient_id__pins_get'];
-    put?: never;
-    /**
-     * Create Pin
-     * @description Pin one evidence item from one of the caller's own answers. Repeats with the same key return the same pin.
-     */
-    post: operations['create_pin_patients__patient_id__pins_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/patients/{patient_id}/pins/{pin_id}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/pending/summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Pending Summary
+         * @description Counts for the navigation badge and the dashboard.
+         */
+        get: operations["pending_summary_pending_summary_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    post?: never;
-    /** Delete Pin */
-    delete: operations['delete_pin_patients__patient_id__pins__pin_id__delete'];
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/patients/{patient_id}/safety-review': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/labs/{lab_id}/review": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Review Lab
+         * @description Mark an abnormal result as reviewed so it leaves the pending list. A doctor's act; repeating is harmless.
+         */
+        post: operations["review_lab_patients__patient_id__labs__lab_id__review_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Safety Review
-     * @description Run the safety review for one patient (the manual button). 404 if the patient is missing or denied.
-     */
-    post: operations['safety_review_patients__patient_id__safety_review_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/copilot/ask': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/pins": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Pins
+         * @description Evidence the caller pinned to this patient's workspace.
+         */
+        get: operations["list_pins_patients__patient_id__pins_get"];
+        put?: never;
+        /**
+         * Create Pin
+         * @description Pin one evidence item from one of the caller's own answers. Repeats with the same key return the same pin.
+         */
+        post: operations["create_pin_patients__patient_id__pins_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Ask
-     * @description Route a free-text request and stream the result. The router sees no patient data; the server re-checks everything.
-     */
-    post: operations['ask_copilot_ask_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/agent/actions': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/pins/{pin_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete Pin */
+        delete: operations["delete_pin_patients__patient_id__pins__pin_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Agent Action
-     * @description Execute one allowlisted action under your own session. Anything else is refused, and the refusal is audited.
-     */
-    post: operations['agent_action_agent_actions_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/evidence/{answer_id}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/archive": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Archive Patient
+         * @description Hide a patient from every screen. Nothing is deleted; restore brings them back.
+         */
+        post: operations["archive_patient_patients__patient_id__archive_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Get Evidence
-     * @description The Why? panel: patient records, the SQL that ran and source sections. Only the asker, and only while still
-     *     entitled to the patient, can read an answer's evidence; anything else is the standard not found.
-     */
-    get: operations['get_evidence_evidence__answer_id__get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/knowledge/search': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/restore": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Restore Patient */
+        post: operations["restore_patient_patients__patient_id__restore_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Search
-     * @description Label and guideline search with a full citation on every result. Brand names resolve to their generic.
-     */
-    get: operations['search_knowledge_search_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/knowledge/status': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/archived-patients": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Archived Patients
+         * @description Patients the caller archived (or is entitled to) and can restore.
+         */
+        get: operations["archived_patients_archived_patients_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Status
-     * @description Snapshot date, counts and the drugs in the index. The corpus is a controlled snapshot, not a live feed.
-     */
-    get: operations['status_knowledge_status_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/views/preview': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/diagnoses": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Add Diagnosis */
+        post: operations["add_diagnosis_patients__patient_id__diagnoses_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Preview
-     * @description Preview a saved view or visit brief. Nothing is stored (P1).
-     */
-    post: operations['preview_views_preview_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/views': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/diagnoses/{record_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Edit Diagnosis */
+        put: operations["edit_diagnosis_patients__patient_id__diagnoses__record_id__put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** List Views */
-    get: operations['list_views_views_get'];
-    put?: never;
-    /**
-     * Save
-     * @description Save an approved preview. `approved` must be true; the agent can never save on its own.
-     */
-    post: operations['save_views_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/audit': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/medications/{record_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /**
+         * Edit Medication
+         * @description Edit a medicine. Changing the dose, or setting a stop date, is recorded as a medication change.
+         */
+        put: operations["edit_medication_patients__patient_id__medications__record_id__put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Audit
-     * @description The caller's own entries, newest first. Denied attempts are included.
-     */
-    get: operations['audit_audit_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/admin/invites': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/allergies": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Add Allergy */
+        post: operations["add_allergy_patients__patient_id__allergies_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** List Invites */
-    get: operations['list_invites_admin_invites_get'];
-    put?: never;
-    /**
-     * Create Invite
-     * @description Create an invitation. The link is emailed (when email is configured) and returned once; only its hash is stored.
-     */
-    post: operations['create_invite_admin_invites_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/admin/invites/{invite_id}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/allergies/{record_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Edit Allergy */
+        put: operations["edit_allergy_patients__patient_id__allergies__record_id__put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    post?: never;
-    /** Revoke Invite */
-    delete: operations['revoke_invite_admin_invites__invite_id__delete'];
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/admin/users': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/labs/{record_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Edit Lab */
+        put: operations["edit_lab_patients__patient_id__labs__record_id__put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** List Users */
-    get: operations['list_users_admin_users_get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/admin/users/{user_id}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/notes/{record_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Edit Note */
+        put: operations["edit_note_patients__patient_id__notes__record_id__put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** Get User */
-    get: operations['get_user_admin_users__user_id__get'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    /**
-     * Update User
-     * @description Rename, grant or remove admin, disable or re-enable. Disabling ends the user's sessions.
-     */
-    patch: operations['update_user_admin_users__user_id__patch'];
-    trace?: never;
-  };
-  '/admin/users/{user_id}/reset-password': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/visits": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Add Visit */
+        post: operations["add_visit_patients__patient_id__visits_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Reset Password
-     * @description A one-time link that lets the user set a new password. Their sessions end now.
-     */
-    post: operations['reset_password_admin_users__user_id__reset_password_post'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/admin/users/{user_id}/entitlements': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patients/{patient_id}/visits/{record_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Edit Visit */
+        put: operations["edit_visit_patients__patient_id__visits__record_id__put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** Get Entitlements */
-    get: operations['get_entitlements_admin_users__user_id__entitlements_get'];
-    /**
-     * Put Entitlements
-     * @description Replace the user's patient set. Assistants may only have their supervising doctor's patients.
-     */
-    put: operations['put_entitlements_admin_users__user_id__entitlements_put'];
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
+    "/patients/{patient_id}/{kind}/{record_id}/archive": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Archive Record
+         * @description Hide one record from every screen and read model. It stays in the history and can be restored.
+         */
+        post: operations["archive_record_patients__patient_id___kind___record_id__archive_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/{kind}/{record_id}/restore": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Restore Record */
+        post: operations["restore_record_patients__patient_id___kind___record_id__restore_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/records/{kind}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Records
+         * @description The editable fields and current version of every record of one kind, for the edit forms.
+         */
+        get: operations["list_records_patients__patient_id__records__kind__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/records/{kind}/{record_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Record */
+        get: operations["get_record_patients__patient_id__records__kind___record_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/history": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Record History
+         * @description Who changed what on this patient, newest first. Written by the database, never by the client.
+         */
+        get: operations["record_history_patients__patient_id__history_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/sync": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Sync Status
+         * @description Whether a recent change is still being reflected in the worklist, timeline and latest labs.
+         */
+        get: operations["sync_status_patients__patient_id__sync_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/reports": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Reports */
+        get: operations["list_reports_patients__patient_id__reports_get"];
+        put?: never;
+        /**
+         * Upload Report
+         * @description Upload a PDF, PNG or JPEG report as the raw request body (set `X-Filename`). It is read in the background: what
+         *     is read is staged for a doctor, never written to the record. The same file twice returns the first upload.
+         */
+        post: operations["upload_report_patients__patient_id__reports_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/reports/{report_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Report
+         * @description The report, the rows read from it (each with the exact words and page it came from) and the page text.
+         */
+        get: operations["get_report_patients__patient_id__reports__report_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/reports/{report_id}/file": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Report File
+         * @description The original file, streamed after an entitlement check. No link to it is ever handed out.
+         */
+        get: operations["report_file_patients__patient_id__reports__report_id__file_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/reports/rows/{row_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /**
+         * Edit Row
+         * @description Correct what was read from a report row. A lab needs a supported test and a collection time.
+         */
+        put: operations["edit_row_patients__patient_id__reports_rows__row_id__put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/reports/rows/{row_id}/{decision}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Decide Row
+         * @description Accept or reject one row, or put it back to waiting. Only a doctor decides; nothing is written until approval.
+         */
+        post: operations["decide_row_patients__patient_id__reports_rows__row_id___decision__post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/reports/{report_id}/approve": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Approve Report
+         * @description Write the accepted and edited rows to the record, each tagged with this report as its source. A report whose
+         *     printed name does not match the patient needs `confirm_identity`.
+         */
+        post: operations["approve_report_patients__patient_id__reports__report_id__approve_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/reports/{report_id}/reject": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Reject Report
+         * @description Reject the whole report: nothing from it is written.
+         */
+        post: operations["reject_report_patients__patient_id__reports__report_id__reject_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/similar": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Similar Patients
+         * @description The closest of the caller's own patients to this one, each with the reasons. For comparison only; a ranking
+         *     aid, never a prediction or a recommendation. Only patients the caller can already open can appear.
+         */
+        get: operations["similar_patients_patients__patient_id__similar_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/findings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Findings
+         * @description Decisions recorded on this patient's review statements, open ones first.
+         */
+        get: operations["list_findings_patients__patient_id__findings_get"];
+        put?: never;
+        /**
+         * Raise Finding
+         * @description Raise a finding from a statement in one of the caller's own answers. Repeating returns the same finding.
+         */
+        post: operations["raise_finding_patients__patient_id__findings_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/patients/{patient_id}/colleagues": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Colleagues
+         * @description Other active users who have this patient: the people a finding can be escalated to.
+         */
+        get: operations["colleagues_patients__patient_id__colleagues_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/findings/{finding_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Decide Finding
+         * @description Acknowledge, flag (with a follow-up date), dismiss (with a reason) or escalate (to a colleague).
+         */
+        patch: operations["decide_finding_findings__finding_id__patch"];
+        trace?: never;
+    };
+    "/patients/{patient_id}/safety-review": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Safety Review
+         * @description Run the safety review for one patient (the manual button). 404 if the patient is missing or denied.
+         */
+        post: operations["safety_review_patients__patient_id__safety_review_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/copilot/ask": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Ask
+         * @description Route a free-text request and stream the result. The router sees no patient data; the server re-checks everything.
+         */
+        post: operations["ask_copilot_ask_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/agent/actions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Agent Action
+         * @description Execute one allowlisted action under your own session. Anything else is refused, and the refusal is audited.
+         */
+        post: operations["agent_action_agent_actions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/evidence/{answer_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Evidence
+         * @description The Why? panel: patient records, the SQL that ran and source sections. Only the asker, and only while still
+         *     entitled to the patient, can read an answer's evidence; anything else is the standard not found.
+         */
+        get: operations["get_evidence_evidence__answer_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/knowledge/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Search
+         * @description Label search with a full citation on every result. Brand names and small typos resolve to the generic.
+         *
+         *     Give `q`, a `drug`, or both. A drug without `q` lists that drug's sections. `section` takes a heading in any case,
+         *     or a word from it ("warnings").
+         */
+        get: operations["search_knowledge_search_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/knowledge/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Status
+         * @description Snapshot date, counts and the drugs in the index. The corpus is a controlled snapshot, not a live feed.
+         */
+        get: operations["status_knowledge_status_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/knowledge/drugs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Drugs
+         * @description Every indexed drug with its Indian brands and section count, for browsing and filtering.
+         */
+        get: operations["drugs_knowledge_drugs_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/knowledge/requests": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** My Requests */
+        get: operations["my_requests_knowledge_requests_get"];
+        put?: never;
+        /**
+         * Request Drug
+         * @description Ask for a drug that is not indexed. Nothing is indexed by asking: an admin decides and adds the label.
+         */
+        post: operations["request_drug_knowledge_requests_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/admin/knowledge/coverage": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Coverage
+         * @description What the corpus covers and does not, and which unlabelled medicines are in use among the admin's own patients.
+         */
+        get: operations["coverage_admin_knowledge_coverage_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/admin/knowledge/requests": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** All Requests */
+        get: operations["all_requests_admin_knowledge_requests_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/admin/knowledge/requests/{request_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Decide Request
+         * @description Mark a request added (after running the setup script) or declined, with a note.
+         */
+        patch: operations["decide_request_admin_knowledge_requests__request_id__patch"];
+        trace?: never;
+    };
+    "/admin/golden-runs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Golden Runs
+         * @description The latest stored golden run with every question's result, and earlier runs. Admins only.
+         */
+        get: operations["golden_runs_admin_golden_runs_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/views/preview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Preview
+         * @description Preview a saved view or visit brief. Nothing is stored (P1).
+         */
+        post: operations["preview_views_preview_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/views": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Views */
+        get: operations["list_views_views_get"];
+        put?: never;
+        /**
+         * Save
+         * @description Save an approved preview. `approved` must be true; the agent can never save on its own.
+         */
+        post: operations["save_views_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/audit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Audit
+         * @description The caller's own entries, newest first. Denied attempts are included.
+         */
+        get: operations["audit_audit_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/admin/invites": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Invites */
+        get: operations["list_invites_admin_invites_get"];
+        put?: never;
+        /**
+         * Create Invite
+         * @description Create an invitation. The link is emailed (when email is configured) and returned once; only its hash is stored.
+         */
+        post: operations["create_invite_admin_invites_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/admin/invites/{invite_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Revoke Invite */
+        delete: operations["revoke_invite_admin_invites__invite_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/admin/users": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Users */
+        get: operations["list_users_admin_users_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/admin/users/{user_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get User */
+        get: operations["get_user_admin_users__user_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Update User
+         * @description Rename, grant or remove admin, disable or re-enable. Disabling ends the user's sessions.
+         */
+        patch: operations["update_user_admin_users__user_id__patch"];
+        trace?: never;
+    };
+    "/admin/users/{user_id}/reset-password": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Reset Password
+         * @description A one-time link that lets the user set a new password. Their sessions end now.
+         */
+        post: operations["reset_password_admin_users__user_id__reset_password_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/admin/users/{user_id}/entitlements": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Entitlements */
+        get: operations["get_entitlements_admin_users__user_id__entitlements_get"];
+        /**
+         * Put Entitlements
+         * @description Replace the user's patient set. Assistants may only have their supervising doctor's patients.
+         */
+        put: operations["put_entitlements_admin_users__user_id__entitlements_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-  schemas: {
-    /** AcceptInviteRequest */
-    AcceptInviteRequest: {
-      /** Token */
-      token: string;
-      /** Password */
-      password: string;
-      /** Display Name */
-      display_name?: string | null;
-    };
-    /** AcceptInviteResponse */
-    AcceptInviteResponse: {
-      /** Email */
-      email: string;
-    };
-    /** ActionRequest */
-    ActionRequest: {
-      /**
-       * Action
-       * @description One of open_patient, show_timeline, run_safety_review, pin_evidence.
-       */
-      action: string;
-      /** Params */
-      params?: {
-        [key: string]: unknown;
-      };
-    };
-    /** ActionResponse */
-    ActionResponse: {
-      /** Action */
-      action: string;
-      /**
-       * Status
-       * @default done
-       * @constant
-       */
-      status: 'done';
-      /** Result */
-      result: {
-        [key: string]: unknown;
-      };
-      /** Audit Id */
-      audit_id: string | null;
-    };
-    /** AnswerObject */
-    AnswerObject: {
-      /** Answer Id */
-      answer_id: string;
-      /**
-       * Kind
-       * @enum {string}
-       */
-      kind: 'SAFETY' | 'CHANGED' | 'MEDS' | 'LABS' | 'UTIL' | 'SUMMARY' | 'ANALYST' | 'KNOWLEDGE';
-      /** Patient Id */
-      patient_id: string | null;
-      /** Short Answer */
-      short_answer: string;
-      /** Considerations */
-      considerations: components['schemas']['Consideration'][];
-      limits: components['schemas']['Limits'];
-      /** Conflicts */
-      conflicts?: components['schemas']['ConflictItem'][];
-      route?: components['schemas']['RouteInfo'] | null;
-      /**
-       * Created At
-       * Format: date-time
-       */
-      created_at: string;
-    };
-    /**
-     * AskRequest
-     * @description Free text from the command bar or agent panel. Only this is routed. `patient_id` is the open patient and is
-     *     never trusted as proof of access.
-     */
-    AskRequest: {
-      /** Question */
-      question: string;
-      /**
-       * Screen
-       * @enum {string}
-       */
-      screen: 'dashboard' | 'patients' | 'patient' | 'knowledge' | 'activity' | 'admin';
-      /** Patient Id */
-      patient_id?: string | null;
-      /**
-       * History
-       * @description The last two user questions (text only).
-       */
-      history?: string[];
-    };
-    /**
-     * AskResult
-     * @description JSON mode (Accept: application/json): the final outcome of a request that would otherwise stream.
-     */
-    AskResult: {
-      /** Routes */
-      routes: {
-        [key: string]: unknown;
-      }[];
-      /** Actions */
-      actions: {
-        [key: string]: unknown;
-      }[];
-      /** Answer */
-      answer: {
-        [key: string]: unknown;
-      } | null;
-      /** Refusal */
-      refusal: {
-        [key: string]: unknown;
-      } | null;
-      /** Steps */
-      steps: {
-        [key: string]: unknown;
-      }[];
-      /** Audit Id */
-      audit_id: string | null;
-    };
-    /** AuditItem */
-    AuditItem: {
-      /** Audit Id */
-      audit_id: string;
-      /**
-       * Occurred At
-       * Format: date-time
-       */
-      occurred_at: string;
-      /** Via */
-      via: string | null;
-      /** Action */
-      action: string;
-      /** Route */
-      route: string | null;
-      /** Model */
-      model: string | null;
-      /** Confidence */
-      confidence: number | null;
-      /** Cost Note */
-      cost_note: string | null;
-      /** Patient Id */
-      patient_id: string | null;
-      /** Question */
-      question: string | null;
-      /** Answer Id */
-      answer_id: string | null;
-      /** Patient Evidence Ids */
-      patient_evidence_ids: string[];
-      /** Document Ids */
-      document_ids: string[];
-      /** Steps */
-      steps: {
-        [key: string]: unknown;
-      }[];
-      /** Outcome */
-      outcome: string;
-    };
-    /** BriefingItem */
-    BriefingItem: {
-      /** Patient Id */
-      patient_id: string;
-      /** Name */
-      name: string;
-      /** Text */
-      text: string;
-      /**
-       * Tag
-       * @default patient_fact
-       */
-      tag: string;
-    };
-    /** BriefingResponse */
-    BriefingResponse: {
-      /**
-       * As Of
-       * Format: date
-       */
-      as_of: string;
-      /**
-       * Generated By
-       * @default rules over the dashboard data, no model call
-       */
-      generated_by: string;
-      /** Items */
-      items: components['schemas']['BriefingItem'][];
-      /** Empty Note */
-      empty_note?: string | null;
-    };
-    /** ChangePasswordRequest */
-    ChangePasswordRequest: {
-      /** Current Password */
-      current_password: string;
-      /** New Password */
-      new_password: string;
-    };
-    /** Citation */
-    Citation: {
-      /** Chunk Id */
-      chunk_id: string;
-      /** Document Id */
-      document_id: string;
-      /** Title */
-      title: string;
-      /** Source */
-      source: string;
-      /** Drug */
-      drug: string | null;
-      /** Section */
-      section: string;
-      /** Version */
-      version: string | null;
-      /** Effective Date */
-      effective_date: string | null;
-      /** Retrieved Date */
-      retrieved_date: string | null;
-      /** Page */
-      page: number | null;
-      /** Snippet */
-      snippet: string;
-      /** Text */
-      text: string;
-      /** Score */
-      score: number;
-      /**
-       * Conflict
-       * @default false
-       */
-      conflict: boolean;
-    };
-    /** Claim */
-    Claim: {
-      /** Claim Id */
-      claim_id: string;
-      /** Encounter Id */
-      encounter_id: string | null;
-      /** Service Date */
-      service_date: string | null;
-      /** Service */
-      service: string | null;
-      /** Status */
-      status: string;
-      billed: components['schemas']['Money'];
-      approved: components['schemas']['Money'];
-    };
-    /** Claims */
-    Claims: {
-      utilization: components['schemas']['Utilization'];
-      /** Claims */
-      claims: components['schemas']['Claim'][];
-      /** Total */
-      total: number;
-      /** Limit */
-      limit: number;
-      /** Offset */
-      offset: number;
-    };
-    /** ConflictItem */
-    ConflictItem: {
-      /** Drug */
-      drug: string | null;
-      /** Section */
-      section?: string | null;
-      /** Items */
-      items: string[];
-    };
-    /** Consideration */
-    Consideration: {
-      /** Id */
-      id: string;
-      /** Text */
-      text: string;
-      /**
-       * Tag
-       * @enum {string}
-       */
-      tag: 'patient_fact' | 'retrieved_source' | 'ai_synthesis';
-      /** Patient Evidence */
-      patient_evidence?: string[];
-      /** Source Evidence */
-      source_evidence?: string[];
-    };
-    /** CortexHealth */
-    CortexHealth: {
-      /** Router Model */
-      router_model: string;
-      /** Strong Model */
-      strong_model: string;
-      /** Safety Path */
-      safety_path: string;
-      /** Search Service */
-      search_service: string;
-    };
-    /** DashboardResponse */
-    DashboardResponse: {
-      /**
-       * As Of
-       * Format: date
-       */
-      as_of: string;
-      /** Worklist */
-      worklist: components['schemas']['WorklistItem'][];
-      recent_changes: components['schemas']['RecentChanges'];
-      utilization: components['schemas']['UtilizationSummary'];
-    };
-    /** Diagnosis */
-    Diagnosis: {
-      /** Diagnosis Id */
-      diagnosis_id: string;
-      /** Description */
-      description: string;
-      /** Onset Year */
-      onset_year: number | null;
-      /** Code */
-      code: string | null;
-      /**
-       * Source
-       * @default CLINICAL.DIAGNOSIS
-       */
-      source: string;
-    };
-    /** EncounterRef */
-    EncounterRef: {
-      /** Date */
-      date?: string | null;
-      /** Kind */
-      kind?: ('OUTPATIENT' | 'EMERGENCY' | 'HOSPITALIZATION') | null;
-      /** Label */
-      label?: string | null;
-    };
-    /** Entitlements */
-    Entitlements: {
-      /** User Id */
-      user_id: string;
-      /** Patient Ids */
-      patient_ids: string[];
-      /** Total */
-      total: number;
-    };
-    /** EntitlementsSet */
-    EntitlementsSet: {
-      /** Patient Ids */
-      patient_ids: string[];
-    };
-    /** ErrorBody */
-    ErrorBody: {
-      error: components['schemas']['ErrorCode'];
-      /** Message */
-      message: string;
-      /** Details */
-      details?:
-        | {
-            [key: string]: unknown;
-          }[]
-        | null;
-    };
-    /**
-     * ErrorCode
-     * @enum {string}
-     */
-    ErrorCode:
-      | 'not_found'
-      | 'unauthorized'
-      | 'forbidden'
-      | 'action_not_allowed'
-      | 'agent_unavailable'
-      | 'timeout'
-      | 'service_unavailable'
-      | 'conflict'
-      | 'rate_limited'
-      | 'invalid_request'
-      | 'not_implemented'
-      | 'internal_error';
-    /** EvidenceResponse */
-    EvidenceResponse: {
-      /** Answer Id */
-      answer_id: string;
-      /** Patient Id */
-      patient_id: string | null;
-      /**
-       * Created At
-       * Format: date-time
-       */
-      created_at: string;
-      route: components['schemas']['RouteInfo'] | null;
-      /** Patient Records */
-      patient_records: components['schemas']['PatientEvidence'][];
-      /** Sql */
-      sql: components['schemas']['SqlEvidence'][];
-      /** Sources */
-      sources: components['schemas']['SourceEvidence'][];
-      /** Statement Map */
-      statement_map: {
-        [key: string]: string[];
-      };
-      /** Dropped Statements */
-      dropped_statements: {
-        [key: string]: string;
-      }[];
-      /** Snapshot Date */
-      snapshot_date: string | null;
-    };
-    /** Flag */
-    Flag: {
-      /**
-       * Type
-       * @enum {string}
-       */
-      type: 'NEW_LAB' | 'NEW_MEDICATION' | 'RECENT_EMERGENCY' | 'NEW_DOCUMENT';
-      /** Label */
-      label: string;
-    };
-    /** ForgotPasswordRequest */
-    ForgotPasswordRequest: {
-      /** Email */
-      email: string;
-    };
-    /** HTTPValidationError */
-    HTTPValidationError: {
-      /** Detail */
-      detail?: components['schemas']['ValidationError'][];
-    };
-    /** HealthDetails */
-    HealthDetails: {
-      /**
-       * Status
-       * @enum {string}
-       */
-      status: 'ok' | 'degraded';
-      /** Version */
-      version: string;
-      /** Environment */
-      environment: string;
-      snowflake: components['schemas']['SnowflakeHealth'];
-      cortex: components['schemas']['CortexHealth'];
-      /**
-       * Audit Writes
-       * @enum {string}
-       */
-      audit_writes: 'ok' | 'failing' | 'unknown';
-    };
-    /**
-     * HealthResponse
-     * @description Liveness only. No configuration, no credentials (NFR-08).
-     */
-    HealthResponse: {
-      /**
-       * Status
-       * @default ok
-       * @constant
-       */
-      status: 'ok';
-      /** Version */
-      version: string;
-    };
-    /** InviteCreate */
-    InviteCreate: {
-      /** Email */
-      email: string;
-      /** Display Name */
-      display_name: string;
-      /**
-       * Role
-       * @enum {string}
-       */
-      role: 'DOCTOR' | 'ASSISTANT';
-      /**
-       * Is Admin
-       * @default false
-       */
-      is_admin: boolean;
-      /** Supervising Doctor Id */
-      supervising_doctor_id?: string | null;
-      /** Patient Ids */
-      patient_ids?: string[];
-    };
-    /** InviteCreated */
-    InviteCreated: {
-      /** Invite Id */
-      invite_id: string;
-      /** Email */
-      email: string;
-      /** Accept Url */
-      accept_url: string;
-      /**
-       * Expires At
-       * Format: date-time
-       */
-      expires_at: string;
-      /**
-       * Email Sent
-       * @default false
-       */
-      email_sent: boolean;
-    };
-    /** InviteItem */
-    InviteItem: {
-      /** Invite Id */
-      invite_id: string;
-      /** Email */
-      email: string;
-      /** Display Name */
-      display_name: string;
-      /**
-       * Role
-       * @enum {string}
-       */
-      role: 'DOCTOR' | 'ASSISTANT';
-      /**
-       * Kind
-       * @enum {string}
-       */
-      kind: 'INVITE' | 'PASSWORD_RESET';
-      /** Status */
-      status: string;
-      /**
-       * Expires At
-       * Format: date-time
-       */
-      expires_at: string;
-      /**
-       * Created At
-       * Format: date-time
-       */
-      created_at: string;
-    };
-    /** InvitePreview */
-    InvitePreview: {
-      /** Email */
-      email: string;
-      /** Display Name */
-      display_name: string;
-      /**
-       * Role
-       * @enum {string}
-       */
-      role: 'DOCTOR' | 'ASSISTANT';
-      /**
-       * Expires At
-       * Format: date-time
-       */
-      expires_at: string;
-      /**
-       * Kind
-       * @enum {string}
-       */
-      kind: 'INVITE' | 'PASSWORD_RESET';
-    };
-    /** KnowledgeStatus */
-    KnowledgeStatus: {
-      /** Snapshot Date */
-      snapshot_date: string | null;
-      /** Document Count */
-      document_count: number;
-      /** Chunk Count */
-      chunk_count: number;
-      /** Drug Count */
-      drug_count: number;
-      /** Drugs */
-      drugs: string[];
-      /** Sources */
-      sources: string[];
-      /** Notes */
-      notes: string | null;
-    };
-    /** LabChange */
-    LabChange: {
-      /** Patient Id */
-      patient_id: string;
-      /** Name */
-      name: string;
-      /** Test */
-      test: string;
-      /** Latest */
-      latest: number;
-      /** Previous */
-      previous: number | null;
-      /** Unit */
-      unit: string | null;
-      /**
-       * Date
-       * Format: date
-       */
-      date: string;
-      /** Abnormal */
-      abnormal: string | null;
-    };
-    /** LabLatest */
-    LabLatest: {
-      /** Lab Id */
-      lab_id: string;
-      /** Test */
-      test: string;
-      /** Code */
-      code: string;
-      /** Value */
-      value: number;
-      /** Unit */
-      unit: string | null;
-      /**
-       * Date
-       * Format: date
-       */
-      date: string;
-      previous: components['schemas']['PreviousValue'] | null;
-      ref: components['schemas']['Reference'];
-      /** Flag */
-      flag: ('LOW' | 'HIGH' | 'NORMAL') | null;
-      /**
-       * Source
-       * @default CLINICAL.LAB_RESULT
-       */
-      source: string;
-    };
-    /** LabTrend */
-    LabTrend: {
-      /** Test */
-      test: string;
-      /** Code */
-      code: string;
-      /** Unit */
-      unit: string | null;
-      ref: components['schemas']['Reference'];
-      /** Points */
-      points: components['schemas']['TrendPoint'][];
-    };
-    /** Limits */
-    Limits: {
-      /** Checked */
-      checked?: string[];
-      /** Not Checked */
-      not_checked?: string[];
-      /** Notes */
-      notes?: string[];
-      /** Snapshot Date */
-      snapshot_date?: string | null;
-    };
-    /** LoginRequest */
-    LoginRequest: {
-      /**
-       * Email
-       * @example sharma@demo.medynium
-       */
-      email: string;
-      /** Password */
-      password: string;
-    };
-    /** LoginResponse */
-    LoginResponse: {
-      user: components['schemas']['UserOut'];
-      /**
-       * Session Expires At
-       * Format: date-time
-       */
-      session_expires_at: string;
-      tokens?: components['schemas']['TokenPair'] | null;
-    };
-    /** MeResponse */
-    MeResponse: {
-      /** User Id */
-      user_id: string;
-      /** Email */
-      email: string;
-      /** Display Name */
-      display_name: string;
-      /**
-       * Role
-       * @enum {string}
-       */
-      role: 'DOCTOR' | 'ASSISTANT';
-      /** Is Admin */
-      is_admin: boolean;
-      /** Supervising Doctor Id */
-      supervising_doctor_id?: string | null;
-      /** Patient Count */
-      patient_count: number;
-      /** Permissions */
-      permissions: string[];
-    };
-    /** Medication */
-    Medication: {
-      /** Medication Id */
-      medication_id: string;
-      /** Drug */
-      drug: string;
-      /** Description */
-      description: string | null;
-      /** Dose */
-      dose: string | null;
-      /** Strength */
-      strength: string | null;
-      /** Started */
-      started: string | null;
-      /** Stopped */
-      stopped: string | null;
-      /** Last Change Date */
-      last_change_date: string | null;
-      /** Change */
-      change: string | null;
-      /** In Knowledge Base */
-      in_knowledge_base: boolean;
-      /** Also Sold As */
-      also_sold_as: string[];
-      /**
-       * Source
-       * @default CLINICAL.MEDICATION
-       */
-      source: string;
-    };
-    /** MedicationChange */
-    MedicationChange: {
-      /** Patient Id */
-      patient_id: string;
-      /** Name */
-      name: string;
-      /** Drug */
-      drug: string;
-      /** Change */
-      change: string;
-      /**
-       * Date
-       * Format: date
-       */
-      date: string;
-    };
-    /** Money */
-    Money: {
-      /** Amount */
-      amount: number;
-      /**
-       * Currency
-       * @default INR
-       * @constant
-       */
-      currency: 'INR';
-    };
-    /** NoteDetail */
-    NoteDetail: {
-      /** Note Id */
-      note_id: string;
-      /** Title */
-      title: string;
-      /** Type */
-      type: string | null;
-      /**
-       * Date
-       * Format: date
-       */
-      date: string;
-      /** Encounter Id */
-      encounter_id: string | null;
-      /** Author */
-      author: string | null;
-      /** Body */
-      body: string;
-    };
-    /** NoteSummary */
-    NoteSummary: {
-      /** Note Id */
-      note_id: string;
-      /** Title */
-      title: string;
-      /** Type */
-      type: string | null;
-      /**
-       * Date
-       * Format: date
-       */
-      date: string;
-      /** Encounter Id */
-      encounter_id: string | null;
-    };
-    /**
-     * OtpChallenge
-     * @description Returned instead of a session when sign-in needs the emailed code.
-     */
-    OtpChallenge: {
-      /**
-       * Otp Required
-       * @default true
-       * @constant
-       */
-      otp_required: true;
-      /** Challenge */
-      challenge: string;
-      /** Email Hint */
-      email_hint: string;
-      /** Expires In Minutes */
-      expires_in_minutes: number;
-    };
-    /** OtpVerifyRequest */
-    OtpVerifyRequest: {
-      /** Challenge */
-      challenge: string;
-      /** Code */
-      code: string;
-    };
-    /** Overview */
-    Overview: {
-      /** Patient Id */
-      patient_id: string;
-      /** Name */
-      name: string;
-      /** Age */
-      age: number;
-      /** Sex */
-      sex: string;
-      /** City */
-      city: string | null;
-      /**
-       * As Of
-       * Format: date
-       */
-      as_of: string;
-      /** Diagnoses */
-      diagnoses: components['schemas']['Diagnosis'][];
-      /** Medications */
-      medications: components['schemas']['Medication'][];
-      /** Latest Labs */
-      latest_labs: components['schemas']['LabLatest'][];
-      /** Recent Events */
-      recent_events: components['schemas']['TimelineEvent'][];
-      utilization: components['schemas']['Utilization'];
-      /**
-       * Agent Scope Label
-       * @default Agent scope: this patient
-       */
-      agent_scope_label: string;
-    };
-    /** Page[AuditItem] */
-    Page_AuditItem_: {
-      /** Items */
-      items: components['schemas']['AuditItem'][];
-      /** Total */
-      total: number;
-      /** Limit */
-      limit: number;
-      /** Offset */
-      offset: number;
-    };
-    /** Page[InviteItem] */
-    Page_InviteItem_: {
-      /** Items */
-      items: components['schemas']['InviteItem'][];
-      /** Total */
-      total: number;
-      /** Limit */
-      limit: number;
-      /** Offset */
-      offset: number;
-    };
-    /** Page[LabLatest] */
-    Page_LabLatest_: {
-      /** Items */
-      items: components['schemas']['LabLatest'][];
-      /** Total */
-      total: number;
-      /** Limit */
-      limit: number;
-      /** Offset */
-      offset: number;
-    };
-    /** Page[Medication] */
-    Page_Medication_: {
-      /** Items */
-      items: components['schemas']['Medication'][];
-      /** Total */
-      total: number;
-      /** Limit */
-      limit: number;
-      /** Offset */
-      offset: number;
-    };
-    /** Page[NoteSummary] */
-    Page_NoteSummary_: {
-      /** Items */
-      items: components['schemas']['NoteSummary'][];
-      /** Total */
-      total: number;
-      /** Limit */
-      limit: number;
-      /** Offset */
-      offset: number;
-    };
-    /** Page[PatientListItem] */
-    Page_PatientListItem_: {
-      /** Items */
-      items: components['schemas']['PatientListItem'][];
-      /** Total */
-      total: number;
-      /** Limit */
-      limit: number;
-      /** Offset */
-      offset: number;
-    };
-    /** Page[UserItem] */
-    Page_UserItem_: {
-      /** Items */
-      items: components['schemas']['UserItem'][];
-      /** Total */
-      total: number;
-      /** Limit */
-      limit: number;
-      /** Offset */
-      offset: number;
-    };
-    /** PatientEvidence */
-    PatientEvidence: {
-      /** Evidence Id */
-      evidence_id: string;
-      /** Record Type */
-      record_type: string;
-      /** Record Id */
-      record_id: string | null;
-      /** Table */
-      table: string;
-      /** Value */
-      value: string;
-      /** Date */
-      date?: string | null;
-    };
-    /** PatientListItem */
-    PatientListItem: {
-      /** Patient Id */
-      patient_id: string;
-      /** Name */
-      name: string;
-      /** Age */
-      age: number;
-      /** Sex */
-      sex: string;
-      /** Main Diagnoses */
-      main_diagnoses: string[];
-      last_encounter: components['schemas']['EncounterRef'];
-      /** Flags */
-      flags: components['schemas']['Flag'][];
-    };
-    /** Pin */
-    Pin: {
-      /** Pin Id */
-      pin_id: string;
-      /** Answer Id */
-      answer_id: string;
-      /** Evidence Id */
-      evidence_id: string;
-      /** Label */
-      label: string | null;
-      /** Note */
-      note: string | null;
-      /**
-       * Created At
-       * Format: date-time
-       */
-      created_at: string;
-    };
-    /** PinCreate */
-    PinCreate: {
-      /** Answer Id */
-      answer_id: string;
-      /** Evidence Id */
-      evidence_id: string;
-      /** Note */
-      note?: string | null;
-    };
-    /** PinList */
-    PinList: {
-      /** Items */
-      items: components['schemas']['Pin'][];
-    };
-    /** PreviousValue */
-    PreviousValue: {
-      /** Value */
-      value: number;
-      /**
-       * Date
-       * Format: date
-       */
-      date: string;
-    };
-    /** RecentChanges */
-    RecentChanges: {
-      /** Labs */
-      labs: components['schemas']['LabChange'][];
-      /** Medications */
-      medications: components['schemas']['MedicationChange'][];
-    };
-    /** RecordRef */
-    RecordRef: {
-      /** Table */
-      table: string;
-      /** Id */
-      id: string;
-    };
-    /** Reference */
-    Reference: {
-      /** Low */
-      low: number | null;
-      /** High */
-      high: number | null;
-    };
-    /** RefreshRequest */
-    RefreshRequest: {
-      /** Refresh */
-      refresh: string;
-    };
-    /** RouteInfo */
-    RouteInfo: {
-      /** Route */
-      route: string;
-      /** Model */
-      model?: string | null;
-      /** Confidence */
-      confidence?: number | null;
-      /** Cost Note */
-      cost_note?: string | null;
-    };
-    /** SavedView */
-    SavedView: {
-      /** View Id */
-      view_id: string;
-      /**
-       * Kind
-       * @enum {string}
-       */
-      kind: 'SAVED_VIEW' | 'VISIT_BRIEF';
-      /** Patient Id */
-      patient_id: string;
-      /** Title */
-      title: string | null;
-      /** Content */
-      content: {
-        [key: string]: unknown;
-      };
-      /** Approved At */
-      approved_at: string | null;
-      /**
-       * Created At
-       * Format: date-time
-       */
-      created_at: string;
-    };
-    /** SearchResponse */
-    SearchResponse: {
-      /** Snapshot Date */
-      snapshot_date: string | null;
-      /** Items */
-      items: components['schemas']['Citation'][];
-      /** Message */
-      message?: string | null;
-      /**
-       * Resolved
-       * @default {}
-       */
-      resolved: {
-        [key: string]: string;
-      };
-      /**
-       * Conflicts
-       * @default []
-       */
-      conflicts: string[];
-    };
-    /**
-     * ShareRequest
-     * @description Email one summary of this patient to one recipient.
-     */
-    ShareRequest: {
-      /** To */
-      to: string;
-      /** Note */
-      note?: string | null;
-      /** Include */
-      include?: ('diagnoses' | 'medications' | 'labs' | 'events')[];
-    };
-    /** ShareResult */
-    ShareResult: {
-      /** Sent */
-      sent: boolean;
-    };
-    /** SnowflakeHealth */
-    SnowflakeHealth: {
-      /** Reachable */
-      reachable: boolean;
-      /** Database */
-      database: string;
-      /** Warehouse */
-      warehouse: string;
-      /** Warehouse State */
-      warehouse_state?: string | null;
-      /** Service Role */
-      service_role?: string | null;
-    };
-    /** SourceEvidence */
-    SourceEvidence: {
-      /** Evidence Id */
-      evidence_id: string;
-      /** Chunk Id */
-      chunk_id: string;
-      /** Document Id */
-      document_id: string;
-      /** Title */
-      title: string;
-      /** Source */
-      source: string;
-      /** Section */
-      section: string;
-      /** Version */
-      version: string | null;
-      /** Effective Date */
-      effective_date: string | null;
-      /** Retrieved Date */
-      retrieved_date: string | null;
-      /** Text */
-      text: string;
-      /**
-       * Matched
-       * @default false
-       */
-      matched: boolean;
-    };
-    /** SqlEvidence */
-    SqlEvidence: {
-      /** Sql Id */
-      sql_id: string;
-      /** Role */
-      role: string;
-      /** Text */
-      text: string;
-      /** Row Count */
-      row_count: number;
-      /**
-       * Ran At
-       * Format: date-time
-       */
-      ran_at: string;
-    };
-    /** Timeline */
-    Timeline: {
-      /** Items */
-      items: components['schemas']['TimelineEvent'][];
-      /** Total */
-      total: number;
-      /** Limit */
-      limit: number;
-      /** Offset */
-      offset: number;
-    };
-    /** TimelineEvent */
-    TimelineEvent: {
-      /** Event Id */
-      event_id: string;
-      /**
-       * Date
-       * Format: date
-       */
-      date: string;
-      /**
-       * Type
-       * @enum {string}
-       */
-      type: 'ENCOUNTER' | 'DIAGNOSIS' | 'MEDICATION_START' | 'MEDICATION_CHANGE' | 'LAB_PANEL' | 'CLAIM' | 'NOTE';
-      /** Title */
-      title: string;
-      /** Summary */
-      summary: string | null;
-      record: components['schemas']['RecordRef'];
-      /** Encounter Id */
-      encounter_id: string | null;
-    };
-    /**
-     * TokenPair
-     * @description Bearer tokens for the mobile client. The web client never receives these; it gets cookies.
-     */
-    TokenPair: {
-      /** Access */
-      access: string;
-      /** Refresh */
-      refresh: string;
-    };
-    /** TrendPoint */
-    TrendPoint: {
-      /** Lab Id */
-      lab_id: string;
-      /**
-       * Date
-       * Format: date
-       */
-      date: string;
-      /** Value */
-      value: number;
-    };
-    /** UserItem */
-    UserItem: {
-      /** User Id */
-      user_id: string;
-      /** Email */
-      email: string;
-      /** Display Name */
-      display_name: string;
-      /**
-       * Role
-       * @enum {string}
-       */
-      role: 'DOCTOR' | 'ASSISTANT';
-      /** Is Admin */
-      is_admin: boolean;
-      /** Status */
-      status: string;
-      /** Supervising Doctor Id */
-      supervising_doctor_id: string | null;
-      /** Patient Count */
-      patient_count: number;
-      /** Last Login At */
-      last_login_at: string | null;
-    };
-    /** UserOut */
-    UserOut: {
-      /** User Id */
-      user_id: string;
-      /** Email */
-      email: string;
-      /** Display Name */
-      display_name: string;
-      /**
-       * Role
-       * @enum {string}
-       */
-      role: 'DOCTOR' | 'ASSISTANT';
-      /** Is Admin */
-      is_admin: boolean;
-    };
-    /** UserPatch */
-    UserPatch: {
-      /** Display Name */
-      display_name?: string | null;
-      /** Is Admin */
-      is_admin?: boolean | null;
-      /** Status */
-      status?: ('ACTIVE' | 'DISABLED') | null;
-    };
-    /** Utilization */
-    Utilization: {
-      /**
-       * Window
-       * @default last_12_months
-       */
-      window: string;
-      /** Opd Visits */
-      opd_visits: number;
-      /** Emergency Visits */
-      emergency_visits: number;
-      /** Hospitalizations */
-      hospitalizations: number;
-      /** Procedures */
-      procedures: number;
-      billed: components['schemas']['Money'];
-      approved: components['schemas']['Money'];
-    };
-    /** UtilizationSummary */
-    UtilizationSummary: {
-      /**
-       * Window
-       * @default last_12_months
-       */
-      window: string;
-      /** Patients */
-      patients: number;
-      /** Opd Visits */
-      opd_visits: number;
-      /** Emergency Visits */
-      emergency_visits: number;
-      /** Hospitalizations */
-      hospitalizations: number;
-      /** Procedures */
-      procedures: number;
-      approved: components['schemas']['Money'];
-    };
-    /** ValidationError */
-    ValidationError: {
-      /** Location */
-      loc: (string | number)[];
-      /** Message */
-      msg: string;
-      /** Error Type */
-      type: string;
-      /** Input */
-      input?: unknown;
-      /** Context */
-      ctx?: Record<string, never>;
-    };
-    /** ViewPreview */
-    ViewPreview: {
-      /** Preview Id */
-      preview_id: string;
-      /**
-       * Kind
-       * @enum {string}
-       */
-      kind: 'SAVED_VIEW' | 'VISIT_BRIEF';
-      /** Patient Id */
-      patient_id: string;
-      /** Title */
-      title: string;
-      /** Content */
-      content: {
-        [key: string]: unknown;
-      };
-      /**
-       * Expires At
-       * Format: date-time
-       */
-      expires_at: string;
-    };
-    /** ViewPreviewRequest */
-    ViewPreviewRequest: {
-      /**
-       * Kind
-       * @enum {string}
-       */
-      kind: 'SAVED_VIEW' | 'VISIT_BRIEF';
-      /** Patient Id */
-      patient_id: string;
-      /** Content */
-      content: {
-        [key: string]: unknown;
-      };
-    };
-    /** ViewSaveRequest */
-    ViewSaveRequest: {
-      /** Preview Id */
-      preview_id: string;
-      /**
-       * Approved
-       * @description Must be true; nothing is saved without approval (FR-22).
-       */
-      approved: boolean;
-    };
-    /** WorklistItem */
-    WorklistItem: {
-      /** Patient Id */
-      patient_id: string;
-      /** Name */
-      name: string;
-      /** Age */
-      age: number;
-      /** Sex */
-      sex: string;
-      last_encounter: components['schemas']['EncounterRef'];
-      /** Flags */
-      flags: components['schemas']['Flag'][];
-    };
-  };
-  responses: never;
-  parameters: never;
-  requestBodies: never;
-  headers: never;
-  pathItems: never;
+    schemas: {
+        /** AcceptInviteRequest */
+        AcceptInviteRequest: {
+            /** Token */
+            token: string;
+            /** Password */
+            password: string;
+            /** Display Name */
+            display_name?: string | null;
+        };
+        /** AcceptInviteResponse */
+        AcceptInviteResponse: {
+            /** Email */
+            email: string;
+        };
+        /** ActionRequest */
+        ActionRequest: {
+            /**
+             * Action
+             * @description One of open_patient, show_timeline, run_safety_review, pin_evidence.
+             */
+            action: string;
+            /** Params */
+            params?: {
+                [key: string]: unknown;
+            };
+        };
+        /** ActionResponse */
+        ActionResponse: {
+            /** Action */
+            action: string;
+            /**
+             * Status
+             * @default done
+             * @constant
+             */
+            status: "done";
+            /** Result */
+            result: {
+                [key: string]: unknown;
+            };
+            /** Audit Id */
+            audit_id: string | null;
+        };
+        /** Allergy */
+        Allergy: {
+            /** Allergy Id */
+            allergy_id: string;
+            /** Substance */
+            substance: string;
+            /** Reaction */
+            reaction: string | null;
+            /** Severity */
+            severity: string | null;
+        };
+        /** AllergyIn */
+        AllergyIn: {
+            /** Substance */
+            substance: string;
+            /** Reaction */
+            reaction?: string | null;
+            /** Severity */
+            severity?: ("MILD" | "MODERATE" | "SEVERE") | null;
+            /**
+             * Is Active
+             * @default true
+             */
+            is_active: boolean;
+            /** Recorded On */
+            recorded_on?: string | null;
+        };
+        /** AllergyUpdate */
+        AllergyUpdate: {
+            /**
+             * Version
+             * @description The version last read. A stale one is refused with 409.
+             */
+            version: number;
+            /** Substance */
+            substance: string;
+            /** Reaction */
+            reaction?: string | null;
+            /** Severity */
+            severity?: ("MILD" | "MODERATE" | "SEVERE") | null;
+            /**
+             * Is Active
+             * @default true
+             */
+            is_active: boolean;
+            /** Recorded On */
+            recorded_on?: string | null;
+        };
+        /** AnswerObject */
+        AnswerObject: {
+            /** Answer Id */
+            answer_id: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "SAFETY" | "CHANGED" | "MEDS" | "LABS" | "UTIL" | "SUMMARY" | "ANALYST" | "KNOWLEDGE" | "PANEL";
+            /** Patient Id */
+            patient_id: string | null;
+            /** Short Answer */
+            short_answer: string;
+            /** Considerations */
+            considerations: components["schemas"]["Consideration"][];
+            limits: components["schemas"]["Limits"];
+            /** Conflicts */
+            conflicts?: components["schemas"]["ConflictItem"][];
+            route?: components["schemas"]["RouteInfo"] | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /** ApproveBody */
+        ApproveBody: {
+            /**
+             * Confirm Identity
+             * @description Needed when the name on the report does not match this patient: the doctor confirms it is theirs.
+             * @default false
+             */
+            confirm_identity: boolean;
+        };
+        /** ApproveStarted */
+        ApproveStarted: {
+            /** Report Id */
+            report_id: string;
+            /**
+             * Queued
+             * @description Rows being written to the record now; the report page shows them as approved.
+             */
+            queued: number;
+        };
+        /** ArchiveBody */
+        ArchiveBody: {
+            /**
+             * Version
+             * @description The version last read. A stale one is refused with 409.
+             */
+            version: number;
+            /** Reason */
+            reason?: string | null;
+        };
+        /** ArchivedPatient */
+        ArchivedPatient: {
+            /** Patient Id */
+            patient_id: string;
+            /** Full Name */
+            full_name: string;
+            /** Version */
+            version: number;
+            /** Archived At */
+            archived_at: string | null;
+        };
+        /** ArchivedPatientList */
+        ArchivedPatientList: {
+            /** Items */
+            items: components["schemas"]["ArchivedPatient"][];
+        };
+        /**
+         * AskRequest
+         * @description Free text from the command bar or agent panel. Only this is routed. `patient_id` is the open patient and is
+         *     never trusted as proof of access.
+         */
+        AskRequest: {
+            /** Question */
+            question: string;
+            /**
+             * Screen
+             * @enum {string}
+             */
+            screen: "dashboard" | "patients" | "patient" | "knowledge" | "activity" | "admin";
+            /** Patient Id */
+            patient_id?: string | null;
+            /**
+             * History
+             * @description The last two user questions (text only).
+             */
+            history?: string[];
+        };
+        /**
+         * AskResult
+         * @description JSON mode (Accept: application/json): the final outcome of a request that would otherwise stream.
+         */
+        AskResult: {
+            /** Routes */
+            routes: {
+                [key: string]: unknown;
+            }[];
+            /** Actions */
+            actions: {
+                [key: string]: unknown;
+            }[];
+            /** Answer */
+            answer: {
+                [key: string]: unknown;
+            } | null;
+            /** Refusal */
+            refusal: {
+                [key: string]: unknown;
+            } | null;
+            /** Steps */
+            steps: {
+                [key: string]: unknown;
+            }[];
+            /** Audit Id */
+            audit_id: string | null;
+        };
+        /** AuditItem */
+        AuditItem: {
+            /** Audit Id */
+            audit_id: string;
+            /**
+             * Occurred At
+             * Format: date-time
+             */
+            occurred_at: string;
+            /** Via */
+            via: string | null;
+            /** Action */
+            action: string;
+            /** Route */
+            route: string | null;
+            /** Model */
+            model: string | null;
+            /** Confidence */
+            confidence: number | null;
+            /** Cost Note */
+            cost_note: string | null;
+            /** Patient Id */
+            patient_id: string | null;
+            /** Question */
+            question: string | null;
+            /** Answer Id */
+            answer_id: string | null;
+            /** Patient Evidence Ids */
+            patient_evidence_ids: string[];
+            /** Document Ids */
+            document_ids: string[];
+            /** Steps */
+            steps: {
+                [key: string]: unknown;
+            }[];
+            /** Outcome */
+            outcome: string;
+        };
+        /** BriefingItem */
+        BriefingItem: {
+            /** Patient Id */
+            patient_id: string;
+            /** Name */
+            name: string;
+            /** Text */
+            text: string;
+            /**
+             * Tag
+             * @default patient_fact
+             */
+            tag: string;
+        };
+        /** BriefingResponse */
+        BriefingResponse: {
+            /**
+             * As Of
+             * Format: date
+             */
+            as_of: string;
+            /**
+             * Generated By
+             * @default rules over the dashboard data, no model call
+             */
+            generated_by: string;
+            /** Items */
+            items: components["schemas"]["BriefingItem"][];
+            /** Empty Note */
+            empty_note?: string | null;
+        };
+        /** ChangePasswordRequest */
+        ChangePasswordRequest: {
+            /** Current Password */
+            current_password: string;
+            /** New Password */
+            new_password: string;
+        };
+        /** Citation */
+        Citation: {
+            /** Chunk Id */
+            chunk_id: string;
+            /** Document Id */
+            document_id: string;
+            /** Title */
+            title: string;
+            /** Source */
+            source: string;
+            /** Drug */
+            drug: string | null;
+            /** Section */
+            section: string;
+            /** Version */
+            version: string | null;
+            /** Effective Date */
+            effective_date: string | null;
+            /** Retrieved Date */
+            retrieved_date: string | null;
+            /** Page */
+            page: number | null;
+            /** Snippet */
+            snippet: string;
+            /** Text */
+            text: string;
+            /** Score */
+            score: number;
+            /**
+             * Conflict
+             * @default false
+             */
+            conflict: boolean;
+        };
+        /** Claim */
+        Claim: {
+            /** Claim Id */
+            claim_id: string;
+            /** Encounter Id */
+            encounter_id: string | null;
+            /** Service Date */
+            service_date: string | null;
+            /** Service */
+            service: string | null;
+            /** Status */
+            status: string;
+            billed: components["schemas"]["Money"];
+            approved: components["schemas"]["Money"];
+        };
+        /** Claims */
+        Claims: {
+            utilization: components["schemas"]["Utilization"];
+            /** Claims */
+            claims: components["schemas"]["Claim"][];
+            /** Total */
+            total: number;
+            /** Limit */
+            limit: number;
+            /** Offset */
+            offset: number;
+        };
+        /** Colleague */
+        Colleague: {
+            /** User Id */
+            user_id: string;
+            /** Name */
+            name: string;
+            /** Role */
+            role: string;
+        };
+        /** ColleagueList */
+        ColleagueList: {
+            /** Items */
+            items: components["schemas"]["Colleague"][];
+        };
+        /** ConflictItem */
+        ConflictItem: {
+            /** Drug */
+            drug: string | null;
+            /** Section */
+            section?: string | null;
+            /** Items */
+            items: string[];
+        };
+        /** Consideration */
+        Consideration: {
+            /** Id */
+            id: string;
+            /** Text */
+            text: string;
+            /**
+             * Tag
+             * @enum {string}
+             */
+            tag: "patient_fact" | "retrieved_source" | "ai_synthesis" | "rule_check";
+            /** Patient Evidence */
+            patient_evidence?: string[];
+            /** Source Evidence */
+            source_evidence?: string[];
+            /** Patient Id */
+            patient_id?: string | null;
+            /** Group */
+            group?: string | null;
+        };
+        /** CortexHealth */
+        CortexHealth: {
+            /** Router Model */
+            router_model: string;
+            /** Strong Model */
+            strong_model: string;
+            /** Safety Path */
+            safety_path: string;
+            /** Search Service */
+            search_service: string;
+        };
+        /** Coverage */
+        Coverage: {
+            /** Snapshot Date */
+            snapshot_date: string | null;
+            /** Drugs Known */
+            drugs_known: number;
+            /** Drugs Indexed */
+            drugs_indexed: number;
+            /** Chunks */
+            chunks: number;
+            /**
+             * Nlem Known
+             * @description Known drugs flagged as on the National List of Essential Medicines.
+             */
+            nlem_known: number;
+            /** Nlem Indexed */
+            nlem_indexed: number;
+            /**
+             * Not Indexed
+             * @description Known drugs with no label indexed (a US label is not available or not added).
+             */
+            not_indexed: string[];
+            /**
+             * Unlabelled In Use
+             * @description Medicines on active lists with no linked label, most used first, among the patients the caller can see.
+             */
+            unlabelled_in_use: components["schemas"]["UnlabelledMedicine"][];
+            /** Open Requests */
+            open_requests: number;
+            /** Note */
+            note: string;
+        };
+        /** DashboardResponse */
+        DashboardResponse: {
+            /**
+             * As Of
+             * Format: date
+             */
+            as_of: string;
+            /** Worklist */
+            worklist: components["schemas"]["WorklistItem"][];
+            recent_changes: components["schemas"]["RecentChanges"];
+            utilization: components["schemas"]["UtilizationSummary"];
+        };
+        /** Diagnosis */
+        Diagnosis: {
+            /** Diagnosis Id */
+            diagnosis_id: string;
+            /** Description */
+            description: string;
+            /** Onset Year */
+            onset_year: number | null;
+            /** Code */
+            code: string | null;
+            /**
+             * Source
+             * @default CLINICAL.DIAGNOSIS
+             */
+            source: string;
+        };
+        /** DiagnosisIn */
+        DiagnosisIn: {
+            /** Description */
+            description: string;
+            /** Code */
+            code?: string | null;
+            /** Code System */
+            code_system?: string | null;
+            /** Onset Date */
+            onset_date?: string | null;
+            /** Resolved Date */
+            resolved_date?: string | null;
+        };
+        /** DiagnosisUpdate */
+        DiagnosisUpdate: {
+            /**
+             * Version
+             * @description The version last read. A stale one is refused with 409.
+             */
+            version: number;
+            /** Description */
+            description: string;
+            /** Code */
+            code?: string | null;
+            /** Code System */
+            code_system?: string | null;
+            /** Onset Date */
+            onset_date?: string | null;
+            /** Resolved Date */
+            resolved_date?: string | null;
+        };
+        /** DrugDirectory */
+        DrugDirectory: {
+            /** Items */
+            items: components["schemas"]["DrugEntry"][];
+        };
+        /** DrugEntry */
+        DrugEntry: {
+            /** Drug Id */
+            drug_id: string;
+            /** Name */
+            name: string;
+            /** Generic */
+            generic: string;
+            /** Brands */
+            brands: string[];
+            /** Section Count */
+            section_count: number;
+            /** In Nlem */
+            in_nlem: boolean;
+            /** Nlem Level */
+            nlem_level: string | null;
+        };
+        /** DrugRequest */
+        DrugRequest: {
+            /** Request Id */
+            request_id: string;
+            /** Drug */
+            drug: string;
+            /** Note */
+            note: string | null;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "OPEN" | "ADDED" | "DECLINED";
+            /**
+             * Requested At
+             * Format: date-time
+             */
+            requested_at: string;
+            /** Requested By Name */
+            requested_by_name?: string | null;
+            /** Decided By Name */
+            decided_by_name?: string | null;
+            /** Decided At */
+            decided_at?: string | null;
+            /** Decision Note */
+            decision_note?: string | null;
+            /**
+             * Already Open
+             * @description This drug was already requested by you and is still open.
+             * @default false
+             */
+            already_open: boolean;
+        };
+        /** DrugRequestIn */
+        DrugRequestIn: {
+            /** Drug */
+            drug: string;
+            /** Note */
+            note?: string | null;
+        };
+        /** DrugRequestList */
+        DrugRequestList: {
+            /** Items */
+            items: components["schemas"]["DrugRequest"][];
+        };
+        /** EncounterRef */
+        EncounterRef: {
+            /** Date */
+            date?: string | null;
+            /** Kind */
+            kind?: ("OUTPATIENT" | "EMERGENCY" | "HOSPITALIZATION") | null;
+            /** Label */
+            label?: string | null;
+        };
+        /** Entitlements */
+        Entitlements: {
+            /** User Id */
+            user_id: string;
+            /** Patient Ids */
+            patient_ids: string[];
+            /** Total */
+            total: number;
+        };
+        /** EntitlementsSet */
+        EntitlementsSet: {
+            /** Patient Ids */
+            patient_ids: string[];
+        };
+        /** ErrorBody */
+        ErrorBody: {
+            error: components["schemas"]["ErrorCode"];
+            /** Message */
+            message: string;
+            /** Details */
+            details?: {
+                [key: string]: unknown;
+            }[] | null;
+        };
+        /**
+         * ErrorCode
+         * @enum {string}
+         */
+        ErrorCode: "not_found" | "unauthorized" | "forbidden" | "action_not_allowed" | "agent_unavailable" | "timeout" | "service_unavailable" | "conflict" | "rate_limited" | "invalid_request" | "not_implemented" | "internal_error";
+        /** EvidenceResponse */
+        EvidenceResponse: {
+            /** Answer Id */
+            answer_id: string;
+            /** Patient Id */
+            patient_id: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            route: components["schemas"]["RouteInfo"] | null;
+            /** Patient Records */
+            patient_records: components["schemas"]["PatientEvidence"][];
+            /** Sql */
+            sql: components["schemas"]["SqlEvidence"][];
+            /** Sources */
+            sources: components["schemas"]["SourceEvidence"][];
+            /** Statement Map */
+            statement_map: {
+                [key: string]: string[];
+            };
+            /** Dropped Statements */
+            dropped_statements: {
+                [key: string]: string;
+            }[];
+            /** Snapshot Date */
+            snapshot_date: string | null;
+        };
+        /** Finding */
+        Finding: {
+            /** Finding Id */
+            finding_id: string;
+            /** Patient Id */
+            patient_id: string;
+            /** Answer Id */
+            answer_id: string;
+            /** Consideration Id */
+            consideration_id: string;
+            /** Summary */
+            summary: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "NEW" | "ACKNOWLEDGED" | "FLAGGED" | "DISMISSED" | "ESCALATED";
+            /** Reason */
+            reason: string | null;
+            /** Follow Up On */
+            follow_up_on: string | null;
+            /** Assigned To */
+            assigned_to: string | null;
+            /** Assigned To Name */
+            assigned_to_name: string | null;
+            /** Created By Name */
+            created_by_name: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /** Updated At */
+            updated_at: string | null;
+        };
+        /**
+         * FindingCreate
+         * @description Raise a finding from one statement of one of the caller's own answers.
+         */
+        FindingCreate: {
+            /** Answer Id */
+            answer_id: string;
+            /** Consideration Id */
+            consideration_id: string;
+        };
+        /** FindingList */
+        FindingList: {
+            /** Items */
+            items: components["schemas"]["Finding"][];
+            /** Open Count */
+            open_count: number;
+        };
+        /**
+         * FindingUpdate
+         * @description A decision. Dismissing needs a reason, flagging needs a follow-up date, escalating needs a colleague.
+         */
+        FindingUpdate: {
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "NEW" | "ACKNOWLEDGED" | "FLAGGED" | "DISMISSED" | "ESCALATED";
+            /** Reason */
+            reason?: string | null;
+            /** Follow Up On */
+            follow_up_on?: string | null;
+            /** Assigned To */
+            assigned_to?: string | null;
+        };
+        /** Flag */
+        Flag: {
+            /**
+             * Type
+             * @enum {string}
+             */
+            type: "NEW_LAB" | "NEW_MEDICATION" | "RECENT_EMERGENCY" | "NEW_DOCUMENT";
+            /** Label */
+            label: string;
+        };
+        /** ForgotPasswordRequest */
+        ForgotPasswordRequest: {
+            /** Email */
+            email: string;
+        };
+        /** GoldenCase */
+        GoldenCase: {
+            /** Seq */
+            seq: number;
+            /** Group */
+            group: string | null;
+            /** Question */
+            question: string;
+            /**
+             * Result
+             * @enum {string}
+             */
+            result: "PASS" | "FAIL";
+            /** Route */
+            route: string | null;
+            /** Detail */
+            detail: string | null;
+        };
+        /** GoldenRun */
+        GoldenRun: {
+            /** Run Id */
+            run_id: string;
+            /** Started At */
+            started_at: string | null;
+            /** Finished At */
+            finished_at: string | null;
+            /** Status */
+            status: string;
+            /** Total */
+            total: number;
+            /** Passed */
+            passed: number;
+            /** Cases */
+            cases: components["schemas"]["GoldenCase"][];
+        };
+        /** GoldenRunList */
+        GoldenRunList: {
+            latest: components["schemas"]["GoldenRun"] | null;
+            /** History */
+            history: components["schemas"]["GoldenRun"][];
+        };
+        /** HTTPValidationError */
+        HTTPValidationError: {
+            /** Detail */
+            detail?: components["schemas"]["ValidationError"][];
+        };
+        /** HealthDetails */
+        HealthDetails: {
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "ok" | "degraded";
+            /** Version */
+            version: string;
+            /** Environment */
+            environment: string;
+            snowflake: components["schemas"]["SnowflakeHealth"];
+            cortex: components["schemas"]["CortexHealth"];
+            /**
+             * Audit Writes
+             * @enum {string}
+             */
+            audit_writes: "ok" | "failing" | "unknown";
+        };
+        /**
+         * HealthResponse
+         * @description Liveness only. No configuration, no credentials (NFR-08).
+         */
+        HealthResponse: {
+            /**
+             * Status
+             * @default ok
+             * @constant
+             */
+            status: "ok";
+            /** Version */
+            version: string;
+        };
+        /** HistoryEntry */
+        HistoryEntry: {
+            /**
+             * At
+             * Format: date-time
+             */
+            at: string;
+            /** Actor Name */
+            actor_name: string | null;
+            /** Entity */
+            entity: string;
+            /** Record Id */
+            record_id: string;
+            /**
+             * Op
+             * @enum {string}
+             */
+            op: "CREATE" | "UPDATE" | "ARCHIVE" | "RESTORE";
+            /** Reason */
+            reason: string | null;
+            /**
+             * Changed
+             * @description Names of the fields that changed, for an update.
+             */
+            changed: string[];
+        };
+        /** HistoryList */
+        HistoryList: {
+            /** Items */
+            items: components["schemas"]["HistoryEntry"][];
+        };
+        /** InviteCreate */
+        InviteCreate: {
+            /** Email */
+            email: string;
+            /** Display Name */
+            display_name: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "DOCTOR" | "ASSISTANT";
+            /**
+             * Is Admin
+             * @default false
+             */
+            is_admin: boolean;
+            /** Supervising Doctor Id */
+            supervising_doctor_id?: string | null;
+            /** Patient Ids */
+            patient_ids?: string[];
+        };
+        /** InviteCreated */
+        InviteCreated: {
+            /** Invite Id */
+            invite_id: string;
+            /** Email */
+            email: string;
+            /** Accept Url */
+            accept_url: string;
+            /**
+             * Expires At
+             * Format: date-time
+             */
+            expires_at: string;
+            /**
+             * Email Sent
+             * @default false
+             */
+            email_sent: boolean;
+        };
+        /** InviteItem */
+        InviteItem: {
+            /** Invite Id */
+            invite_id: string;
+            /** Email */
+            email: string;
+            /** Display Name */
+            display_name: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "DOCTOR" | "ASSISTANT";
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "INVITE" | "PASSWORD_RESET";
+            /** Status */
+            status: string;
+            /**
+             * Expires At
+             * Format: date-time
+             */
+            expires_at: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /** InvitePreview */
+        InvitePreview: {
+            /** Email */
+            email: string;
+            /** Display Name */
+            display_name: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "DOCTOR" | "ASSISTANT";
+            /**
+             * Expires At
+             * Format: date-time
+             */
+            expires_at: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "INVITE" | "PASSWORD_RESET";
+        };
+        /** KnowledgeStatus */
+        KnowledgeStatus: {
+            /** Snapshot Date */
+            snapshot_date: string | null;
+            /** Document Count */
+            document_count: number;
+            /** Chunk Count */
+            chunk_count: number;
+            /** Drug Count */
+            drug_count: number;
+            /** Drugs */
+            drugs: string[];
+            /**
+             * Not Indexed
+             * @default []
+             */
+            not_indexed: string[];
+            /**
+             * Sections
+             * @default []
+             */
+            sections: string[];
+            /** Sources */
+            sources: string[];
+            /** Notes */
+            notes: string | null;
+        };
+        /** LabChange */
+        LabChange: {
+            /** Patient Id */
+            patient_id: string;
+            /** Name */
+            name: string;
+            /** Test */
+            test: string;
+            /** Latest */
+            latest: number;
+            /** Previous */
+            previous: number | null;
+            /** Unit */
+            unit: string | null;
+            /**
+             * Date
+             * Format: date
+             */
+            date: string;
+            /** Abnormal */
+            abnormal: string | null;
+        };
+        /** LabComparison */
+        LabComparison: {
+            /** Test */
+            test: string;
+            /** This Value */
+            this_value: number;
+            /** Other Value */
+            other_value: number;
+            /** Unit */
+            unit: string | null;
+            /** This Flag */
+            this_flag: string | null;
+            /** Other Flag */
+            other_flag: string | null;
+        };
+        /** LabIn */
+        LabIn: {
+            /** Loinc Code */
+            loinc_code: string;
+            /** Value Num */
+            value_num: number;
+            /**
+             * Observed At
+             * Format: date-time
+             */
+            observed_at: string;
+            /** Encounter Id */
+            encounter_id?: string | null;
+        };
+        /** LabLatest */
+        LabLatest: {
+            /** Lab Id */
+            lab_id: string;
+            /** Test */
+            test: string;
+            /** Code */
+            code: string;
+            /** Value */
+            value: number;
+            /** Unit */
+            unit: string | null;
+            /**
+             * Date
+             * Format: date
+             */
+            date: string;
+            previous: components["schemas"]["PreviousValue"] | null;
+            ref: components["schemas"]["Reference"];
+            /** Flag */
+            flag: ("LOW" | "HIGH" | "NORMAL") | null;
+            /**
+             * Source
+             * @default CLINICAL.LAB_RESULT
+             */
+            source: string;
+        };
+        /** LabReviewed */
+        LabReviewed: {
+            /** Lab Id */
+            lab_id: string;
+            /** Patient Id */
+            patient_id: string;
+            /**
+             * Reviewed At
+             * Format: date-time
+             */
+            reviewed_at: string;
+        };
+        /** LabTrend */
+        LabTrend: {
+            /** Test */
+            test: string;
+            /** Code */
+            code: string;
+            /** Unit */
+            unit: string | null;
+            ref: components["schemas"]["Reference"];
+            /** Points */
+            points: components["schemas"]["TrendPoint"][];
+        };
+        /** LabUpdate */
+        LabUpdate: {
+            /**
+             * Version
+             * @description The version last read. A stale one is refused with 409.
+             */
+            version: number;
+            /** Loinc Code */
+            loinc_code: string;
+            /** Value Num */
+            value_num: number;
+            /**
+             * Observed At
+             * Format: date-time
+             */
+            observed_at: string;
+            /** Encounter Id */
+            encounter_id?: string | null;
+        };
+        /** Limits */
+        Limits: {
+            /** Checked */
+            checked?: string[];
+            /** Not Checked */
+            not_checked?: string[];
+            /** Notes */
+            notes?: string[];
+            /** Snapshot Date */
+            snapshot_date?: string | null;
+        };
+        /** LoginRequest */
+        LoginRequest: {
+            /**
+             * Email
+             * @example sharma@demo.medynium
+             */
+            email: string;
+            /** Password */
+            password: string;
+        };
+        /** LoginResponse */
+        LoginResponse: {
+            user: components["schemas"]["UserOut"];
+            /**
+             * Session Expires At
+             * Format: date-time
+             */
+            session_expires_at: string;
+            tokens?: components["schemas"]["TokenPair"] | null;
+        };
+        /** MatchParts */
+        MatchParts: {
+            /**
+             * Embedding
+             * @description How alike the two case descriptions are (0 to 1).
+             */
+            embedding: number;
+            /**
+             * Diagnoses
+             * @description Overlap of active diagnoses (0 to 1).
+             */
+            diagnoses: number;
+            /**
+             * Medicines
+             * @description Overlap of current medicines (0 to 1).
+             */
+            medicines: number;
+            /**
+             * Labs
+             * @description Agreement of abnormal results (0 to 1).
+             */
+            labs: number;
+            /**
+             * Age
+             * @description How close the ages are (0 to 1).
+             */
+            age: number;
+        };
+        /** MeResponse */
+        MeResponse: {
+            /** User Id */
+            user_id: string;
+            /** Email */
+            email: string;
+            /** Display Name */
+            display_name: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "DOCTOR" | "ASSISTANT";
+            /** Is Admin */
+            is_admin: boolean;
+            /** Supervising Doctor Id */
+            supervising_doctor_id?: string | null;
+            /** Patient Count */
+            patient_count: number;
+            /** Permissions */
+            permissions: string[];
+        };
+        /** Medication */
+        Medication: {
+            /** Medication Id */
+            medication_id: string;
+            /** Drug */
+            drug: string;
+            /** Description */
+            description: string | null;
+            /** Dose */
+            dose: string | null;
+            /** Strength */
+            strength: string | null;
+            /** Started */
+            started: string | null;
+            /** Stopped */
+            stopped: string | null;
+            /** Last Change Date */
+            last_change_date: string | null;
+            /** Change */
+            change: string | null;
+            /** In Knowledge Base */
+            in_knowledge_base: boolean;
+            /** Also Sold As */
+            also_sold_as: string[];
+            /**
+             * Source
+             * @default CLINICAL.MEDICATION
+             */
+            source: string;
+        };
+        /** MedicationChange */
+        MedicationChange: {
+            /** Patient Id */
+            patient_id: string;
+            /** Name */
+            name: string;
+            /** Drug */
+            drug: string;
+            /** Change */
+            change: string;
+            /**
+             * Date
+             * Format: date
+             */
+            date: string;
+        };
+        /** MedicationIn */
+        MedicationIn: {
+            /**
+             * Description
+             * @description The medicine as written: a generic or an Indian brand. It is matched to the knowledge base.
+             */
+            description: string;
+            /** Strength Text */
+            strength_text?: string | null;
+            /** Dose Text */
+            dose_text?: string | null;
+            /** Start Date */
+            start_date?: string | null;
+            /** Stop Date */
+            stop_date?: string | null;
+            /** Reason Description */
+            reason_description?: string | null;
+            /** Change Note */
+            change_note?: string | null;
+        };
+        /** MedicationUpdate */
+        MedicationUpdate: {
+            /**
+             * Version
+             * @description The version last read. A stale one is refused with 409.
+             */
+            version: number;
+            /**
+             * Description
+             * @description The medicine as written: a generic or an Indian brand. It is matched to the knowledge base.
+             */
+            description: string;
+            /** Strength Text */
+            strength_text?: string | null;
+            /** Dose Text */
+            dose_text?: string | null;
+            /** Start Date */
+            start_date?: string | null;
+            /** Stop Date */
+            stop_date?: string | null;
+            /** Reason Description */
+            reason_description?: string | null;
+            /** Change Note */
+            change_note?: string | null;
+        };
+        /** Money */
+        Money: {
+            /** Amount */
+            amount: number;
+            /**
+             * Currency
+             * @default INR
+             * @constant
+             */
+            currency: "INR";
+        };
+        /** NoteDetail */
+        NoteDetail: {
+            /** Note Id */
+            note_id: string;
+            /** Title */
+            title: string;
+            /** Type */
+            type: string | null;
+            /**
+             * Date
+             * Format: date
+             */
+            date: string;
+            /** Encounter Id */
+            encounter_id: string | null;
+            /** Author */
+            author: string | null;
+            /** Body */
+            body: string;
+        };
+        /** NoteIn */
+        NoteIn: {
+            /** Title */
+            title: string;
+            /**
+             * Note Type
+             * @default OUTPATIENT_NOTE
+             * @enum {string}
+             */
+            note_type: "OUTPATIENT_NOTE" | "ED_NOTE" | "DISCHARGE_SUMMARY";
+            /** Note Date */
+            note_date?: string | null;
+            /** Body */
+            body: string;
+            /** Encounter Id */
+            encounter_id?: string | null;
+        };
+        /** NoteSummary */
+        NoteSummary: {
+            /** Note Id */
+            note_id: string;
+            /** Title */
+            title: string;
+            /** Type */
+            type: string | null;
+            /**
+             * Date
+             * Format: date
+             */
+            date: string;
+            /** Encounter Id */
+            encounter_id: string | null;
+        };
+        /** NoteUpdate */
+        NoteUpdate: {
+            /**
+             * Version
+             * @description The version last read. A stale one is refused with 409.
+             */
+            version: number;
+            /** Title */
+            title: string;
+            /**
+             * Note Type
+             * @default OUTPATIENT_NOTE
+             * @enum {string}
+             */
+            note_type: "OUTPATIENT_NOTE" | "ED_NOTE" | "DISCHARGE_SUMMARY";
+            /** Note Date */
+            note_date?: string | null;
+            /** Body */
+            body: string;
+            /** Encounter Id */
+            encounter_id?: string | null;
+        };
+        /**
+         * OtpChallenge
+         * @description Returned instead of a session when sign-in needs the emailed code.
+         */
+        OtpChallenge: {
+            /**
+             * Otp Required
+             * @default true
+             * @constant
+             */
+            otp_required: true;
+            /** Challenge */
+            challenge: string;
+            /** Email Hint */
+            email_hint: string;
+            /** Expires In Minutes */
+            expires_in_minutes: number;
+        };
+        /** OtpVerifyRequest */
+        OtpVerifyRequest: {
+            /** Challenge */
+            challenge: string;
+            /** Code */
+            code: string;
+        };
+        /** Overview */
+        Overview: {
+            /** Patient Id */
+            patient_id: string;
+            /** Name */
+            name: string;
+            /** Age */
+            age: number;
+            /** Sex */
+            sex: string;
+            /** City */
+            city: string | null;
+            /**
+             * As Of
+             * Format: date
+             */
+            as_of: string;
+            /** Allergies */
+            allergies: components["schemas"]["Allergy"][];
+            /** Diagnoses */
+            diagnoses: components["schemas"]["Diagnosis"][];
+            /** Medications */
+            medications: components["schemas"]["Medication"][];
+            /** Latest Labs */
+            latest_labs: components["schemas"]["LabLatest"][];
+            /** Recent Events */
+            recent_events: components["schemas"]["TimelineEvent"][];
+            utilization: components["schemas"]["Utilization"];
+            /**
+             * Agent Scope Label
+             * @default Agent scope: this patient
+             */
+            agent_scope_label: string;
+        };
+        /** Page[AuditItem] */
+        Page_AuditItem_: {
+            /** Items */
+            items: components["schemas"]["AuditItem"][];
+            /** Total */
+            total: number;
+            /** Limit */
+            limit: number;
+            /** Offset */
+            offset: number;
+        };
+        /** Page[InviteItem] */
+        Page_InviteItem_: {
+            /** Items */
+            items: components["schemas"]["InviteItem"][];
+            /** Total */
+            total: number;
+            /** Limit */
+            limit: number;
+            /** Offset */
+            offset: number;
+        };
+        /** Page[LabLatest] */
+        Page_LabLatest_: {
+            /** Items */
+            items: components["schemas"]["LabLatest"][];
+            /** Total */
+            total: number;
+            /** Limit */
+            limit: number;
+            /** Offset */
+            offset: number;
+        };
+        /** Page[Medication] */
+        Page_Medication_: {
+            /** Items */
+            items: components["schemas"]["Medication"][];
+            /** Total */
+            total: number;
+            /** Limit */
+            limit: number;
+            /** Offset */
+            offset: number;
+        };
+        /** Page[NoteSummary] */
+        Page_NoteSummary_: {
+            /** Items */
+            items: components["schemas"]["NoteSummary"][];
+            /** Total */
+            total: number;
+            /** Limit */
+            limit: number;
+            /** Offset */
+            offset: number;
+        };
+        /** Page[PatientListItem] */
+        Page_PatientListItem_: {
+            /** Items */
+            items: components["schemas"]["PatientListItem"][];
+            /** Total */
+            total: number;
+            /** Limit */
+            limit: number;
+            /** Offset */
+            offset: number;
+        };
+        /** Page[UserItem] */
+        Page_UserItem_: {
+            /** Items */
+            items: components["schemas"]["UserItem"][];
+            /** Total */
+            total: number;
+            /** Limit */
+            limit: number;
+            /** Offset */
+            offset: number;
+        };
+        /** PatientCreate */
+        PatientCreate: {
+            /** Full Name */
+            full_name: string;
+            /**
+             * Birth Date
+             * Format: date
+             */
+            birth_date: string;
+            /**
+             * Sex
+             * @enum {string}
+             */
+            sex: "M" | "F";
+            /** City */
+            city?: string | null;
+            /** State */
+            state?: string | null;
+            /** Pin Code */
+            pin_code?: string | null;
+            /** Phone */
+            phone?: string | null;
+            /** Marital Status */
+            marital_status?: string | null;
+            /**
+             * Confirm Duplicate
+             * @description Set after the clinician confirms a same-name, same-birth-date patient is new.
+             * @default false
+             */
+            confirm_duplicate: boolean;
+        };
+        /** PatientEvidence */
+        PatientEvidence: {
+            /** Evidence Id */
+            evidence_id: string;
+            /** Record Type */
+            record_type: string;
+            /** Record Id */
+            record_id: string | null;
+            /** Table */
+            table: string;
+            /** Value */
+            value: string;
+            /** Date */
+            date?: string | null;
+        };
+        /** PatientListItem */
+        PatientListItem: {
+            /** Patient Id */
+            patient_id: string;
+            /** Name */
+            name: string;
+            /** Age */
+            age: number;
+            /** Sex */
+            sex: string;
+            /** Main Diagnoses */
+            main_diagnoses: string[];
+            last_encounter: components["schemas"]["EncounterRef"];
+            /** Flags */
+            flags: components["schemas"]["Flag"][];
+        };
+        /** PatientUpdate */
+        PatientUpdate: {
+            /**
+             * Version
+             * @description The version last read. A stale one is refused with 409.
+             */
+            version: number;
+            /** Full Name */
+            full_name: string;
+            /**
+             * Birth Date
+             * Format: date
+             */
+            birth_date: string;
+            /**
+             * Sex
+             * @enum {string}
+             */
+            sex: "M" | "F";
+            /** City */
+            city?: string | null;
+            /** State */
+            state?: string | null;
+            /** Pin Code */
+            pin_code?: string | null;
+            /** Phone */
+            phone?: string | null;
+            /** Marital Status */
+            marital_status?: string | null;
+        };
+        /** PendingItem */
+        PendingItem: {
+            /** Item Id */
+            item_id: string;
+            /** Patient Id */
+            patient_id: string;
+            /** Patient Name */
+            patient_name: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "ESCALATED_FINDING" | "FOLLOW_UP" | "OPEN_FINDING" | "REPORT_TO_REVIEW" | "ABNORMAL_LAB" | "RECENT_EMERGENCY";
+            /** Title */
+            title: string;
+            /** Detail */
+            detail: string;
+            /** Due Date */
+            due_date?: string | null;
+            /**
+             * Overdue
+             * @description A follow-up whose date has passed (against the as-of date).
+             */
+            overdue: boolean;
+            /** Raised At */
+            raised_at: string | null;
+            /** Source Table */
+            source_table: string;
+            /**
+             * Source Id
+             * @description The record behind the item, for the evidence link.
+             */
+            source_id: string | null;
+        };
+        /** PendingPage */
+        PendingPage: {
+            /** Items */
+            items: components["schemas"]["PendingItem"][];
+            /** Total */
+            total: number;
+            /** Limit */
+            limit: number;
+            /** Offset */
+            offset: number;
+            /**
+             * As Of
+             * Format: date
+             */
+            as_of: string;
+        };
+        /** PendingSummary */
+        PendingSummary: {
+            /** Total */
+            total: number;
+            /** Overdue */
+            overdue: number;
+            /** By Kind */
+            by_kind: {
+                [key: string]: number;
+            };
+            /**
+             * As Of
+             * Format: date
+             */
+            as_of: string;
+        };
+        /** Pin */
+        Pin: {
+            /** Pin Id */
+            pin_id: string;
+            /** Answer Id */
+            answer_id: string;
+            /** Evidence Id */
+            evidence_id: string;
+            /** Label */
+            label: string | null;
+            /** Note */
+            note: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /** PinCreate */
+        PinCreate: {
+            /** Answer Id */
+            answer_id: string;
+            /** Evidence Id */
+            evidence_id: string;
+            /** Note */
+            note?: string | null;
+        };
+        /** PinList */
+        PinList: {
+            /** Items */
+            items: components["schemas"]["Pin"][];
+        };
+        /** PreviousValue */
+        PreviousValue: {
+            /** Value */
+            value: number;
+            /**
+             * Date
+             * Format: date
+             */
+            date: string;
+        };
+        /** RecentChanges */
+        RecentChanges: {
+            /** Labs */
+            labs: components["schemas"]["LabChange"][];
+            /** Medications */
+            medications: components["schemas"]["MedicationChange"][];
+        };
+        /** RecordList */
+        RecordList: {
+            /** Items */
+            items: components["schemas"]["RecordRow"][];
+        };
+        /** RecordRef */
+        RecordRef: {
+            /** Table */
+            table: string;
+            /** Id */
+            id: string;
+        };
+        /** RecordRow */
+        RecordRow: {
+            /** Record Id */
+            record_id: string;
+            /** Version */
+            version: number;
+            /** Is Archived */
+            is_archived: boolean;
+            /** Updated At */
+            updated_at?: string | null;
+            /** Fields */
+            fields: {
+                [key: string]: unknown;
+            };
+        };
+        /** Reference */
+        Reference: {
+            /** Low */
+            low: number | null;
+            /** High */
+            high: number | null;
+        };
+        /** RefreshRequest */
+        RefreshRequest: {
+            /** Refresh */
+            refresh: string;
+        };
+        /** ReportDetail */
+        ReportDetail: {
+            /** Report Id */
+            report_id: string;
+            /** Patient Id */
+            patient_id: string;
+            /** Filename */
+            filename: string;
+            /** Mime Type */
+            mime_type: string;
+            /** Size Bytes */
+            size_bytes: number;
+            /** Page Count */
+            page_count: number | null;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "UPLOADED" | "PARSING" | "EXTRACTED" | "REVIEWED" | "REJECTED" | "FAILED";
+            /** Status Detail */
+            status_detail: string | null;
+            /**
+             * Uploaded At
+             * Format: date-time
+             */
+            uploaded_at: string;
+            /** Uploaded By Name */
+            uploaded_by_name?: string | null;
+            /** Extracted At */
+            extracted_at: string | null;
+            /** Name On Report */
+            name_on_report: string | null;
+            /** Identity Status */
+            identity_status: ("MATCH" | "MISMATCH" | "UNKNOWN") | null;
+            /** Identity Confirmed */
+            identity_confirmed: boolean;
+            /** Rows Kept */
+            rows_kept: number | null;
+            /** Rows Dropped */
+            rows_dropped: number | null;
+            /**
+             * Rows Waiting
+             * @description Rows a doctor has not yet approved or rejected.
+             * @default 0
+             */
+            rows_waiting: number;
+            /**
+             * Duplicate
+             * @description This exact file was already uploaded for this patient.
+             * @default false
+             */
+            duplicate: boolean;
+            /** Rows */
+            rows: components["schemas"]["ReportRow"][];
+            /** Pages */
+            pages: components["schemas"]["ReportPage"][];
+        };
+        /** ReportList */
+        ReportList: {
+            /** Items */
+            items: components["schemas"]["ReportSummary"][];
+        };
+        /** ReportPage */
+        ReportPage: {
+            /** Page */
+            page: number;
+            /** Text */
+            text: string;
+        };
+        /** ReportRow */
+        ReportRow: {
+            /** Row Id */
+            row_id: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "LAB" | "MEDICATION" | "DIAGNOSIS";
+            /** Fields */
+            fields: {
+                [key: string]: unknown;
+            };
+            /** Collected At */
+            collected_at: string | null;
+            /** Time Known */
+            time_known: boolean;
+            /** Source Page */
+            source_page: number;
+            /** Source Quote */
+            source_quote: string;
+            /** Confidence */
+            confidence: number;
+            /**
+             * Flags
+             * @description unmatched_test, unmatched_drug, no_date, duplicate (already in the record), already_listed.
+             */
+            flags: string[];
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "PENDING" | "ACCEPTED" | "EDITED" | "REJECTED" | "APPROVED";
+            /** Record Id */
+            record_id: string | null;
+            /** Version */
+            version: number;
+        };
+        /** ReportSummary */
+        ReportSummary: {
+            /** Report Id */
+            report_id: string;
+            /** Patient Id */
+            patient_id: string;
+            /** Filename */
+            filename: string;
+            /** Mime Type */
+            mime_type: string;
+            /** Size Bytes */
+            size_bytes: number;
+            /** Page Count */
+            page_count: number | null;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "UPLOADED" | "PARSING" | "EXTRACTED" | "REVIEWED" | "REJECTED" | "FAILED";
+            /** Status Detail */
+            status_detail: string | null;
+            /**
+             * Uploaded At
+             * Format: date-time
+             */
+            uploaded_at: string;
+            /** Uploaded By Name */
+            uploaded_by_name?: string | null;
+            /** Extracted At */
+            extracted_at: string | null;
+            /** Name On Report */
+            name_on_report: string | null;
+            /** Identity Status */
+            identity_status: ("MATCH" | "MISMATCH" | "UNKNOWN") | null;
+            /** Identity Confirmed */
+            identity_confirmed: boolean;
+            /** Rows Kept */
+            rows_kept: number | null;
+            /** Rows Dropped */
+            rows_dropped: number | null;
+            /**
+             * Rows Waiting
+             * @description Rows a doctor has not yet approved or rejected.
+             * @default 0
+             */
+            rows_waiting: number;
+            /**
+             * Duplicate
+             * @description This exact file was already uploaded for this patient.
+             * @default false
+             */
+            duplicate: boolean;
+        };
+        /** RequestDecision */
+        RequestDecision: {
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "ADDED" | "DECLINED";
+            /** Note */
+            note?: string | null;
+        };
+        /** RouteInfo */
+        RouteInfo: {
+            /** Route */
+            route: string;
+            /** Model */
+            model?: string | null;
+            /** Confidence */
+            confidence?: number | null;
+            /** Cost Note */
+            cost_note?: string | null;
+        };
+        /** RowDecision */
+        RowDecision: {
+            /** Version */
+            version: number;
+        };
+        /**
+         * RowEdit
+         * @description Replace what was read from a report row. A lab needs a supported test (its LOINC code) and a collection time.
+         */
+        RowEdit: {
+            /** Version */
+            version: number;
+            /** Fields */
+            fields: {
+                [key: string]: unknown;
+            };
+            /** Collected At */
+            collected_at?: string | null;
+        };
+        /** RowResult */
+        RowResult: {
+            /** Row Id */
+            row_id: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "PENDING" | "ACCEPTED" | "EDITED" | "REJECTED" | "APPROVED";
+            /** Version */
+            version: number;
+        };
+        /** SavedView */
+        SavedView: {
+            /** View Id */
+            view_id: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "SAVED_VIEW" | "VISIT_BRIEF";
+            /** Patient Id */
+            patient_id: string;
+            /** Title */
+            title: string | null;
+            /** Content */
+            content: {
+                [key: string]: unknown;
+            };
+            /** Approved At */
+            approved_at: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /** SearchResponse */
+        SearchResponse: {
+            /** Snapshot Date */
+            snapshot_date: string | null;
+            /** Items */
+            items: components["schemas"]["Citation"][];
+            /** Message */
+            message?: string | null;
+            /**
+             * Resolved
+             * @default {}
+             */
+            resolved: {
+                [key: string]: string;
+            };
+            /**
+             * Conflicts
+             * @default []
+             */
+            conflicts: string[];
+            /**
+             * Mode
+             * @default search
+             * @enum {string}
+             */
+            mode: "search" | "browse";
+            /**
+             * Scope
+             * @default []
+             */
+            scope: string[];
+            /**
+             * Suggestions
+             * @default []
+             */
+            suggestions: string[];
+            /**
+             * Has More
+             * @default false
+             */
+            has_more: boolean;
+        };
+        /**
+         * ShareRequest
+         * @description Email one summary of this patient to one recipient.
+         */
+        ShareRequest: {
+            /** To */
+            to: string;
+            /** Note */
+            note?: string | null;
+            /** Include */
+            include?: ("diagnoses" | "medications" | "labs" | "events")[];
+        };
+        /** ShareResult */
+        ShareResult: {
+            /** Sent */
+            sent: boolean;
+        };
+        /** SimilarPatient */
+        SimilarPatient: {
+            /** Patient Id */
+            patient_id: string;
+            /** Name */
+            name: string;
+            /** Age */
+            age: number | null;
+            /** Sex */
+            sex: string | null;
+            /**
+             * Score
+             * @description The blended match, 0 to 1. A ranking aid, not a probability.
+             */
+            score: number;
+            parts: components["schemas"]["MatchParts"];
+            /**
+             * Why
+             * @description The reasons, in words, taken from real records.
+             */
+            why: string[];
+            /** Shared Diagnoses */
+            shared_diagnoses: string[];
+            /** Shared Medicines */
+            shared_medicines: string[];
+            /** Lab Comparison */
+            lab_comparison: components["schemas"]["LabComparison"][];
+        };
+        /** SimilarResponse */
+        SimilarResponse: {
+            /** Patient Id */
+            patient_id: string;
+            /**
+             * Ready
+             * @description False while this patient's case vector is still being built after a change.
+             */
+            ready: boolean;
+            /** Items */
+            items: components["schemas"]["SimilarPatient"][];
+            /** Requested */
+            requested: number;
+            /**
+             * Scoring
+             * @enum {string}
+             */
+            scoring: "blend" | "structured" | "embedding";
+            /** Weight Embedding */
+            weight_embedding: number;
+            /** Note */
+            note?: string | null;
+            /** Disclaimer */
+            disclaimer: string;
+        };
+        /** SnowflakeHealth */
+        SnowflakeHealth: {
+            /** Reachable */
+            reachable: boolean;
+            /** Database */
+            database: string;
+            /** Warehouse */
+            warehouse: string;
+            /** Warehouse State */
+            warehouse_state?: string | null;
+            /** Service Role */
+            service_role?: string | null;
+        };
+        /** SourceEvidence */
+        SourceEvidence: {
+            /** Evidence Id */
+            evidence_id: string;
+            /** Chunk Id */
+            chunk_id: string;
+            /** Document Id */
+            document_id: string;
+            /** Title */
+            title: string;
+            /** Source */
+            source: string;
+            /** Section */
+            section: string;
+            /** Version */
+            version: string | null;
+            /** Effective Date */
+            effective_date: string | null;
+            /** Retrieved Date */
+            retrieved_date: string | null;
+            /** Text */
+            text: string;
+            /**
+             * Matched
+             * @default false
+             */
+            matched: boolean;
+        };
+        /** SqlEvidence */
+        SqlEvidence: {
+            /** Sql Id */
+            sql_id: string;
+            /** Role */
+            role: string;
+            /** Text */
+            text: string;
+            /** Row Count */
+            row_count: number;
+            /**
+             * Ran At
+             * Format: date-time
+             */
+            ran_at: string;
+        };
+        /** SyncStatus */
+        SyncStatus: {
+            /**
+             * Pending
+             * @description True while the worklist, timeline and latest labs are still catching up with a recent change.
+             */
+            pending: boolean;
+        };
+        /** Timeline */
+        Timeline: {
+            /** Items */
+            items: components["schemas"]["TimelineEvent"][];
+            /** Total */
+            total: number;
+            /** Limit */
+            limit: number;
+            /** Offset */
+            offset: number;
+        };
+        /** TimelineEvent */
+        TimelineEvent: {
+            /** Event Id */
+            event_id: string;
+            /**
+             * Date
+             * Format: date
+             */
+            date: string;
+            /**
+             * Type
+             * @enum {string}
+             */
+            type: "ENCOUNTER" | "DIAGNOSIS" | "MEDICATION_START" | "MEDICATION_CHANGE" | "LAB_PANEL" | "CLAIM" | "NOTE";
+            /** Title */
+            title: string;
+            /** Summary */
+            summary: string | null;
+            record: components["schemas"]["RecordRef"];
+            /** Encounter Id */
+            encounter_id: string | null;
+        };
+        /**
+         * TokenPair
+         * @description Bearer tokens for the mobile client. The web client never receives these; it gets cookies.
+         */
+        TokenPair: {
+            /** Access */
+            access: string;
+            /** Refresh */
+            refresh: string;
+        };
+        /** TrendPoint */
+        TrendPoint: {
+            /** Lab Id */
+            lab_id: string;
+            /**
+             * Date
+             * Format: date
+             */
+            date: string;
+            /** Value */
+            value: number;
+        };
+        /** UnlabelledMedicine */
+        UnlabelledMedicine: {
+            /** Medicine */
+            medicine: string;
+            /** Patients */
+            patients: number;
+        };
+        /** UserItem */
+        UserItem: {
+            /** User Id */
+            user_id: string;
+            /** Email */
+            email: string;
+            /** Display Name */
+            display_name: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "DOCTOR" | "ASSISTANT";
+            /** Is Admin */
+            is_admin: boolean;
+            /** Status */
+            status: string;
+            /** Supervising Doctor Id */
+            supervising_doctor_id: string | null;
+            /** Patient Count */
+            patient_count: number;
+            /** Last Login At */
+            last_login_at: string | null;
+        };
+        /** UserOut */
+        UserOut: {
+            /** User Id */
+            user_id: string;
+            /** Email */
+            email: string;
+            /** Display Name */
+            display_name: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "DOCTOR" | "ASSISTANT";
+            /** Is Admin */
+            is_admin: boolean;
+        };
+        /** UserPatch */
+        UserPatch: {
+            /** Display Name */
+            display_name?: string | null;
+            /** Is Admin */
+            is_admin?: boolean | null;
+            /** Status */
+            status?: ("ACTIVE" | "DISABLED") | null;
+        };
+        /** Utilization */
+        Utilization: {
+            /**
+             * Window
+             * @default last_12_months
+             */
+            window: string;
+            /** Opd Visits */
+            opd_visits: number;
+            /** Emergency Visits */
+            emergency_visits: number;
+            /** Hospitalizations */
+            hospitalizations: number;
+            /** Procedures */
+            procedures: number;
+            billed: components["schemas"]["Money"];
+            approved: components["schemas"]["Money"];
+        };
+        /** UtilizationSummary */
+        UtilizationSummary: {
+            /**
+             * Window
+             * @default last_12_months
+             */
+            window: string;
+            /** Patients */
+            patients: number;
+            /** Opd Visits */
+            opd_visits: number;
+            /** Emergency Visits */
+            emergency_visits: number;
+            /** Hospitalizations */
+            hospitalizations: number;
+            /** Procedures */
+            procedures: number;
+            approved: components["schemas"]["Money"];
+        };
+        /** ValidationError */
+        ValidationError: {
+            /** Location */
+            loc: (string | number)[];
+            /** Message */
+            msg: string;
+            /** Error Type */
+            type: string;
+            /** Input */
+            input?: unknown;
+            /** Context */
+            ctx?: Record<string, never>;
+        };
+        /** ViewPreview */
+        ViewPreview: {
+            /** Preview Id */
+            preview_id: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "SAVED_VIEW" | "VISIT_BRIEF";
+            /** Patient Id */
+            patient_id: string;
+            /** Title */
+            title: string;
+            /** Content */
+            content: {
+                [key: string]: unknown;
+            };
+            /**
+             * Expires At
+             * Format: date-time
+             */
+            expires_at: string;
+        };
+        /** ViewPreviewRequest */
+        ViewPreviewRequest: {
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "SAVED_VIEW" | "VISIT_BRIEF";
+            /** Patient Id */
+            patient_id: string;
+            /** Content */
+            content: {
+                [key: string]: unknown;
+            };
+        };
+        /** ViewSaveRequest */
+        ViewSaveRequest: {
+            /** Preview Id */
+            preview_id: string;
+            /**
+             * Approved
+             * @description Must be true; nothing is saved without approval (FR-22).
+             */
+            approved: boolean;
+        };
+        /** VisitIn */
+        VisitIn: {
+            /**
+             * Started At
+             * Format: date-time
+             */
+            started_at: string;
+            /** Ended At */
+            ended_at?: string | null;
+            /**
+             * Visit Kind
+             * @enum {string}
+             */
+            visit_kind: "OUTPATIENT" | "EMERGENCY" | "HOSPITALIZATION";
+            /** Description */
+            description?: string | null;
+            /** Reason Description */
+            reason_description?: string | null;
+        };
+        /** VisitUpdate */
+        VisitUpdate: {
+            /**
+             * Version
+             * @description The version last read. A stale one is refused with 409.
+             */
+            version: number;
+            /**
+             * Started At
+             * Format: date-time
+             */
+            started_at: string;
+            /** Ended At */
+            ended_at?: string | null;
+            /**
+             * Visit Kind
+             * @enum {string}
+             */
+            visit_kind: "OUTPATIENT" | "EMERGENCY" | "HOSPITALIZATION";
+            /** Description */
+            description?: string | null;
+            /** Reason Description */
+            reason_description?: string | null;
+        };
+        /** WorklistItem */
+        WorklistItem: {
+            /** Patient Id */
+            patient_id: string;
+            /** Name */
+            name: string;
+            /** Age */
+            age: number;
+            /** Sex */
+            sex: string;
+            last_encounter: components["schemas"]["EncounterRef"];
+            /** Flags */
+            flags: components["schemas"]["Flag"][];
+        };
+        /** WriteResult */
+        WriteResult: {
+            /** Patient Id */
+            patient_id: string;
+            /** Record Id */
+            record_id: string;
+            /** Version */
+            version: number;
+        };
+    };
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
 export type $defs = Record<string, never>;
 export interface operations {
-  health_health_get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HealthResponse'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  health_details_health_details_get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HealthDetails'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  login_auth_login_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['LoginRequest'];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['LoginResponse'] | components['schemas']['OtpChallenge'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  verify_login_auth_login_verify_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['OtpVerifyRequest'];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['LoginResponse'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  forgot_password_auth_password_forgot_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['ForgotPasswordRequest'];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content?: never;
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  refresh_auth_refresh_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content?: never;
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  refresh_mobile_auth_mobile_refresh_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['RefreshRequest'];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['TokenPair'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  logout_auth_logout_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content?: never;
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  me_me_get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['MeResponse'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  change_password_auth_password_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['ChangePasswordRequest'];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content?: never;
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  invite_preview_auth_invites__token__get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        token: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['InvitePreview'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  accept_invite_auth_invites_accept_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['AcceptInviteRequest'];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      201: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['AcceptInviteResponse'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  dashboard_dashboard_get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['DashboardResponse'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  briefing_dashboard_briefing_get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['BriefingResponse'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  list_patients_patients_get: {
-    parameters: {
-      query?: {
-        q?: string | null;
-        changed?: boolean;
-        sex?: string | null;
-        kind?: ('OUTPATIENT' | 'EMERGENCY' | 'HOSPITALIZATION') | null;
-        flag?: ('NEW_LAB' | 'NEW_MEDICATION' | 'RECENT_EMERGENCY' | 'NEW_DOCUMENT') | null;
-        sort?: 'name' | 'age' | 'last_encounter' | 'flags';
-        order?: 'asc' | 'desc';
-        limit?: number;
-        offset?: number;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['Page_PatientListItem_'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  get_patient_patients__patient_id__get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        patient_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['Overview'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  share_patient_patients__patient_id__share_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        patient_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['ShareRequest'];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ShareResult'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  medications_patients__patient_id__medications_get: {
-    parameters: {
-      query?: {
-        status?: 'active' | 'all';
-        q?: string | null;
-        sort?: 'drug' | 'started' | 'last_change';
-        order?: 'asc' | 'desc';
-        limit?: number;
-        offset?: number;
-      };
-      header?: never;
-      path: {
-        patient_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['Page_Medication_'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  labs_patients__patient_id__labs_get: {
-    parameters: {
-      query?: {
-        q?: string | null;
-        flag?: ('abnormal' | 'LOW' | 'HIGH' | 'NORMAL') | null;
-        sort?: 'test' | 'date' | 'value';
-        order?: 'asc' | 'desc';
-        limit?: number;
-        offset?: number;
-      };
-      header?: never;
-      path: {
-        patient_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['Page_LabLatest_'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  lab_trend_patients__patient_id__labs__code__trend_get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        patient_id: string;
-        code: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['LabTrend'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  timeline_patients__patient_id__timeline_get: {
-    parameters: {
-      query?: {
-        from?: string | null;
-        to?: string | null;
-        types?: string | null;
-        q?: string | null;
-        order?: 'asc' | 'desc';
-        limit?: number;
-        offset?: number;
-      };
-      header?: never;
-      path: {
-        patient_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['Timeline'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  claims_patients__patient_id__claims_get: {
-    parameters: {
-      query?: {
-        status?: string | null;
-        from?: string | null;
-        to?: string | null;
-        sort?: 'date' | 'billed' | 'approved' | 'status';
-        order?: 'asc' | 'desc';
-        limit?: number;
-        offset?: number;
-      };
-      header?: never;
-      path: {
-        patient_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['Claims'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  notes_patients__patient_id__notes_get: {
-    parameters: {
-      query?: {
-        q?: string | null;
-        type?: string | null;
-        sort?: 'date' | 'title';
-        order?: 'asc' | 'desc';
-        limit?: number;
-        offset?: number;
-      };
-      header?: never;
-      path: {
-        patient_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['Page_NoteSummary_'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  note_patients__patient_id__notes__note_id__get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        patient_id: string;
-        note_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['NoteDetail'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  list_pins_patients__patient_id__pins_get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        patient_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['PinList'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  create_pin_patients__patient_id__pins_post: {
-    parameters: {
-      query?: never;
-      header?: {
-        'idempotency-key'?: string | null;
-      };
-      path: {
-        patient_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['PinCreate'];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      201: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['Pin'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  delete_pin_patients__patient_id__pins__pin_id__delete: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        patient_id: string;
-        pin_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content?: never;
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  safety_review_patients__patient_id__safety_review_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        patient_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Server-sent events: route, step, action, answer, refusal, error, done */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['AnswerObject'];
-          'text/event-stream': unknown;
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  ask_copilot_ask_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['AskRequest'];
-      };
-    };
-    responses: {
-      /** @description Server-sent events: route, step, action, answer, refusal, error, done */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['AskResult'];
-          'text/event-stream': unknown;
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  agent_action_agent_actions_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['ActionRequest'];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ActionResponse'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Conflict */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  get_evidence_evidence__answer_id__get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        answer_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['EvidenceResponse'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  search_knowledge_search_get: {
-    parameters: {
-      query: {
-        q: string;
-        drug?: string | null;
-        section?: string | null;
-        limit?: number;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['SearchResponse'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  status_knowledge_status_get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['KnowledgeStatus'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-    };
-  };
-  preview_views_preview_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['ViewPreviewRequest'];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ViewPreview'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  list_views_views_get: {
-    parameters: {
-      query?: {
-        patient_id?: string | null;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['SavedView'][];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  save_views_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['ViewSaveRequest'];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      201: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['SavedView'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  audit_audit_get: {
-    parameters: {
-      query?: {
-        patient_id?: string | null;
-        from?: string | null;
-        to?: string | null;
-        action?: string | null;
-        outcome?: string | null;
-        q?: string | null;
-        sort?: 'when' | 'action' | 'outcome';
-        order?: 'asc' | 'desc';
-        limit?: number;
-        offset?: number;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['Page_AuditItem_'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  list_invites_admin_invites_get: {
-    parameters: {
-      query?: {
-        q?: string | null;
-        status?: ('PENDING' | 'ACCEPTED' | 'REVOKED' | 'EXPIRED') | null;
-        kind?: ('INVITE' | 'PASSWORD_RESET') | null;
-        sort?: 'created' | 'expires' | 'email';
-        order?: 'asc' | 'desc';
-        limit?: number;
-        offset?: number;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['Page_InviteItem_'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  create_invite_admin_invites_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['InviteCreate'];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      201: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['InviteCreated'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  revoke_invite_admin_invites__invite_id__delete: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        invite_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content?: never;
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  list_users_admin_users_get: {
-    parameters: {
-      query?: {
-        q?: string | null;
-        role?: ('DOCTOR' | 'ASSISTANT') | null;
-        status?: ('ACTIVE' | 'DISABLED') | null;
-        sort?: 'name' | 'email' | 'role' | 'last_login' | 'patients';
-        order?: 'asc' | 'desc';
-        limit?: number;
-        offset?: number;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['Page_UserItem_'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  get_user_admin_users__user_id__get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        user_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['UserItem'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  update_user_admin_users__user_id__patch: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        user_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['UserPatch'];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['UserItem'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  reset_password_admin_users__user_id__reset_password_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        user_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      201: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['InviteCreated'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  get_entitlements_admin_users__user_id__entitlements_get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        user_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['Entitlements'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
-  put_entitlements_admin_users__user_id__entitlements_put: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        user_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['EntitlementsSet'];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['Entitlements'];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['ErrorBody'];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-  };
+    health_health_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HealthResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    health_details_health_details_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HealthDetails"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    login_auth_login_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LoginRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LoginResponse"] | components["schemas"]["OtpChallenge"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    verify_login_auth_login_verify_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OtpVerifyRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LoginResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    forgot_password_auth_password_forgot_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ForgotPasswordRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    refresh_auth_refresh_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    refresh_mobile_auth_mobile_refresh_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RefreshRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TokenPair"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    logout_auth_logout_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    me_me_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MeResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    change_password_auth_password_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ChangePasswordRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    invite_preview_auth_invites__token__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                token: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InvitePreview"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    accept_invite_auth_invites_accept_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AcceptInviteRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AcceptInviteResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    dashboard_dashboard_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DashboardResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    briefing_dashboard_briefing_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BriefingResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    list_patients_patients_get: {
+        parameters: {
+            query?: {
+                q?: string | null;
+                changed?: boolean;
+                sex?: string | null;
+                kind?: ("OUTPATIENT" | "EMERGENCY" | "HOSPITALIZATION") | null;
+                flag?: ("NEW_LAB" | "NEW_MEDICATION" | "RECENT_EMERGENCY" | "NEW_DOCUMENT") | null;
+                sort?: "name" | "age" | "last_encounter" | "flags";
+                order?: "asc" | "desc";
+                limit?: number;
+                offset?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Page_PatientListItem_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    register_patient_patients_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Repeating a request with the same key returns the first result instead of writing twice. */
+                "Idempotency-Key"?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PatientCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_patient_patients__patient_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Overview"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_patient_patients__patient_id__put: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Repeating a request with the same key returns the first result instead of writing twice. */
+                "Idempotency-Key"?: string | null;
+            };
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PatientUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    share_patient_patients__patient_id__share_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ShareRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ShareResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    medications_patients__patient_id__medications_get: {
+        parameters: {
+            query?: {
+                status?: "active" | "all";
+                q?: string | null;
+                sort?: "drug" | "started" | "last_change";
+                order?: "asc" | "desc";
+                limit?: number;
+                offset?: number;
+            };
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Page_Medication_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    add_medication_patients__patient_id__medications_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Repeating a request with the same key returns the first result instead of writing twice. */
+                "Idempotency-Key"?: string | null;
+            };
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MedicationIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    labs_patients__patient_id__labs_get: {
+        parameters: {
+            query?: {
+                q?: string | null;
+                flag?: ("abnormal" | "LOW" | "HIGH" | "NORMAL") | null;
+                sort?: "test" | "date" | "value";
+                order?: "asc" | "desc";
+                limit?: number;
+                offset?: number;
+            };
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Page_LabLatest_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    add_lab_patients__patient_id__labs_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Repeating a request with the same key returns the first result instead of writing twice. */
+                "Idempotency-Key"?: string | null;
+            };
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LabIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    lab_trend_patients__patient_id__labs__code__trend_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+                code: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LabTrend"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    timeline_patients__patient_id__timeline_get: {
+        parameters: {
+            query?: {
+                from?: string | null;
+                to?: string | null;
+                types?: string | null;
+                q?: string | null;
+                order?: "asc" | "desc";
+                limit?: number;
+                offset?: number;
+            };
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Timeline"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    claims_patients__patient_id__claims_get: {
+        parameters: {
+            query?: {
+                status?: string | null;
+                from?: string | null;
+                to?: string | null;
+                sort?: "date" | "billed" | "approved" | "status";
+                order?: "asc" | "desc";
+                limit?: number;
+                offset?: number;
+            };
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Claims"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    notes_patients__patient_id__notes_get: {
+        parameters: {
+            query?: {
+                q?: string | null;
+                type?: string | null;
+                sort?: "date" | "title";
+                order?: "asc" | "desc";
+                limit?: number;
+                offset?: number;
+            };
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Page_NoteSummary_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    add_note_patients__patient_id__notes_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Repeating a request with the same key returns the first result instead of writing twice. */
+                "Idempotency-Key"?: string | null;
+            };
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["NoteIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    note_patients__patient_id__notes__note_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+                note_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NoteDetail"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    pending_pending_get: {
+        parameters: {
+            query?: {
+                /** @description Narrow to these kinds. */
+                kind?: ("ESCALATED_FINDING" | "FOLLOW_UP" | "OPEN_FINDING" | "REPORT_TO_REVIEW" | "ABNORMAL_LAB" | "RECENT_EMERGENCY")[] | null;
+                patient_id?: string | null;
+                limit?: number;
+                offset?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PendingPage"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    pending_summary_pending_summary_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PendingSummary"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    review_lab_patients__patient_id__labs__lab_id__review_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+                lab_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LabReviewed"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_pins_patients__patient_id__pins_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PinList"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_pin_patients__patient_id__pins_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "idempotency-key"?: string | null;
+            };
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PinCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pin"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_pin_patients__patient_id__pins__pin_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+                pin_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    archive_patient_patients__patient_id__archive_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ArchiveBody"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    restore_patient_patients__patient_id__restore_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ArchiveBody"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    archived_patients_archived_patients_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ArchivedPatientList"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    add_diagnosis_patients__patient_id__diagnoses_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Repeating a request with the same key returns the first result instead of writing twice. */
+                "Idempotency-Key"?: string | null;
+            };
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DiagnosisIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    edit_diagnosis_patients__patient_id__diagnoses__record_id__put: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Repeating a request with the same key returns the first result instead of writing twice. */
+                "Idempotency-Key"?: string | null;
+            };
+            path: {
+                patient_id: string;
+                record_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DiagnosisUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    edit_medication_patients__patient_id__medications__record_id__put: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Repeating a request with the same key returns the first result instead of writing twice. */
+                "Idempotency-Key"?: string | null;
+            };
+            path: {
+                patient_id: string;
+                record_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MedicationUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    add_allergy_patients__patient_id__allergies_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Repeating a request with the same key returns the first result instead of writing twice. */
+                "Idempotency-Key"?: string | null;
+            };
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AllergyIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    edit_allergy_patients__patient_id__allergies__record_id__put: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Repeating a request with the same key returns the first result instead of writing twice. */
+                "Idempotency-Key"?: string | null;
+            };
+            path: {
+                patient_id: string;
+                record_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AllergyUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    edit_lab_patients__patient_id__labs__record_id__put: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Repeating a request with the same key returns the first result instead of writing twice. */
+                "Idempotency-Key"?: string | null;
+            };
+            path: {
+                patient_id: string;
+                record_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LabUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    edit_note_patients__patient_id__notes__record_id__put: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Repeating a request with the same key returns the first result instead of writing twice. */
+                "Idempotency-Key"?: string | null;
+            };
+            path: {
+                patient_id: string;
+                record_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["NoteUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    add_visit_patients__patient_id__visits_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Repeating a request with the same key returns the first result instead of writing twice. */
+                "Idempotency-Key"?: string | null;
+            };
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["VisitIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    edit_visit_patients__patient_id__visits__record_id__put: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Repeating a request with the same key returns the first result instead of writing twice. */
+                "Idempotency-Key"?: string | null;
+            };
+            path: {
+                patient_id: string;
+                record_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["VisitUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    archive_record_patients__patient_id___kind___record_id__archive_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+                kind: "diagnoses" | "medications" | "allergies" | "labs" | "notes" | "visits";
+                record_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ArchiveBody"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    restore_record_patients__patient_id___kind___record_id__restore_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+                kind: "diagnoses" | "medications" | "allergies" | "labs" | "notes" | "visits";
+                record_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ArchiveBody"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_records_patients__patient_id__records__kind__get: {
+        parameters: {
+            query?: {
+                include_archived?: boolean;
+            };
+            header?: never;
+            path: {
+                patient_id: string;
+                kind: "diagnoses" | "medications" | "allergies" | "labs" | "notes" | "visits";
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RecordList"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_record_patients__patient_id__records__kind___record_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+                kind: "diagnoses" | "medications" | "allergies" | "labs" | "notes" | "visits";
+                record_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RecordRow"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    record_history_patients__patient_id__history_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+            };
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HistoryList"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    sync_status_patients__patient_id__sync_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SyncStatus"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_reports_patients__patient_id__reports_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReportList"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    upload_report_patients__patient_id__reports_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-Filename": string;
+            };
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReportSummary"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_report_patients__patient_id__reports__report_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+                report_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReportDetail"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    report_file_patients__patient_id__reports__report_id__file_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+                report_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    edit_row_patients__patient_id__reports_rows__row_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+                row_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RowEdit"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RowResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    decide_row_patients__patient_id__reports_rows__row_id___decision__post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+                row_id: string;
+                decision: "accept" | "reject" | "reset";
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RowDecision"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RowResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    approve_report_patients__patient_id__reports__report_id__approve_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+                report_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ApproveBody"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApproveStarted"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    reject_report_patients__patient_id__reports__report_id__reject_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+                report_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReportSummary"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    similar_patients_patients__patient_id__similar_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+            };
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SimilarResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_findings_patients__patient_id__findings_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FindingList"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    raise_finding_patients__patient_id__findings_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FindingCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Finding"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    colleagues_patients__patient_id__colleagues_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ColleagueList"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    decide_finding_findings__finding_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                finding_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FindingUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Finding"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    safety_review_patients__patient_id__safety_review_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Server-sent events: route, step, action, answer, refusal, error, done */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AnswerObject"];
+                    "text/event-stream": unknown;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    ask_copilot_ask_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AskRequest"];
+            };
+        };
+        responses: {
+            /** @description Server-sent events: route, step, action, answer, refusal, error, done */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AskResult"];
+                    "text/event-stream": unknown;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    agent_action_agent_actions_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ActionRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ActionResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    get_evidence_evidence__answer_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                answer_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EvidenceResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    search_knowledge_search_get: {
+        parameters: {
+            query?: {
+                q?: string | null;
+                drug?: string | null;
+                section?: string | null;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SearchResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    status_knowledge_status_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["KnowledgeStatus"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    drugs_knowledge_drugs_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DrugDirectory"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    my_requests_knowledge_requests_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DrugRequestList"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    request_drug_knowledge_requests_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DrugRequestIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DrugRequest"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    coverage_admin_knowledge_coverage_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Coverage"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    all_requests_admin_knowledge_requests_get: {
+        parameters: {
+            query?: {
+                status?: ("OPEN" | "ADDED" | "DECLINED") | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DrugRequestList"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    decide_request_admin_knowledge_requests__request_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RequestDecision"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DrugRequest"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    golden_runs_admin_golden_runs_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GoldenRunList"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    preview_views_preview_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ViewPreviewRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ViewPreview"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_views_views_get: {
+        parameters: {
+            query?: {
+                patient_id?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SavedView"][];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    save_views_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ViewSaveRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SavedView"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    audit_audit_get: {
+        parameters: {
+            query?: {
+                patient_id?: string | null;
+                from?: string | null;
+                to?: string | null;
+                action?: string | null;
+                outcome?: string | null;
+                q?: string | null;
+                sort?: "when" | "action" | "outcome";
+                order?: "asc" | "desc";
+                limit?: number;
+                offset?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Page_AuditItem_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_invites_admin_invites_get: {
+        parameters: {
+            query?: {
+                q?: string | null;
+                status?: ("PENDING" | "ACCEPTED" | "REVOKED" | "EXPIRED") | null;
+                kind?: ("INVITE" | "PASSWORD_RESET") | null;
+                sort?: "created" | "expires" | "email";
+                order?: "asc" | "desc";
+                limit?: number;
+                offset?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Page_InviteItem_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_invite_admin_invites_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["InviteCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InviteCreated"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    revoke_invite_admin_invites__invite_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                invite_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_users_admin_users_get: {
+        parameters: {
+            query?: {
+                q?: string | null;
+                role?: ("DOCTOR" | "ASSISTANT") | null;
+                status?: ("ACTIVE" | "DISABLED") | null;
+                sort?: "name" | "email" | "role" | "last_login" | "patients";
+                order?: "asc" | "desc";
+                limit?: number;
+                offset?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Page_UserItem_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_user_admin_users__user_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserItem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_user_admin_users__user_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UserPatch"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserItem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    reset_password_admin_users__user_id__reset_password_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InviteCreated"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_entitlements_admin_users__user_id__entitlements_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Entitlements"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_entitlements_admin_users__user_id__entitlements_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EntitlementsSet"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Entitlements"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
 }

@@ -11,6 +11,7 @@ Status (2026-10-03): **All phases built.** Decisions taken: D1 bearer mode (done
 | 4 Evidence (Why?) | Done |
 | 5 Agent (Ask) | Done |
 | 6 Knowledge, activity, You, admin | Done (admin: health, users, password reset links, invitations; per-user patient access stays on the web) |
+| 8 Web sync (2026-10-04) | Done: five-item bottom bar, Pending, allergies, Needs attention panel, Similar, Reports (upload, review, approve), Documentation, offline banner fix, centred sign-in. See `docs/SYNC_CHECKLIST.md` |
 | 7 Quality and release | Contrast check, unit and component tests, smoke list, branding, motion pass, screenshot blocking and biometric or screen-lock auto-lock, theme choice, invitation links. Not done: a TalkBack walk-through (needs a person and a phone), crash reporting (needs a Sentry DSN), the release APK after on-device checks |
 
 Design: the web's tokens (oklch converted to sRGB), Roboto headings and Inter body, the web header's logo (HeartPulse in a rounded primary square) on every tab and as the app icon and splash. Motion: press scale on every control, staggered list and section entrances, tab icon spring, spring bottom sheets that follow a drag, typing dots while the assistant works, all honouring the system reduce-motion setting.
@@ -53,7 +54,7 @@ Mirrors the web screens, rebuilt for a phone, not ported pixel for pixel (the pr
 | Admin (users, invites) | **Deferred**: low value on a phone; web only until asked | later |
 | Invite accept, password reset links | Deep link `medynium://` after the web flow works | later |
 
-Navigation: bottom tabs `Home / Patients / Ask / Knowledge / You`; patient workspace is a stack screen above Patients.
+Navigation: bottom tabs `Home / Patients / Pending / Ask / More` (Knowledge, Activity, Documentation, Admin and the account sit under More); patient workspace is a stack screen above Patients.
 
 ## 3. Decisions that need your approval before Phase 1
 

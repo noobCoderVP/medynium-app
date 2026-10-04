@@ -12,6 +12,7 @@ export function Screen({
   children,
   scroll = true,
   header = true,
+  center = false,
   refreshing,
   onRefresh,
   contentStyle,
@@ -19,6 +20,8 @@ export function Screen({
   children: React.ReactNode;
   scroll?: boolean;
   header?: boolean;
+  /** Centres the content vertically when it is shorter than the screen (sign-in and similar single-task screens). */
+  center?: boolean;
   refreshing?: boolean;
   onRefresh?: () => void;
   contentStyle?: ViewStyle;
@@ -33,7 +36,13 @@ export function Screen({
   return (
     <ScrollView
       style={{ backgroundColor: theme.background }}
-      contentContainerStyle={[styles.content, pad, { paddingBottom: insets.bottom + 24 }, contentStyle]}
+      contentContainerStyle={[
+        styles.content,
+        center && styles.center,
+        pad,
+        { paddingBottom: insets.bottom + 24 },
+        contentStyle,
+      ]}
       keyboardShouldPersistTaps="handled"
       contentInsetAdjustmentBehavior="automatic"
       refreshControl={
@@ -49,5 +58,6 @@ export function Screen({
 
 const styles = StyleSheet.create({
   fill: { flex: 1 },
+  center: { flexGrow: 1, justifyContent: 'center' },
   content: { paddingHorizontal: 16, gap: 16, width: '100%', maxWidth: MaxContentWidth, alignSelf: 'center' },
 });

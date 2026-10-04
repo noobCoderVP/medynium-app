@@ -59,9 +59,18 @@ export default function TabsLayout() {
     >
       <Tabs.Screen name="index" options={{ title: 'Home', tabBarIcon: icon('home', 'home-outline') }} />
       <Tabs.Screen name="patients" options={{ title: 'Patients', tabBarIcon: icon('people', 'people-outline') }} />
+      <Tabs.Screen
+        name="pending"
+        options={{ title: 'Pending', tabBarIcon: icon('list-circle', 'list-circle-outline') }}
+      />
       <Tabs.Screen name="ask" options={{ title: 'Ask', tabBarIcon: icon('sparkles', 'sparkles-outline') }} />
-      <Tabs.Screen name="knowledge" options={{ title: 'Knowledge', tabBarIcon: icon('library', 'library-outline') }} />
-      <Tabs.Screen name="you" options={{ title: 'You', tabBarIcon: icon('person', 'person-outline') }} />
+      <Tabs.Screen
+        name="you"
+        options={{
+          title: 'More',
+          tabBarIcon: icon('ellipsis-horizontal-circle', 'ellipsis-horizontal-circle-outline'),
+        }}
+      />
     </Tabs>
   );
 }

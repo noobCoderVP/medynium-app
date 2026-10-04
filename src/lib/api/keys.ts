@@ -20,7 +20,16 @@ export const patientKeys = {
   pins: (id: string) => ['patients', id, 'pins'] as const,
   views: (id: string) => ['patients', id, 'views'] as const,
   /** The last safety review run in this session (held in the cache only; the stored evidence is the record). */
+  similar: (id: string) => ['patients', id, 'similar'] as const,
+  reports: (id: string) => ['patients', id, 'reports'] as const,
+  report: (id: string, reportId: string) => ['patients', id, 'reports', reportId] as const,
   safety: (id: string) => ['patients', id, 'safety'] as const,
+};
+
+export const pendingKeys = {
+  all: ['pending'] as const,
+  list: (params: object) => ['pending', 'list', params] as const,
+  summary: ['pending', 'summary'] as const,
 };
 
 export const evidenceKeys = { one: (answerId: string) => ['evidence', answerId] as const };

@@ -6,7 +6,17 @@ export interface ViewParams {
   lab?: string;
 }
 
-const TABS: TabKey[] = ['overview', 'timeline', 'medications', 'labs', 'claims', 'notes', 'safety'];
+const TABS: TabKey[] = [
+  'overview',
+  'timeline',
+  'medications',
+  'labs',
+  'safety',
+  'claims',
+  'notes',
+  'reports',
+  'similar',
+];
 const KEYS: (keyof ViewParams)[] = ['from', 'to', 'lab'];
 
 /** What a saved view stores: the tab and its filters (date range, lab code), nothing clinical. */

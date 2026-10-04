@@ -8,7 +8,7 @@ import { ForgotPasswordForm } from '@/features/session';
 export default function ForgotPasswordScreen() {
   const router = useRouter();
   return (
-    <Screen header={false} contentStyle={styles.content}>
+    <Screen header={false} center contentStyle={styles.content}>
       <Text variant="title" accessibilityRole="header">
         Reset your password
       </Text>
@@ -17,4 +17,4 @@ export default function ForgotPasswordScreen() {
   );
 }
 
-const styles = StyleSheet.create({ content: { gap: 24, paddingTop: 48 } });
+const styles = StyleSheet.create({ content: { gap: 24 } });

@@ -13,8 +13,8 @@ import { LabTrendSheet } from './lab-trend-sheet';
 import { PagedList } from './paged-list';
 
 /** Latest value per test. Tapping a test opens its trend; `lab` pre-opens one (from the assistant's action). */
-export function LabsTab({ patientId, lab }: { patientId: string; lab?: string }) {
-  const [flag, setFlag] = useState<string | undefined>();
+export function LabsTab({ patientId, lab, initialFlag }: { patientId: string; lab?: string; initialFlag?: string }) {
+  const [flag, setFlag] = useState<string | undefined>(initialFlag);
   const [open, setOpen] = useState<string | null>(lab ?? null);
   const query = useLabs(patientId, flag);
   return (

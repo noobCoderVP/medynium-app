@@ -24,21 +24,26 @@ import { MedicationsTab } from './medications-tab';
 import { NotesTab } from './notes-tab';
 import { OverviewTab } from './overview-tab';
 import { PatientHeader } from './patient-header';
+import { ReportsTab } from './reports-tab';
 import { SafetyTab } from './safety-tab';
+import { SimilarTab } from './similar-tab';
 import { ShareSheet } from './share-sheet';
 import { TimelineTab } from './timeline-tab';
 import { ViewsSheet } from './views-sheet';
 
-export type TabKey = 'overview' | 'timeline' | 'medications' | 'labs' | 'claims' | 'notes' | 'safety';
+export type TabKey =
+  'overview' | 'timeline' | 'medications' | 'labs' | 'safety' | 'claims' | 'notes' | 'reports' | 'similar';
 
 const TABS: { value: TabKey; label: string }[] = [
   { value: 'overview', label: 'Overview' },
   { value: 'timeline', label: 'Timeline' },
   { value: 'medications', label: 'Medicines' },
   { value: 'labs', label: 'Labs' },
+  { value: 'safety', label: 'Safety' },
   { value: 'claims', label: 'Claims' },
   { value: 'notes', label: 'Notes' },
-  { value: 'safety', label: 'Safety' },
+  { value: 'reports', label: 'Reports' },
+  { value: 'similar', label: 'Similar' },
 ];
 
 export const isTabKey = (value: string | undefined): value is TabKey => TABS.some((t) => t.value === value);
@@ -111,6 +116,7 @@ function Loaded({
   const insets = useSafeAreaInsets();
   const [tab, setTab] = useState<TabKey>(initialTab ?? 'overview');
   const [range, setRange] = useState<{ from?: string; to?: string; lab?: string }>({ from, to, lab });
+  const [labFlag, setLabFlag] = useState<string | undefined>();
   const [sheet, setSheet] = useState<'views' | 'share' | null>(null);
 
   return (
@@ -128,15 +134,30 @@ function Loaded({
       >
         <SyntheticBanner />
         <Animated.View key={tab} entering={fadeIn} style={styles.tab}>
-          {tab === 'overview' && <OverviewTab data={patient} />}
+          {tab === 'overview' && (
+            <OverviewTab
+              data={patient}
+              onReviewSafety={() => setTab('safety')}
+              onOpenLab={(code) => {
+                setRange({ lab: code });
+                setTab('labs');
+              }}
+              onAllFlagged={() => {
+                setLabFlag('abnormal');
+                setTab('labs');
+              }}
+            />
+          )}
           {tab === 'timeline' && (
             <TimelineTab patientId={patientId} from={range.from} to={range.to} onClearRange={() => setRange({})} />
           )}
           {tab === 'medications' && <MedicationsTab patientId={patientId} />}
-          {tab === 'labs' && <LabsTab patientId={patientId} lab={range.lab} />}
+          {tab === 'labs' && <LabsTab patientId={patientId} lab={range.lab} initialFlag={labFlag} />}
           {tab === 'claims' && <ClaimsTab patientId={patientId} />}
           {tab === 'notes' && <NotesTab patientId={patientId} />}
           {tab === 'safety' && <SafetyTab patientId={patientId} />}
+          {tab === 'reports' && <ReportsTab patientId={patientId} />}
+          {tab === 'similar' && <SimilarTab patientId={patientId} />}
         </Animated.View>
       </ScrollView>
       <ViewsSheet

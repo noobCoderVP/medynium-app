@@ -11,7 +11,7 @@ export default function InviteScreen() {
   const { token } = useLocalSearchParams<{ token: string }>();
   const router = useRouter();
   return (
-    <Screen header={false} contentStyle={styles.content}>
+    <Screen header={false} center contentStyle={styles.content}>
       <Logo size={44} />
       <Text variant="title" accessibilityRole="header">
         Set your password
@@ -21,4 +21,4 @@ export default function InviteScreen() {
   );
 }
 
-const styles = StyleSheet.create({ content: { gap: 20, paddingTop: 48 } });
+const styles = StyleSheet.create({ content: { gap: 20 } });
