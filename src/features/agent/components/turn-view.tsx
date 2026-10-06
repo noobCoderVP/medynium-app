@@ -15,14 +15,25 @@ import { reveal } from '@/lib/motion';
 import type { Turn } from '@/lib/stream-turn';
 
 import { targetForAction } from '../lib/actions';
+import { FollowUps } from './follow-ups';
 import { ProposalCard } from './proposal-card';
 import { RefusalView } from './refusal-view';
 
 const UNAVAILABLE = new Set(['agent_unavailable', 'timeout']);
 
 /** One question and everything the assistant did about it. Actions are buttons, so each has a manual path. */
-export function TurnView({ turn, onRetry }: { turn: Turn; onRetry: () => void }) {
+export function TurnView({
+  turn,
+  onRetry,
+  onFollowUp,
+}: {
+  turn: Turn;
+  onRetry: () => void;
+  /** Given only for the latest turn, so older answers do not keep offering stale follow-ups. */
+  onFollowUp?: (question: string) => void;
+}) {
   const router = useRouter();
+  const lastAnswer = turn.answers.at(-1);
   const theme = useTheme();
   const error = turn.error;
   return (
@@ -74,6 +85,9 @@ export function TurnView({ turn, onRetry }: { turn: Turn; onRetry: () => void })
           <AnswerView answer={answer} />
         </Animated.View>
       ))}
+      {onFollowUp && lastAnswer && turn.status !== 'running' ? (
+        <FollowUps answer={lastAnswer} onPick={onFollowUp} />
+      ) : null}
       {turn.proposals.map((proposal) => (
         <ProposalCard key={proposal.proposal_id} proposal={proposal} />
       ))}

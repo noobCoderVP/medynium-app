@@ -63,7 +63,14 @@ export function AgentChat({
             ))}
           </View>
         ) : (
-          turns.map((turn) => <TurnView key={turn.id} turn={turn} onRetry={() => send(turn.question)} />)
+          turns.map((turn, index) => (
+            <TurnView
+              key={turn.id}
+              turn={turn}
+              onRetry={() => send(turn.question)}
+              onFollowUp={index === turns.length - 1 ? send : undefined}
+            />
+          ))
         )}
       </ScrollView>
       <View style={styles.composer}>
