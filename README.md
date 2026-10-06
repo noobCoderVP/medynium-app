@@ -4,6 +4,12 @@
 
 # Medynium Mobile
 
+<p align="center">
+  <a href="https://www.snowflake.com"><img src="https://cdn.simpleicons.org/snowflake/29B5E8" alt="Snowflake" height="20" align="absmiddle" /></a>
+  <b>Built for the Snowflake CoCo CLI Hackathon (GCC Edition) 2026</b><br />
+  Problem Statement 4: Patient 360 and Clinical Document Copilot
+</p>
+
 ### Patient 360 and an evidence-first assistant, in the clinician's pocket.
 
 The same governed Patient 360 as the web workstation, rebuilt for a phone: a tap on any statement shows the evidence behind it.
@@ -18,7 +24,7 @@ The same governed Patient 360 as the web workstation, rebuilt for a phone: a tap
 
 </div>
 
-> **Synthetic data only. Decision support, not diagnosis.** Built for the Snowflake CoCo CLI Hackathon 2026.
+> **Synthetic data only. Decision support, not diagnosis.**
 
 ---
 
