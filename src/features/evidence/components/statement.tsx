@@ -22,11 +22,14 @@ export function Statement({
   answerId,
   item,
   patientId,
+  action,
 }: {
   answerId: string;
   item: Consideration;
   /** The patient the answer is about; a statement of a panel answer carries its own. */
   patientId?: string | null;
+  /** Optional extra control shown under the Why? button. */
+  action?: React.ReactNode;
 }) {
   const { open } = useEvidenceDrawer();
   const router = useRouter();
@@ -71,6 +74,7 @@ export function Statement({
         icon="help-circle-outline"
         onPress={() => open({ answerId, statementId: item.id })}
       />
+      {action}
     </Card>
   );
 }

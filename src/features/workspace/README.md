@@ -18,8 +18,6 @@
 
 **States handled:** loading skeleton, not found, error with retry and request id, empty list per tab, rate limited, assistant unavailable (Safety only).
 
-**Not yet built:** share a summary, saved views.
-
 ## Web sync (2026-10-04)
 
 Tabs now match the web order: Overview, Timeline, Medicines, Labs, Safety, Claims, Notes, Reports, Similar.
@@ -31,3 +29,10 @@ Tabs now match the web order: Overview, Timeline, Medicines, Labs, Safety, Claim
 - Overview opens with the clinical brief (`clinical-brief.tsx`, `brief-attention.tsx`, `brief-changes.tsx`, `brief-gaps.tsx`; `GET /patients/{id}/brief`, `/brief/summary`, `/changes`): rule-made, no model except the optional written summary. Each line opens its record through `onOpenTarget`. `attention-panel.tsx` stays as the fallback while the brief loads or fails.
 
 **Patient summary (Overview):** stored markdown summary from `GET /patients/{id}/summary`; written once on first open, rewritten only by Refresh (`POST .../summary/refresh`, about 15 s). Shows who/when, a "record changed since" note, and a rules-made label when the model was down. Rendered by `components/shared/markdown.tsx` (native text only).
+
+## Web sync (2026-10-06)
+
+- **Safety tab** now carries the findings workflow: "Add to findings" under every AI-synthesis or rule-check conclusion (`raise-finding-button.tsx`, via `AnswerView`'s `statementAction`), the findings list with Acknowledge, Follow up (date), Escalate (colleague) and Dismiss (reason) (`findings-card.tsx`, `decision-form.tsx`), and the pinned-evidence list (`pins-card.tsx`). Endpoints: `GET/POST /patients/{id}/findings`, `PATCH /findings/{id}`, `GET /patients/{id}/colleagues`, `GET/DELETE /patients/{id}/pins`. Pending items of kind finding already land here.
+- **History**: the clock icon in the header opens `history-sheet.tsx` (`GET /patients/{id}/history`), the audit trail of who changed what.
+- **Add medicine** (doctors only, `useIsDoctor`): `add-medication-sheet.tsx` on the Medicines tab, `POST /patients/{id}/medications` with an idempotency key per sheet session. The API re-checks the role.
+- Dates are typed as YYYY-MM-DD and validated before send (no new date-picker dependency).

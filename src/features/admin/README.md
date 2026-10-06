@@ -13,3 +13,5 @@
 **On the web only:** per-user patient entitlements and admin password resets.
 
 **States handled:** loading skeleton, empty, error with retry and request id, load more, a disabled-account toggle that cannot be applied to yourself.
+
+**Golden report** (Health tab): `components/golden-report-card.tsx`, `GET /admin/golden-runs`. Shows the latest stored run, every failed question with its reason, and earlier pass counts. Runs are started from the command line in `medynium-apis`.

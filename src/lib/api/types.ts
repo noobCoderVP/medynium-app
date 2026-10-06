@@ -93,3 +93,14 @@ export type ReportDetail = S['ReportDetail'];
 export type ReportRow = S['ReportRow'];
 export type Allergy = S['Allergy'];
 export type RowResult = S['RowResult'];
+
+export type HistoryList = S['HistoryList'];
+export type Finding = S['Finding'];
+export type FindingList = S['FindingList'];
+export type FindingUpdate = S['FindingUpdate'];
+export type FindingStatus = Finding['status'];
+export type ColleagueList = S['ColleagueList'];
+export type PatientCreate = S['PatientCreate'];
+export type MedicationIn = S['MedicationIn'];
+export type WriteResult = S['WriteResult'];
+export type GoldenRunList = S['GoldenRunList'];

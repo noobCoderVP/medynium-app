@@ -22,6 +22,9 @@ export const patientKeys = {
   notes: (id: string, params: object) => ['patients', id, 'notes', params] as const,
   note: (id: string, noteId: string) => ['patients', id, 'notes', noteId] as const,
   pins: (id: string) => ['patients', id, 'pins'] as const,
+  history: (id: string) => ['patients', id, 'history'] as const,
+  findings: (id: string) => ['patients', id, 'findings'] as const,
+  colleagues: (id: string) => ['patients', id, 'colleagues'] as const,
   views: (id: string) => ['patients', id, 'views'] as const,
   /** The last safety review run in this session (held in the cache only; the stored evidence is the record). */
   similar: (id: string) => ['patients', id, 'similar'] as const,
@@ -50,6 +53,7 @@ export const auditKeys = {
 
 export const adminKeys = {
   health: ['admin', 'health'] as const,
+  golden: ['admin', 'golden-runs'] as const,
   users: (params: object) => ['admin', 'users', params] as const,
   entitlements: (id: string) => ['admin', 'users', id, 'entitlements'] as const,
   invites: ['admin', 'invites'] as const,

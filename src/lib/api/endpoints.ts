@@ -6,6 +6,15 @@ import type {
   Brief,
   BriefSummary,
   ChangeSet,
+  ColleagueList,
+  Finding,
+  FindingList,
+  FindingUpdate,
+  GoldenRunList,
+  HistoryList,
+  MedicationIn,
+  PatientCreate,
+  WriteResult,
   ProposalResult,
   AuditPage,
   Briefing,
@@ -103,6 +112,17 @@ export const endpoints = {
     post<Pin>(`${pid(id)}/pins`, body, {
       'Idempotency-Key': `${body.answer_id}:${body.evidence_id}`,
     }),
+  history: (id: string) => get<HistoryList>(`${pid(id)}/history${qs({ limit: 50 })}`),
+  findings: (id: string) => get<FindingList>(`${pid(id)}/findings`),
+  colleagues: (id: string) => get<ColleagueList>(`${pid(id)}/colleagues`),
+  raiseFinding: (id: string, body: { answer_id: string; consideration_id: string }) =>
+    post<Finding>(`${pid(id)}/findings`, body),
+  decideFinding: (findingId: string, body: FindingUpdate) =>
+    patch<Finding>(`/findings/${encodeURIComponent(findingId)}`, body),
+  // writes (doctors only; the API re-checks the entitlement)
+  createPatient: (body: PatientCreate, key: string) => post<WriteResult>('/patients', body, { 'Idempotency-Key': key }),
+  addMedication: (id: string, body: MedicationIn, key: string) =>
+    post<WriteResult>(`${pid(id)}/medications`, body, { 'Idempotency-Key': key }),
   removePin: (id: string, pinId: string) => del(`${pid(id)}/pins/${encodeURIComponent(pinId)}`),
   previewView: (body: { kind: 'SAVED_VIEW' | 'VISIT_BRIEF'; patient_id: string; content: Record<string, unknown> }) =>
     post<ViewPreview>('/views/preview', body),
@@ -142,6 +162,7 @@ export const endpoints = {
   aiMetrics: (days: number) => get<AiMetrics>(`/audit/summary${qs({ days })}`),
 
   // admin
+  goldenRuns: () => get<GoldenRunList>('/admin/golden-runs'),
   healthDetails: () => get<HealthDetails>('/health/details'),
   users: (params: Params) => get<UserPage>(`/admin/users${qs(params)}`),
   patchUser: (id: string, body: UserPatch) => patch<UserItem>(`/admin/users/${encodeURIComponent(id)}`, body),

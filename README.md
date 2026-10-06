@@ -38,6 +38,8 @@ The same governed Patient 360 as the web workstation, rebuilt for a phone: a tap
 11. [Build status and honest limits](#build-status-and-honest-limits)
 12. [The Medynium repositories](#the-medynium-repositories)
 
+Also see the workspace [README](../README.md), the [evaluation hub](../medynium-apis/docs/evaluation/README.md) and the [diagram gallery](../medynium-apis/docs/architecture/diagrams.md).
+
 ---
 
 ## Why a mobile app
@@ -73,6 +75,18 @@ Clinical decisions happen at the bedside, in corridors and between consults, not
 - **Evidence on a tap.** There is no hover on a phone, so every tagged statement opens a Why? bottom sheet with the records and source behind it.
 - **Same governance everywhere.** Access is decided by Snowflake under the user's own role. The app cannot show a patient the user may not open, and a denied patient looks exactly like a missing one.
 - **Safe on a lost or shared phone.** Patient data is never stored on the device, backups are disabled, and the app locks itself.
+
+### Real-world use cases
+
+| Use case                              | On the phone                    | Why it helps                                                          |
+| ------------------------------------- | ------------------------------- | --------------------------------------------------------------------- |
+| **Ward rounds and corridor consults** | Home worklist, Patient 360 tabs | Context where the clinician already is                                |
+| **Quick medicine check**              | Safety tab, Ask                 | The lab trend tied to the label section; Why? opens as a bottom sheet |
+| **Follow-up on the move**             | Pending tab                     | Open findings, due follow-ups, abnormal labs, recent ER visits        |
+| **Photographing a report**            | Reports                         | Rows extracted with their quoted words; a doctor approves each        |
+| **A lost or shared phone**            | Auto-lock, secure store         | No clinical data at rest, no backups, locks after 60 seconds away     |
+
+No user study has been run; see [impact and use cases](../medynium-apis/docs/evaluation/impact-and-use-cases.md) for what is and is not claimed.
 
 ---
 
@@ -127,6 +141,42 @@ flowchart LR
   end
   C -->|HTTPS · X-Medynium-Client: mobile| API[medynium-apis<br/>FastAPI on Cloud Run]
   API -->|USE ROLE per user| SF[(Snowflake<br/>Cortex Analyst, Search, Agent)]
+```
+
+### Session and lock
+
+```mermaid
+stateDiagram-v2
+  [*] --> SignedOut
+  SignedOut --> SignedIn: Password, or invite link
+  SignedIn --> Locked: 60 seconds away from the app
+  Locked --> SignedIn: Fingerprint, face or screen-lock unlock
+  SignedIn --> SignedOut: 5 minutes away on a phone with no screen lock
+  SignedIn --> SignedOut: Sign out (tokens and cache cleared)
+  SignedIn --> SignedOut: Refresh token reused, revoked or expired
+  SignedIn --> SignedIn: Refresh rotates tokens in the secure store
+```
+
+### How an answer reaches the phone
+
+```mermaid
+sequenceDiagram
+  actor D as Clinician
+  participant A as Ask screen
+  participant C as api client (bearer)
+  participant API as FastAPI
+  participant SF as Snowflake + Cortex
+  D->>A: "What changed since the last visit?"
+  A->>C: POST /copilot/ask
+  C->>API: Bearer token, X-Medynium-Client: mobile
+  API->>SF: Route, then query under the clinician's role
+  API-->>C: SSE steps
+  C-->>A: zod-validated step events (live steps, route chip)
+  API-->>C: Tagged statements and answer id
+  D->>A: Tap a statement
+  A->>API: GET /evidence/{answer_id}
+  API-->>A: Records, SQL, source label
+  A-->>D: Why? bottom sheet
 ```
 
 The app never talks to Snowflake. It reaches the same API as the web, in bearer-token mode (`POST /auth/mobile/refresh`), and stream and answer payloads are validated with zod at the boundary.
@@ -189,6 +239,19 @@ docs/
 ```
 
 Import a feature through its `index.ts` only. Components never call the API client; hooks do (lint-enforced).
+
+---
+
+## Quality
+
+| Check                           | Result                                                                                                                                                                          |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Jest (16 suites)                | **59 passed** (2026-10-06)                                                                                                                                                      |
+| Colour contrast, light and dark | checked by `npm run contrast`                                                                                                                                                   |
+| API behind it                   | See the [evaluation hub](../medynium-apis/docs/evaluation/README.md): 250 API unit tests, 12 of 12 injection cases, 18 of 19 golden cases, denied equals missing on eight paths |
+| Device checks                   | TalkBack walk-through and on-device checks are still to do; see [SMOKE_TESTS.md](SMOKE_TESTS.md)                                                                                |
+
+The Jest tests cover the app boundary. Access, safety and evidence are proven by the API's live suite, because the app holds no policy of its own.
 
 ---
 

@@ -50,3 +50,6 @@ export function useRevokeInvite() {
 
 /** Emails the user a one-time reset link. The link is never shown here; it goes only to the account's own address. */
 export const useResetPassword = () => useMutation({ mutationFn: (id: string) => endpoints.resetPassword(id) });
+
+/** The latest stored golden run and the earlier pass counts. */
+export const useGoldenRuns = () => useQuery({ queryKey: adminKeys.golden, queryFn: endpoints.goldenRuns });

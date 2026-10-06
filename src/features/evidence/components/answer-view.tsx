@@ -16,7 +16,14 @@ import { Statement } from './statement';
  * A structured answer: the short answer, each tagged statement with its evidence button, conflicts and limits.
  * A safety review with no statements is the honest gap, in the words the copy deck fixes, never "no risk" (AI-05).
  */
-export function AnswerView({ answer }: { answer: StreamAnswer }) {
+export function AnswerView({
+  answer,
+  statementAction,
+}: {
+  answer: StreamAnswer;
+  /** Extra control under a statement, such as "Add to findings" on a safety review conclusion. */
+  statementAction?: (item: StreamAnswer['considerations'][number]) => React.ReactNode;
+}) {
   const { open } = useEvidenceDrawer();
   const gap = answer.kind === 'SAFETY' && answer.considerations.length === 0;
   return (
@@ -31,7 +38,13 @@ export function AnswerView({ answer }: { answer: StreamAnswer }) {
       </Text>
       {gap ? <Text color="mutedForeground">{copy.gap.note}</Text> : null}
       {answer.considerations.map((item) => (
-        <Statement key={item.id} answerId={answer.answer_id} item={item} patientId={answer.patient_id} />
+        <Statement
+          key={item.id}
+          answerId={answer.answer_id}
+          item={item}
+          patientId={answer.patient_id}
+          action={statementAction?.(item)}
+        />
       ))}
       {answer.conflicts.length > 0 && (
         <Card style={styles.conflict}>

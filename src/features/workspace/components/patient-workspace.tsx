@@ -19,7 +19,9 @@ import { AskFab } from '@/features/agent';
 import { setOpenPatient } from '@/lib/open-patient';
 
 import { usePatient } from '../hooks/use-patient-data';
+import { SUGGESTIONS } from '../lib/tab-suggestions';
 import { ClaimsTab } from './claims-tab';
+import { HistorySheet } from './history-sheet';
 import { LabsTab } from './labs-tab';
 import { MedicationsTab } from './medications-tab';
 import { NotesTab } from './notes-tab';
@@ -46,18 +48,6 @@ const TABS: { value: TabKey; label: string }[] = [
   { value: 'reports', label: 'Reports' },
   { value: 'similar', label: 'Similar' },
 ];
-
-const SUGGESTIONS: Record<TabKey, string[]> = {
-  overview: ['Brief me on this patient', 'What changed since the last visit?', 'What is missing from the record?'],
-  timeline: ['What changed recently?', 'Show the timeline for the last 3 months'],
-  medications: ['What medicines is this patient on?', 'Run the safety review'],
-  labs: ['Which results are flagged?', 'Show the eGFR trend'],
-  safety: ['Run the safety review', 'What does the label say about the current medicines?'],
-  claims: ['Summarise the claims and utilisation'],
-  notes: ['Summarise this patient'],
-  reports: ['What changed since the last report?'],
-  similar: ['Which of my patients are most like this one?'],
-};
 
 export const isTabKey = (value: string | undefined): value is TabKey => TABS.some((t) => t.value === value);
 
@@ -130,12 +120,17 @@ function Loaded({
   const [tab, setTab] = useState<TabKey>(initialTab ?? 'overview');
   const [range, setRange] = useState<{ from?: string; to?: string; lab?: string }>({ from, to, lab });
   const [labFlag, setLabFlag] = useState<string | undefined>();
-  const [sheet, setSheet] = useState<'views' | 'share' | null>(null);
+  const [sheet, setSheet] = useState<'views' | 'share' | 'history' | null>(null);
 
   return (
     <>
       <View style={[styles.pinned, { backgroundColor: theme.card, borderColor: theme.border }]}>
-        <PatientHeader patient={patient} onViews={() => setSheet('views')} onShare={() => setSheet('share')} />
+        <PatientHeader
+          patient={patient}
+          onViews={() => setSheet('views')}
+          onShare={() => setSheet('share')}
+          onHistory={() => setSheet('history')}
+        />
         <Chips scroll options={TABS} value={tab} onChange={(value) => value && setTab(value)} />
       </View>
       <ScrollView
@@ -188,6 +183,7 @@ function Loaded({
           setRange(view.params);
         }}
       />
+      <HistorySheet patientId={patientId} visible={sheet === 'history'} onClose={() => setSheet(null)} />
       <AskFab suggestions={SUGGESTIONS[tab]} />
       <ShareSheet
         patientId={patientId}

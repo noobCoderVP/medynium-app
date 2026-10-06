@@ -3,18 +3,29 @@ import { StyleSheet, View } from 'react-native';
 
 import { RecordRow } from '@/components/shared/record-row';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Chips } from '@/components/ui/chips';
+import { useIsDoctor } from '@/features/session';
 import { copy } from '@/lib/copy';
 import { formatDate } from '@/lib/format';
 
 import { useMedications } from '../hooks/use-patient-data';
+import { AddMedicationSheet } from './add-medication-sheet';
 import { PagedList } from './paged-list';
 
 export function MedicationsTab({ patientId }: { patientId: string }) {
   const [status, setStatus] = useState<'active' | 'all'>('active');
   const query = useMedications(patientId, status);
+  const isDoctor = useIsDoctor();
+  const [adding, setAdding] = useState(false);
   return (
     <View style={styles.stack}>
+      {isDoctor && (
+        <>
+          <Button title="Add medicine" icon="add-circle-outline" variant="secondary" onPress={() => setAdding(true)} />
+          <AddMedicationSheet patientId={patientId} visible={adding} onClose={() => setAdding(false)} />
+        </>
+      )}
       <Chips
         fill
         options={[

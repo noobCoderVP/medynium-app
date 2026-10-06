@@ -5,16 +5,19 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { BrandBar } from '@/components/brand/brand-bar';
 import { DataState } from '@/components/shared/data-state';
 import { PatientRow } from '@/components/shared/patient-row';
+import { Button } from '@/components/ui/button';
 import { Chips } from '@/components/ui/chips';
 import { Input } from '@/components/ui/input';
 import { ScreenHeader } from '@/components/ui/screen-header';
 import { Text } from '@/components/ui/text';
 import { SyntheticBanner } from '@/components/synthetic-banner';
+import { useIsDoctor } from '@/features/session';
 import { useTheme } from '@/hooks/use-theme';
 import type { PatientListItem } from '@/lib/api/types';
 import { copy } from '@/lib/copy';
 
 import { usePatients } from '../hooks/use-patients';
+import { NewPatientSheet } from './new-patient-sheet';
 
 /** Search, a "changed" filter and a paged list. Typing waits 300 ms before it asks the server. */
 export function PatientList() {
@@ -22,6 +25,8 @@ export function PatientList() {
   const [text, setText] = useState('');
   const [q, setQ] = useState('');
   const [changed, setChanged] = useState(false);
+  const [creating, setCreating] = useState(false);
+  const isDoctor = useIsDoctor();
 
   useEffect(() => {
     const id = setTimeout(() => setQ(text.trim()), 300);
@@ -37,6 +42,17 @@ export function PatientList() {
       <BrandBar />
       <View style={styles.head}>
         <ScreenHeader title="Patients" subtitle={query.data ? `${total} on your list` : undefined} />
+        {isDoctor && (
+          <>
+            <Button
+              title="New patient"
+              icon="person-add-outline"
+              variant="secondary"
+              onPress={() => setCreating(true)}
+            />
+            <NewPatientSheet visible={creating} onClose={() => setCreating(false)} />
+          </>
+        )}
         <SyntheticBanner />
         <Input
           label="Search"

@@ -6,7 +6,7 @@
 
 **Requirement IDs:** SEC-01 to SEC-04 (sessions), SEC-05 (a denied patient looks missing), NFR-13.
 
-**Public surface (`index.ts`):** `SessionProvider`, `useSession`, `SignInForm`, `OtpForm`, `ForgotPasswordForm`, `InviteForm`, `InviteLink`.
+**Public surface (`index.ts`):** `SessionProvider`, `useSession`, `useIsDoctor`, `SignInForm`, `OtpForm`, `ForgotPasswordForm`, `InviteForm`, `InviteLink`.
 
 **Invitations:** route `(auth)/invite/[token]` opens from `medynium://invite/<token>` or from the sign-in screen's "I have an invitation" (paste the link or code; `lib/invite-token.ts` extracts the token). A bad, used or expired link all read "no longer valid".
 

@@ -9,6 +9,7 @@ import { Screen } from '@/components/ui/screen';
 import { ScreenHeader } from '@/components/ui/screen-header';
 import { useSession } from '@/features/session';
 
+import { GoldenReportCard } from './golden-report-card';
 import { HealthCard } from './health-card';
 import { InvitesList } from './invites-list';
 import { UsersList } from './users-list';
@@ -42,6 +43,11 @@ export function AdminView() {
       {tab === 'health' && (
         <Section title="Platform">
           <HealthCard />
+        </Section>
+      )}
+      {tab === 'health' && (
+        <Section title="Golden report">
+          <GoldenReportCard />
         </Section>
       )}
       {tab === 'users' && <UsersList meId={user?.user_id} />}

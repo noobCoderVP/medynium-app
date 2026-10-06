@@ -27,10 +27,12 @@ export function PatientHeader({
   patient,
   onViews,
   onShare,
+  onHistory,
 }: {
   patient: Overview;
   onViews: () => void;
   onShare: () => void;
+  onHistory: () => void;
 }) {
   const router = useRouter();
   return (
@@ -50,6 +52,7 @@ export function PatientHeader({
             {patient.city ? ` · ${patient.city}` : ''} · as of {formatDate(patient.as_of)}
           </Text>
         </View>
+        <IconButton icon="time-outline" label="Record history" onPress={onHistory} />
         <IconButton icon="bookmark-outline" label="Saved views" onPress={onViews} />
         <IconButton icon="mail-outline" label="Email a summary" onPress={onShare} />
       </View>

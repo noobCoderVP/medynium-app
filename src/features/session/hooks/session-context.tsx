@@ -105,3 +105,6 @@ export function useSession() {
   if (!ctx) throw new Error('useSession must be used inside SessionProvider');
   return ctx;
 }
+
+/** True only once we know the caller is a doctor; record changes are doctor-only (the API re-checks). */
+export const useIsDoctor = () => useSession().user?.role === 'DOCTOR';

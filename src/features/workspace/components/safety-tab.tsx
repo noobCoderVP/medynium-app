@@ -8,11 +8,15 @@ import { AnswerView } from '@/features/evidence';
 import { copy } from '@/lib/copy';
 
 import { useSafetyReview } from '../hooks/use-safety-review';
+import { FindingsCard } from './findings-card';
+import { PinsCard } from './pins-card';
+import { RaiseFindingButton } from './raise-finding-button';
 
 const UNAVAILABLE = new Set(['agent_unavailable', 'timeout']);
 
 /**
- * Medicines against label text. Every statement carries its tag and opens Why?. If the assistant is unavailable
+ * Medicines against label text. Every statement carries its tag and opens Why?. A review conclusion can be added to
+ * the findings below, where it is acknowledged, followed up, escalated or dismissed. If the assistant is unavailable
  * this tab says so and the rest of the record stays usable (FR-20, NFR-13).
  */
 export function SafetyTab({ patientId }: { patientId: string }) {
@@ -39,7 +43,18 @@ export function SafetyTab({ patientId }: { patientId: string }) {
           {error.retryAfter ? <Text variant="caption">Try again in {error.retryAfter} seconds.</Text> : null}
         </Card>
       )}
-      {answer && <AnswerView answer={answer} />}
+      {answer && (
+        <AnswerView
+          answer={answer}
+          statementAction={(item) =>
+            item.tag === 'ai_synthesis' || item.tag === 'rule_check' ? (
+              <RaiseFindingButton patientId={patientId} answerId={answer.answer_id} considerationId={item.id} />
+            ) : null
+          }
+        />
+      )}
+      <FindingsCard patientId={patientId} />
+      <PinsCard patientId={patientId} />
     </View>
   );
 }
