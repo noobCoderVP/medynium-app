@@ -1,7 +1,6 @@
 <div align="center">
 
-<!-- MEDIA: banner. Suggested file: docs/media/banner.png (1600x400) -->
-<img src="docs/media/banner.png" alt="Medynium mobile: Patient 360 at the point of care" width="100%" />
+<img src="docs/media/logo.png" alt="Medynium logo" width="96" />
 
 # Medynium Mobile
 
@@ -50,22 +49,19 @@ Clinical decisions happen at the bedside, in corridors and between consults, not
 
 ## See it in action
 
-<!-- MEDIA: phone demo. Suggested: docs/media/demo.gif (about 20 s) -->
-<p align="center">
-  <img src="docs/media/demo.gif" alt="Open a patient, ask the assistant, tap Why?" width="320" />
-</p>
-
 |                   |                                                      |
 | ----------------- | ---------------------------------------------------- |
 | **Demo video**    | _Add the video link here_                            |
 | **Android build** | _Add the APK or EAS link here_                       |
 | **Deployed API**  | Cloud Run, set in `eas.json` for every build profile |
 
-<!-- MEDIA: screenshots. Add these files under docs/media/ (portrait, about 1080x2400) -->
-
-|   ![Home](docs/media/home.png)   | ![Patient](docs/media/patient.png) | ![Why sheet](docs/media/why-sheet.png) |       ![Ask](docs/media/ask.png)       |
-| :------------------------------: | :--------------------------------: | :------------------------------------: | :------------------------------------: |
-| **Home.** Worklist and attention |  **Patient 360.** Segmented tabs   |   **Why? sheet.** Evidence on a tap    | **Ask.** Live steps and tagged answers |
+<table>
+  <tr>
+    <td align="center" width="33%"><img src="docs/media/home.jpg" alt="Home" width="260" /><br /><b>Home.</b> Worklist and what changed</td>
+    <td align="center" width="33%"><img src="docs/media/patient.jpg" alt="Patient 360" width="260" /><br /><b>Patient 360.</b> Segmented tabs, AI-tagged summary</td>
+    <td align="center" width="33%"><img src="docs/media/ask.jpg" alt="Ask about this patient" width="260" /><br /><b>Ask.</b> Live steps and tagged answers</td>
+  </tr>
+</table>
 
 ---
 
