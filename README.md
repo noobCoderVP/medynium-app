@@ -55,11 +55,11 @@ Clinical decisions happen at the bedside, in corridors and between consults, not
 
 ## See it in action
 
-|                   |                                                      |
-| ----------------- | ---------------------------------------------------- |
-| **Demo video**    | _Add the video link here_                            |
-| **Android build** | _Add the APK or EAS link here_                       |
-| **Deployed API**  | Cloud Run, set in `eas.json` for every build profile |
+|                   |                                                                                                 |
+| ----------------- | ----------------------------------------------------------------------------------------------- |
+| **Demo video**    | [Watch on Google Drive](https://drive.google.com/file/d/1uNL1LfD2J-mpHUxjBhGi3C77r9FKnKhj/view) |
+| **Android build** | [v1.0.0 release](https://github.com/noobCoderVP/medynium-app/releases/tag/v1.0.0)               |
+| **Deployed API**  | Cloud Run, set in `eas.json` for every build profile                                            |
 
 <table>
   <tr>
